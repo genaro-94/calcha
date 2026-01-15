@@ -5,7 +5,14 @@
     "rubro": "gastronomía",
     "descripcion": "Sandwichería local con los mejores sándwiches y menú del día.",
     "imagen": "images/images-8.jpeg",
-     "tipoOperacion": "pedido",
+    "tipoOperacion": "pedido",
+    "permiteDelivery": true,
+    "menu": [
+      { "nombre": "Hamburguesa clásica", "precio": 700 },
+      { "nombre": "Lomito completo", "precio": 850 },
+      { "nombre": "Papas fritas", "precio": 400 },
+      { "nombre": "Gaseosa 500ml", "precio": 250 }
+    ],
     "galeria": [],
     "whatsapp": "3874000001",
     "estado": "activo",
@@ -17,7 +24,13 @@
     "rubro": "panadería",
     "descripcion": "Pan casero, facturas y repostería artesanal.",
     "imagen": "images/harry.jpeg",
-     "tipoOperacion": "pedido",
+    "tipoOperacion": "pedido",
+    "permiteDelivery": false,
+    "menu": [
+      { "nombre": "Pan casero", "precio": 150 },
+      { "nombre": "Facturas surtidas", "precio": 200 },
+      { "nombre": "Tarta de frutas", "precio": 350 }
+    ],
     "galeria": [],
     "whatsapp": "3874000002",
     "estado": "activo",
@@ -30,6 +43,12 @@
     "descripcion": "Todo para el hogar, herramientas y materiales.",
     "imagen": "images/pika.jpeg",
     "tipoOperacion": "pedido",
+    "permiteDelivery": false,
+    "menu": [
+      { "nombre": "Martillo", "precio": 1200 },
+      { "nombre": "Taladro eléctrico", "precio": 5500 },
+      { "nombre": "Clavos x 1kg", "precio": 450 }
+    ],
     "galeria": [],
     "whatsapp": "3874000003",
     "estado": "activo",
