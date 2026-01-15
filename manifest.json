@@ -1,12 +1,10 @@
 {
   "name": "Calcha",
   "short_name": "Calcha",
-  "description": "El mercado local en tu mano",
-  "start_url": ".",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#f4f1ec",
+  "background_color": "#1e1e1e",
   "theme_color": "#c1440e",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "icon-192.png",
