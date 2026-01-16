@@ -39,28 +39,28 @@ document.addEventListener("DOMContentLoaded", () => {
   // HOME
   // ------------------------
   function renderHome() {
-  app.innerHTML = `
-    <h1>
-      <img src="images/Logo.png" alt="Logo Calcha" style="width:32px; height:32px; vertical-align:middle; margin-right:8px;">
-      CALCHA
-    </h1>
-    <p>El mercado local en tu mano</p>
-    <button id="btn-rubros">☰</button>
-    ${
-      menuRubrosAbierto ? 
-      `<div class="menu-rubros">
-        <button data-rubro="todos">Todos</button>
-        <button data-rubro="gastronomía">🍔 Gastronomía</button>
-        <button data-rubro="artesanía">🏺 Artesanía</button>
-        <button data-rubro="hotel">🏨 Hotelería</button>
-        <button data-rubro="servicios">🛠️ Servicios</button>
-        <hr>
-        <button id="btn-comercio">➕ Sumá tu comercio</button>
-        <button id="btn-info">ℹ️ ¿Qué es Calcha?</button>
-      </div>` : ''
-    }
-    <div id="lista-comercios"></div>
-  `;
+    app.innerHTML = `
+      <h1>
+        <img src="images/Logo.png" alt="Logo Calcha" style="width:32px; height:32px; vertical-align:middle; margin-right:8px;">
+        CALCHA
+      </h1>
+      <p>El mercado local en tu mano</p>
+      <button id="btn-rubros">☰</button>
+      ${
+        menuRubrosAbierto ? 
+        `<div class="menu-rubros">
+          <button data-rubro="todos">Todos</button>
+          <button data-rubro="gastronomía">🍔 Gastronomía</button>
+          <button data-rubro="artesanía">🏺 Artesanía</button>
+          <button data-rubro="hotel">🏨 Hotelería</button>
+          <button data-rubro="servicios">🛠️ Servicios</button>
+          <hr>
+          <button id="btn-comercio">➕ Sumá tu comercio</button>
+          <button id="btn-info">ℹ️ ¿Qué es Calcha?</button>
+        </div>` : ''
+      }
+      <div id="lista-comercios"></div>
+    `;
 
     // Toggle rubros
     document.getElementById("btn-rubros").onclick = () => {
@@ -150,105 +150,89 @@ document.addEventListener("DOMContentLoaded", () => {
   // PEDIDO
   // ------------------------
   function renderPedido() {
-  // ------------------------
-  // Menú del comercio
-  // ------------------------
-  let menuHTML = "";
-  comercioActivo.menu.forEach((item, i) => {
-    const enCarrito = carrito.find(p => p.nombre === item.nombre);
-    menuHTML += `
-      <div class="item-menu">
-        <span>${item.nombre} - $${item.precio}</span>
-        <div style="display:flex; align-items:center; gap:6px;">
-          ${enCarrito ? `<button data-i="${i}" data-accion="restar">−</button><strong>${enCarrito.cantidad}</strong>` : ""}
-          <button data-i="${i}" data-accion="sumar">+</button>
-        </div>
-      </div>`;
-  });
+    // Menú del comercio
+    let menuHTML = "";
+    comercioActivo.menu.forEach((item, i) => {
+      const enCarrito = carrito.find(p => p.nombre === item.nombre);
+      menuHTML += `
+        <div class="item-menu">
+          <span>${item.nombre} - $${item.precio}</span>
+          <div style="display:flex; align-items:center; gap:6px;">
+            ${enCarrito ? `<button data-i="${i}" data-accion="restar">−</button><strong>${enCarrito.cantidad}</strong>` : ""}
+            <button data-i="${i}" data-accion="sumar">+</button>
+          </div>
+        </div>`;
+    });
 
-  // ------------------------
-  // Galería de imágenes del comercio
-  // ------------------------
-  let galeriaHTML = '';
-  if (comercioActivo.galeria && comercioActivo.galeria.length > 0) {
-    galeriaHTML = `
-      <div class="galeria-comercio">
-        ${comercioActivo.galeria.map(img => `
-          <img src="${img}" alt="${comercioActivo.nombre}" class="galeria-img">
-        `).join('')}
+    // Galería de imágenes del comercio
+    let galeriaHTML = '';
+    if (comercioActivo.galeria && comercioActivo.galeria.length > 0) {
+      galeriaHTML = `
+        <div class="galeria-comercio">
+          ${comercioActivo.galeria.map(img => `
+            <img src="${img}" alt="${comercioActivo.nombre}" class="galeria-img">
+          `).join('')}
+        </div>
+      `;
+    }
+
+    // Calcular total
+    const total = carrito.reduce((s, i) => s + i.precio * i.cantidad, 0);
+
+    // Render HTML
+    app.innerHTML = `
+      <button class="btn-volver">← Volver</button>
+      <h2>${comercioActivo.nombre}</h2>
+
+      ${galeriaHTML}
+
+      <div class="entrega">
+        <button class="${tipoEntrega === "retiro" ? "activo" : ""}" id="retiro">🏪 Retiro</button>
+        ${comercioActivo.permiteDelivery ? `<button class="${tipoEntrega === "delivery" ? "activo" : ""}" id="delivery">🛵 Delivery</button>` : ""}
+      </div>
+
+      <div class="menu">${menuHTML}</div>
+
+      <div class="carrito">
+        <strong>Total: $${total}</strong>
+        <button class="btn-continuar" id="continuar" ${!total || !tipoEntrega ? "disabled" : ""}>Continuar</button>
       </div>
     `;
+
+    // Event listeners
+    document.querySelector(".btn-volver").onclick = volverHome;
+
+    document.querySelectorAll(".item-menu button").forEach(b => {
+      b.onclick = () => {
+        const producto = comercioActivo.menu[b.dataset.i];
+        const existente = carrito.find(p => p.nombre === producto.nombre);
+        if (b.dataset.accion === "sumar") {
+          if (existente) existente.cantidad++;
+          else carrito.push({ ...producto, cantidad: 1 });
+        }
+        if (b.dataset.accion === "restar" && existente) {
+          existente.cantidad--;
+          if (existente.cantidad === 0) carrito = carrito.filter(p => p.nombre !== producto.nombre);
+        }
+        renderPedido();
+      };
+    });
+
+    document.getElementById("retiro").onclick = () => { tipoEntrega = "retiro"; renderPedido(); };
+    if (comercioActivo.permiteDelivery) document.getElementById("delivery").onclick = () => { tipoEntrega = "delivery"; renderPedido(); };
+    document.getElementById("continuar").onclick = renderConfirmacionPedido;
+
+    // Lightbox galería
+    document.querySelectorAll(".galeria-img").forEach(img => {
+      img.onclick = () => {
+        const overlay = document.createElement("div");
+        overlay.className = "overlay";
+        overlay.innerHTML = `<img src="${img.src}" class="overlay-img">`;
+        overlay.onclick = () => overlay.remove();
+        document.body.appendChild(overlay);
+      };
+    });
   }
-
-  // ------------------------
-  // Calcular total del carrito
-  // ------------------------
-  const total = carrito.reduce((s, i) => s + i.precio * i.cantidad, 0);
-
-  // ------------------------
-  // Render HTML completo
-  // ------------------------
-  app.innerHTML = `
-    <button class="btn-volver">← Volver</button>
-    <h2>${comercioActivo.nombre}</h2>
-
-    ${galeriaHTML}  <!-- Galería aquí -->
-
-    <div class="entrega">
-      <button class="${tipoEntrega === "retiro" ? "activo" : ""}" id="retiro">🏪 Retiro</button>
-      ${comercioActivo.permiteDelivery ? `<button class="${tipoEntrega === "delivery" ? "activo" : ""}" id="delivery">🛵 Delivery</button>` : ""}
-    </div>
-
-    <div class="menu">${menuHTML}</div>
-
-    <div class="carrito">
-      <strong>Total: $${total}</strong>
-      <button class="btn-continuar" id="continuar" ${!total || !tipoEntrega ? "disabled" : ""}>Continuar</button>
-    </div>
-  `;
-
-  // ------------------------
-  // Event listeners
-  // ------------------------
-  document.querySelector(".btn-volver").onclick = volverHome;
-
-  // Botones de menú +/-
-  document.querySelectorAll(".item-menu button").forEach(b => {
-    b.onclick = () => {
-      const producto = comercioActivo.menu[b.dataset.i];
-      const existente = carrito.find(p => p.nombre === producto.nombre);
-      if (b.dataset.accion === "sumar") {
-        if (existente) existente.cantidad++;
-        else carrito.push({ ...producto, cantidad: 1 });
-      }
-      if (b.dataset.accion === "restar" && existente) {
-        existente.cantidad--;
-        if (existente.cantidad === 0) carrito = carrito.filter(p => p.nombre !== producto.nombre);
-      }
-      renderPedido();
-    };
-  });
-
-  // Botones de entrega
-  document.getElementById("retiro").onclick = () => { tipoEntrega = "retiro"; renderPedido(); };
-  if (comercioActivo.permiteDelivery) document.getElementById("delivery").onclick = () => { tipoEntrega = "delivery"; renderPedido(); };
-
-  // Continuar
-  document.getElementById("continuar").onclick = renderConfirmacionPedido;
-
-  // ------------------------
-  // Lightbox para galería
-  // ------------------------
-  document.querySelectorAll(".galeria-img").forEach(img => {
-    img.onclick = () => {
-      const overlay = document.createElement("div");
-      overlay.className = "overlay";
-      overlay.innerHTML = `<img src="${img.src}" class="overlay-img">`;
-      overlay.onclick = () => overlay.remove();
-      document.body.appendChild(overlay);
-    };
-  });
-}
 
   // ------------------------
   // CONFIRMACIÓN PEDIDO
