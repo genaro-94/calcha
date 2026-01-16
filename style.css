@@ -314,3 +314,48 @@ input:focus {
   border-radius: 4px;
   margin-bottom: 6px;
 }
+.galeria-comercio {
+  display: flex;
+  overflow-x: auto; /* scroll horizontal */
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.galeria-comercio::-webkit-scrollbar {
+  height: 6px;
+}
+
+.galeria-comercio::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.galeria-img {
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.galeria-img:hover {
+  transform: scale(1.05);
+}
+
+/* Lightbox */
+.overlay {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.8);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index: 1000;
+}
+
+.overlay-img {
+  max-width:90%;
+  max-height:90%;
+  border-radius:8px;
+}
