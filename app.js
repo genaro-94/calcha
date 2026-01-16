@@ -228,9 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Render completo de la vista pedido
   app.innerHTML = `
-    <div id="lightbox" class="lightbox hidden">
-      <img id="lightbox-img" src="" alt="">
-    </div>
 
     <button class="btn-volver">← Volver</button>
 
