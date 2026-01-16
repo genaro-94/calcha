@@ -71,23 +71,31 @@ const WHATSAPP_ADMIN = "5493875181644";
 
       <button id="btn-rubros">☰</button>
 
-      ${menuRubrosAbierto ? `
-        <div class="menu-rubros">
-          <button data-rubro="todos">Todos</button>
-          <button data-rubro="gastronomía">🍔 Gastronomía</button>
-          <button data-rubro="artesanía">🏺 Artesanía</button>
-          <button data-rubro="hotel">🏨 Hotelería</button>
-          <button data-rubro="servicios">🛠️ Servicios</button>
-          <button class="btn btn-sumar" onclick="sumarMiComercio()">
-  ➕ Sumar mi comercio
-</button>
-          <hr>
-          <button id="btn-info">ℹ️ ¿Qué es Calcha?</button>
-        </div>` : ""}
+      ${
+  menuRubrosAbierto
+    ? `<div class="menu-rubros">
+        <button data-rubro="todos">Todos</button>
+        <button data-rubro="gastronomía">🍔 Gastronomía</button>
+        <button data-rubro="artesanía">🏺 Artesanía</button>
+        <button data-rubro="hotel">🏨 Hotelería</button>
+        <button data-rubro="servicios">🛠️ Servicios</button>
+
+        <button id="btn-sumar-comercio" class="btn btn-sumar">
+          ➕ Sumar mi comercio
+        </button>
+
+        <hr>
+        <button id="btn-info">ℹ️ ¿Qué es Calcha?</button>
+      </div>`
+    : ""
+}
 
       <div id="lista-comercios"></div>
     `;
-
+const btnSumar = document.getElementById("btn-sumar-comercio");
+if (btnSumar) {
+  btnSumar.onclick = sumarMiComercio;
+}
     document.getElementById("btn-rubros").onclick = () => {
       menuRubrosAbierto = !menuRubrosAbierto;
       renderHome();
