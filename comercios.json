@@ -63,5 +63,23 @@
     "whatsapp": "3874000003",
     "estado": "activo",
     "destacado": false
+  },
+  {
+  "id": 4,
+  "nombre": "Hospedaje San Jorge",
+  "rubro": "hotelería",
+  "descripcion": "Un hermoso lugar para descansar en el centro de Cafayate.",
+  "imagen": "images/sanjo.jpg",
+  "tipoOperacion": "info",
+  "permiteDelivery": false,
+  "menu": [],
+  "galeria": [
+    "images/hab1.jpg",
+    "images/hab2.jpg",
+    "images/hab3.jpg"
+  ],
+  "whatsapp": "3874000003",
+  "estado": "activo",
+  "destacado": false
   }
 ]
