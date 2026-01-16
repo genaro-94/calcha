@@ -61,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     <div id="lista-comercios"></div>
   `;
-}
 
     // Toggle rubros
     document.getElementById("btn-rubros").onclick = () => {
