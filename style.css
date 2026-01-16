@@ -370,3 +370,25 @@ input:focus {
   border-radius: 14px;
   font-weight: bold;
 }
+/* Botón sumar comercio dentro del menú */
+.btn-menu {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #fff;
+  border: 1.8px dashed #c1440e;
+  color: #7a3e12;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-menu:active {
+  transform: scale(0.97);
+}
+
+.btn-menu:hover {
+  background: rgba(193, 68, 14, 0.06);
+}
