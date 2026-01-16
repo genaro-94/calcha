@@ -171,10 +171,29 @@ if (btnSumar) {
     const total = carrito.reduce((s, p) => s + p.precio * p.cantidad, 0);
 
     app.innerHTML = `
-      <button class="btn-volver">← Volver</button>
-      <h2>${comercioActivo.nombre}</h2>
+  <button class="btn-volver">← Volver</button>
 
-      <div class="menu">${menuHTML}</div>
+  <img src="${comercioActivo.imagen}" class="comercio-img">
+
+  <h2>${comercioActivo.nombre}</h2>
+  <p>${comercioActivo.descripcion}</p>
+
+  ${
+    comercioActivo.galeria && comercioActivo.galeria.length > 0
+      ? `
+        <div class="galeria-comercio">
+          ${comercioActivo.galeria
+            .map(
+              img =>
+                `<img src="${img}" class="galeria-img" alt="Galería ${comercioActivo.nombre}">`
+            )
+            .join("")}
+        </div>
+      `
+      : ""
+  }
+
+  <div class="menu">${menuHTML}</div>
 
       <h3>Entrega</h3>
       <div class="entrega">
