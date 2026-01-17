@@ -1,25 +1,44 @@
 [
   {
-    "id": 1,
-    "nombre": "Sandwichería Don Pepe",
-    "rubro": "gastronomia",
-    "descripcion": "Sandwichería local con los mejores sándwiches y menú del día.",
-    "imagen": "images/images8.jpeg",
-    "tipoOperacion": "pedido",
-    "permiteDelivery": true,
-    "menu": [
-      { "nombre": "Hamburguesa clásica", "precio": 700 },
-      { "nombre": "Lomito completo", "precio": 850 },
-      { "nombre": "Papas fritas", "precio": 400 },
-      { "nombre": "Gaseosa 500ml", "precio": 250 }
-    ],
-    "galeria": ["images/fritas.png",
+  "id": 1,
+  "nombre": "Sandwichería Don Pepe",
+  "rubro": "gastronomia",
+  "descripcion": "Sandwichería local con los mejores sándwiches y menú del día.",
+  "imagen": "images/images8.jpeg",
+  "tipoOperacion": "pedido",
+  "permiteDelivery": true,
+  "menu": [
+    {
+      "categoria": "Sándwiches",
+      "nombre": "Hamburguesa clásica",
+      "precio": 700
+    },
+    {
+      "categoria": "Sándwiches",
+      "nombre": "Lomito completo",
+      "precio": 850
+    },
+    {
+      "categoria": "Guarniciones",
+      "nombre": "Papas fritas",
+      "precio": 400
+    },
+    {
+      "categoria": "Bebidas",
+      "nombre": "Gaseosa 500ml",
+      "precio": 250
+    }
+  ],
+  "galeria": [
+    "images/fritas.png",
     "images/lomo.jpg",
-    "images/mila.jpeg"],
-    "whatsapp": "3874000001",
-    "estado": "activo",
-    "destacado": true
-  },
+    "images/mila.jpeg"
+  ],
+  "whatsapp": "3874000001",
+  "estado": "activo",
+  "destacado": true
+}
+    ,
   {
     "id": 2,
     "nombre": "Artesanias Greco",
