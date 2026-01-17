@@ -95,8 +95,7 @@ window.addEventListener("popstate", e => {
   // ------------------------
   // HISTORIAL
   // ------------------------
-  window.addEventListener("popstate", (e) => {
-  window.addEventListener("popstate", (e) => {
+    window.addEventListener("popstate", (e) => {
   const estado = e.state || { vista: "home" };
 
   vistaActual = estado.vista || "home";
