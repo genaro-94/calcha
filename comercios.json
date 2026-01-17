@@ -2,7 +2,7 @@
   {
     "id": 1,
     "nombre": "Sandwichería Don Pepe",
-    "rubro": "gastronomía",
+    "rubro": "gastronomia",
     "descripcion": "Sandwichería local con los mejores sándwiches y menú del día.",
     "imagen": "images/images8.jpeg",
     "tipoOperacion": "pedido",
@@ -23,7 +23,7 @@
   {
     "id": 2,
     "nombre": "Artesanias Greco",
-    "rubro": "artesanía",
+    "rubro": "artesanias",
     "descripcion": "Trabajos en ceramica fabricados y pintados a mano.",
     "imagen": "images/Harry.jpeg",
     "tipoOperacion": "pedido",
