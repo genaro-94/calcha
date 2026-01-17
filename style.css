@@ -570,3 +570,30 @@ input:focus {
   color: #5a3b1e;
   text-align: center;
 }
+.menu-categoria {
+  margin: 20px 0 10px;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #8b5a2b;
+  position: relative;
+  text-align: center;
+}
+
+.menu-categoria::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #d8c2a3;
+  z-index: -1;
+}
+
+.menu-categoria {
+  background: #f4e8d8;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+}
