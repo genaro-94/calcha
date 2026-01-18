@@ -1,71 +1,3 @@
-// ------------------------
-// FIREBASE CONFIG
-// ------------------------
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getDatabase, ref, get, child, set, update, onValue } from "firebase/database";
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyATdbRLpuMDMj57qtch_B1kZg3sT4jUlUo",
-  authDomain: "calcha-delivery.firebaseapp.com",
-  databaseURL: "https://calcha-delivery-default-rtdb.firebaseio.com",
-  projectId: "calcha-delivery",
-  storageBucket: "calcha-delivery.firebasestorage.app",
-  messagingSenderId: "272890382291",
-  appId: "1:272890382291:web:558aa7c5ac43e914bf1126",
-  measurementId: "G-V8F3C7F5JJ"
-};
-
-// ------------------------
-// INITIALIZE FIREBASE
-// ------------------------
-const firebaseApp = initializeApp(firebaseConfig); // renombrada para no chocar con el div "app"
-const analytics = getAnalytics(firebaseApp);
-const database = getDatabase(firebaseApp);
-
-// ------------------------
-// DELIVERYs - Firebase
-// ------------------------
-
-// Función para renderizar lista de deliverys en un contenedor específico
-async function renderDeliverys(containerId = "app") {
-  const deliverys = await cargarDeliverys();
-  const container = document.getElementById(containerId);
-  if (!container) return;
-
-  let html = `<h2>Repartidores Disponibles</h2><div class="delivery-list">`;
-
-  Object.keys(deliverys).forEach(id => {
-    const d = deliverys[id];
-    html += `
-      <div class="delivery-item">
-        <strong>${d.nombre}</strong> - ${d.telefono} 
-        <button data-id="${id}" class="btn-disponible">
-          ${d.disponible ? "✅ Disponible" : "❌ No disponible"}
-        </button>
-      </div>
-    `;
-  });
-
-  html += `</div>`;
-
-  // Insertamos sin borrar todo el container
-  const deliverySection = container.querySelector(".delivery-section");
-  if (deliverySection) deliverySection.innerHTML = html;
-  else container.insertAdjacentHTML("beforeend", `<div class="delivery-section">${html}</div>`);
-
-  // Eventos de los botones
-  container.querySelectorAll(".btn-disponible").forEach(btn => {
-    btn.onclick = () => {
-      const id = btn.dataset.id;
-      const actualmente = deliverys[id].disponible;
-      actualizarDisponibilidad(id, !actualmente);
-      renderDeliverys(containerId); // recarga solo la sección
-    };
-  });
-}
-
 // =========================
 // CALCHA - MOTOR COMPLETO (RESTAURADO)
 // =========================
@@ -101,8 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let rubroActivo = "todos";
   let menuRubrosAbierto = false;
   let comercios = [];
-
-
 
   // ------------------------
   // LIGHTBOX GLOBAL
@@ -274,7 +204,6 @@ function renderHome() {
 </section>
     <!-- Lista de comercios -->
     <div id="lista-comercios"></div>
-    <div id="delivery-section"></div>
   `;
 
   // ------------------------
@@ -347,114 +276,343 @@ const filtrados = rubroActivo === "todos"
           history.pushState({ vista: "reserva", comercioId: c.id }, "", "#reserva");
           renderReserva();
           break;
-        case "info":
-          vistaActual = "info";
-          history.pushState({ vista: "info", comercioId: c.id }, "", "#info");
-          renderInfoComercio();
-          break;
-        case "mixto":
-          vistaActual = "pedido";
-          history.pushState({ vista: "pedido", comercioId: c.id }, "", "#pedido");
-          renderPedido();
-          break;
-      }
-    };
+// =========================
+// FIREBASE CONFIG
+// =========================
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getDatabase, ref, get, child, update, onValue } from "firebase/database";
 
-    lista.appendChild(card);
+// Configuración de Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyATdbRLpuMDMj57qtch_B1kZg3sT4jUlUo",
+  authDomain: "calcha-delivery.firebaseapp.com",
+  databaseURL: "https://calcha-delivery-default-rtdb.firebaseio.com",
+  projectId: "calcha-delivery",
+  storageBucket: "calcha-delivery.firebasestorage.app",
+  messagingSenderId: "272890382291",
+  appId: "1:272890382291:web:558aa7c5ac43e914bf1126",
+  measurementId: "G-V8F3C7F5JJ"
+};
+
+// Inicializar Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+const analytics = getAnalytics(firebaseApp);
+const database = getDatabase(firebaseApp);
+
+// =========================
+// DELIVERYs - FIREBASE
+// =========================
+
+// Función para obtener todos los deliverys
+async function cargarDeliverys() {
+  const dbRef = ref(database);
+  const snapshot = await get(child(dbRef, 'deliverys'));
+  return snapshot.exists() ? snapshot.val() : {};
+}
+
+// Función para actualizar disponibilidad
+function actualizarDisponibilidad(idDelivery, disponible) {
+  const deliveryRef = ref(database, 'deliverys/' + idDelivery);
+  update(deliveryRef, { disponible })
+    .then(() => console.log(`Delivery ${idDelivery} actualizado: ${disponible}`))
+    .catch(err => console.error(err));
+}
+
+// Función para renderizar lista de deliverys solo en su sección
+async function renderDeliverys(containerId = "delivery-section") {
+  const deliverys = await cargarDeliverys();
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  let html = `<h2>Repartidores Disponibles</h2><div class="delivery-list">`;
+  Object.keys(deliverys).forEach(id => {
+    const d = deliverys[id];
+    html += `
+      <div class="delivery-item">
+        <strong>${d.nombre}</strong> - ${d.telefono} 
+        <button data-id="${id}" class="btn-disponible">
+          ${d.disponible ? "✅ Disponible" : "❌ No disponible"}
+        </button>
+      </div>
+    `;
   });
-// Mostrar deliverys en su sección sin sobreescribir el home
-renderDeliverys("delivery-section");
+  html += `</div>`;
+  container.innerHTML = html;
+
+  // Eventos de botones
+  container.querySelectorAll(".btn-disponible").forEach(btn => {
+    btn.onclick = () => {
+      const id = btn.dataset.id;
+      actualizarDisponibilidad(id, !deliverys[id].disponible);
+    };
+  });
+}
+
+// Escuchar cambios en tiempo real
+const deliveryRef = ref(database, 'deliverys');
+onValue(deliveryRef, snapshot => {
+  renderDeliverys();
+});
+
+// =========================
+// CALCHA - MOTOR ORIGINAL
+// =========================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const app = document.getElementById("app");
+  const WHATSAPP_ADMIN = "5493875181644";
+
+  const tiposOperacion = ["pedido", "reserva", "info", "mixto"];
+  let vistaActual = "home";
+  let comercioActivo = null;
+  let carrito = [];
+  let tipoEntrega = null;
+  let direccionEntrega = "";
+  let rubroActivo = "todos";
+  let menuRubrosAbierto = false;
+  let comercios = [];
+
   // ------------------------
-  // Autocomplete / Búsqueda con scroll tipo TikTok/Instagram
+  // LIGHTBOX GLOBAL
   // ------------------------
-  const inputBusqueda = document.getElementById("input-busqueda");
-  const resultados = document.getElementById("resultados-busqueda");
+  const lightbox = document.createElement("div");
+  lightbox.id = "lightbox";
+  lightbox.className = "lightbox hidden";
+  const lightboxImg = document.createElement("img");
+  lightboxImg.id = "lightbox-img";
+  lightbox.appendChild(lightboxImg);
+  document.body.appendChild(lightbox);
 
-  if (inputBusqueda) {
-    inputBusqueda.oninput = () => {
-      const texto = inputBusqueda.value.trim().toLowerCase();
-      resultados.innerHTML = "";
+  function abrirLightbox(src) {
+    lightboxImg.src = src;
+    lightbox.classList.remove("hidden");
+    history.pushState({ lightbox: true }, "");
+  }
 
-      if (texto === "") return;
+  function cerrarLightbox() {
+    if (!lightbox.classList.contains("hidden")) {
+      lightbox.classList.add("hidden");
+      if (history.state && history.state.lightbox) history.back();
+    }
+  }
 
-      const filtrados = comercios.filter(c =>
-        c.nombre.toLowerCase().includes(texto) ||
-        c.descripcion.toLowerCase().includes(texto) ||
-        c.rubro.toLowerCase().includes(texto)
-      );
+  document.addEventListener("click", e => {
+    if (e.target.id === "lightbox") cerrarLightbox();
+  });
 
-      filtrados.forEach(c => {
-        const div = document.createElement("div");
-        const regex = new RegExp(`(${texto})`, "gi");
-        div.innerHTML = `<strong>${c.nombre.replace(regex, "<span class='resultado-highlight'>$1</span>")}</strong> <small>${c.rubro}</small>`;
-        div.className = "resultado-item";
-        div.onclick = () => {
-          comercioActivo = c;
-          carrito = [];
-          tipoEntrega = null;
-          direccionEntrega = "";
-          vistaActual = c.tipoOperacion === "reserva" ? "reserva" :
-                       c.tipoOperacion === "info" ? "info" : "pedido";
-          history.pushState({ vista: vistaActual, comercioId: c.id }, "", `#${vistaActual}`);
-          renderApp();
-        };
-        resultados.appendChild(div);
+  // ------------------------
+  // HISTORIAL
+  // ------------------------
+  window.addEventListener("popstate", (e) => {
+    const estado = e.state || { vista: "home" };
+    vistaActual = estado.vista || "home";
+    rubroActivo = estado.rubro || "todos";
+    comercioActivo = estado.comercioId ? comercios.find(c => c.id === estado.comercioId) : null;
+    renderApp();
+  });
+
+  // ------------------------
+  // DATA
+  // ------------------------
+  fetch("comercios.json")
+    .then(r => r.json())
+    .then(data => {
+      comercios = data.map(c => {
+        if (!c.tipoOperacion || !tiposOperacion.includes(c.tipoOperacion)) c.tipoOperacion = "pedido";
+        return c;
       });
+      renderHome();
+    });
+
+  // ------------------------
+  // RENDER APP
+  // ------------------------
+  function renderApp() {
+    if (vistaActual === "home") renderHome();
+    if (vistaActual === "pedido") renderPedido();
+    if (vistaActual === "confirmar") renderConfirmar();
+    if (vistaActual === "info") renderInfo();
+    if (vistaActual === "reserva") renderReserva();
+  }
+
+  // ------------------------
+  // HOME
+  // ------------------------
+  function renderHome() {
+    vistaActual = "home";
+    history.replaceState({ vista: "home" }, "", "#home");
+
+    app.innerHTML = `
+      <h1>
+        <img src="images/Logo.png" style="width:32px;vertical-align:middle;margin-right:8px;">
+        CALCHA
+      </h1>
+      <p class="subtitulo">El mercado local en tu mano</p>
+
+      <button id="btn-rubros">☰</button>
+      ${
+        menuRubrosAbierto ? `
+          <div class="acciones">
+            <button id="btn-info" class="btn-menu">ℹ️ ¿Qué es Calcha?</button>
+            <button id="btn-sumar-comercio" class="btn-menu">➕ Sumar mi comercio</button>
+          </div>` : ""
+      }
+
+      <div class="buscador">
+        <input type="text" id="input-busqueda" placeholder="🔍 Buscar comercio..." autocomplete="off">
+        <div id="resultados-busqueda" class="resultados-scroll"></div>
+      </div>
+
+      <section class="rubros-grid">
+        <button class="rubro-btn" data-rubro="gastronomia"><span class="icon">🍽️</span><span class="text">Gastronomía</span></button>
+        <button class="rubro-btn" data-rubro="turismo"><span class="icon">🏨⛰️</span><span class="text">Turismo</span></button>
+        <button class="rubro-btn" data-rubro="almacen"><span class="icon">🛒</span><span class="text">Almacén</span></button>
+        <button class="rubro-btn" data-rubro="servicios"><span class="icon">🛠️</span><span class="text">Servicios</span></button>
+        <button class="rubro-btn" data-rubro="ropa"><span class="icon">🛍️</span><span class="text">Ropa</span></button>
+        <button class="rubro-btn" data-rubro="artesanias"><span class="icon">🎨</span><span class="text">Artesanías</span></button>
+      </section>
+
+      <div id="lista-comercios"></div>
+      <div id="delivery-section"></div>
+    `;
+
+    // ------------------------
+    // Botones home
+    // ------------------------
+    const btnSumar = document.getElementById("btn-sumar-comercio");
+    if (btnSumar) btnSumar.onclick = () => {
+      const mensaje = encodeURIComponent(
+        "Hola 👋 Quiero sumar mi comercio a Calcha 🏔️\n\nNombre del comercio:\nRubro:\nDirección:\nTeléfono:\n¿Delivery / Retiro?:"
+      );
+      window.open(`https://wa.me/${WHATSAPP_ADMIN}?text=${mensaje}`, "_blank");
     };
 
-    // Cerrar resultados si haces click fuera
-    document.addEventListener("click", e => {
-      if (!e.target.closest(".buscador")) {
-        resultados.innerHTML = "";
-      }
+    document.getElementById("btn-rubros").onclick = () => {
+      menuRubrosAbierto = !menuRubrosAbierto;
+      renderHome();
+    };
+
+    const btnInfo = document.getElementById("btn-info");
+    if (btnInfo) btnInfo.onclick = () => {
+      vistaActual = "info";
+      history.pushState({ vista: "info" }, "", "#info");
+      renderInfo();
+    };
+
+    document.querySelectorAll("[data-rubro]").forEach(b => {
+      b.onclick = () => {
+        rubroActivo = b.dataset.rubro;
+        menuRubrosAbierto = false;
+        history.pushState({ vista: "home", rubro: rubroActivo }, "", "#rubro-" + rubroActivo);
+        renderHome();
+      };
     });
+
+    // ------------------------
+    // Lista de comercios
+    // ------------------------
+    const lista = document.getElementById("lista-comercios");
+    const filtrados = rubroActivo === "todos" ? comercios : comercios.filter(c => c.rubro === rubroActivo.trim());
+    lista.innerHTML = "";
+    filtrados.forEach(c => {
+      const card = document.createElement("div");
+      card.className = "card-comercio";
+      card.innerHTML = `
+        <img src="${c.imagen}" class="comercio-img">
+        <h3>${c.nombre}</h3>
+        <p>${c.descripcion}</p>
+        <button>Ver</button>
+      `;
+      card.querySelector("button").onclick = () => {
+        comercioActivo = c;
+        carrito = [];
+        tipoEntrega = null;
+        direccionEntrega = "";
+        switch(c.tipoOperacion) {
+          case "pedido": vistaActual = "pedido"; history.pushState({ vista: "pedido", comercioId: c.id }, "", "#pedido"); renderPedido(); break;
+          case "reserva": vistaActual = "reserva"; history.pushState({ vista: "reserva", comercioId: c.id }, "", "#reserva"); renderReserva(); break;
+          case "info": vistaActual = "info"; history.pushState({ vista: "info", comercioId: c.id }, "", "#info"); renderInfoComercio(); break;
+          case "mixto": vistaActual = "pedido"; history.pushState({ vista: "pedido", comercioId: c.id }, "", "#pedido"); renderPedido(); break;
+        }
+      };
+      lista.appendChild(card);
+    });
+
+    // ------------------------
+    // Renderizar deliverys
+    // ------------------------
+    renderDeliverys();
+
+    // ------------------------
+    // Búsqueda
+    // ------------------------
+    const inputBusqueda = document.getElementById("input-busqueda");
+    const resultados = document.getElementById("resultados-busqueda");
+    if (inputBusqueda) {
+      inputBusqueda.oninput = () => {
+        const texto = inputBusqueda.value.trim().toLowerCase();
+        resultados.innerHTML = "";
+        if (!texto) return;
+        const filtrados = comercios.filter(c =>
+          c.nombre.toLowerCase().includes(texto) ||
+          c.descripcion.toLowerCase().includes(texto) ||
+          c.rubro.toLowerCase().includes(texto)
+        );
+        filtrados.forEach(c => {
+          const div = document.createElement("div");
+          const regex = new RegExp(`(${texto})`, "gi");
+          div.innerHTML = `<strong>${c.nombre.replace(regex, "<span class='resultado-highlight'>$1</span>")}</strong> <small>${c.rubro}</small>`;
+          div.className = "resultado-item";
+          div.onclick = () => {
+            comercioActivo = c;
+            carrito = [];
+            tipoEntrega = null;
+            direccionEntrega = "";
+            vistaActual = c.tipoOperacion === "reserva" ? "reserva" :
+                         c.tipoOperacion === "info" ? "info" : "pedido";
+            history.pushState({ vista: vistaActual, comercioId: c.id }, "", `#${vistaActual}`);
+            renderApp();
+          };
+          resultados.appendChild(div);
+        });
+      };
+
+      document.addEventListener("click", e => {
+        if (!e.target.closest(".buscador")) resultados.innerHTML = "";
+      });
+    }
   }
-}
 
-function irARubro(rubro) {
-  history.pushState(
-    { vista: "home" },
-    "",
-    ""
-  );
+  // Función para ir a rubro
+  function irARubro(rubro) {
+    vistaActual = "home";
+    rubroActivo = rubro;
+    renderApp();
+  }
 
-  vistaActual = "home";
-  rubroActivo = rubro;
-
-  renderApp();
-}
+  
+});
   // ------------------------
   // PEDIDO
   // ------------------------
   function renderPedido() {
     if (!comercioActivo) return renderHome();
 
-let menuHTML = "";
-let categoriaActual = "";
-
-comercioActivo.menu.forEach((item, i) => {
-  if (item.categoria !== categoriaActual) {
-    categoriaActual = item.categoria;
-    menuHTML += `
-      <div class="menu-categoria">
-        ${categoriaActual}
-      </div>
-    `;
-  }
-
-  const enCarrito = carrito.find(p => p.nombre === item.nombre);
-
-  menuHTML += `
-    <div class="item-menu">
-      <span>${item.nombre} - $${item.precio}</span>
-      <div>
-        ${enCarrito ? `<button data-i="${i}" data-a="restar">−</button>
-        <strong>${enCarrito.cantidad}</strong>` : ""}
-        <button data-i="${i}" data-a="sumar">+</button>
-      </div>
-    </div>
-  `;
-});
+    let menuHTML = "";
+    comercioActivo.menu.forEach((item, i) => {
+      const enCarrito = carrito.find(p => p.nombre === item.nombre);
+      menuHTML += `
+        <div class="item-menu">
+          <span>${item.nombre} - $${item.precio}</span>
+          <div>
+            ${enCarrito ? `<button data-i="${i}" data-a="restar">−</button>
+            <strong>${enCarrito.cantidad}</strong>` : ""}
+            <button data-i="${i}" data-a="sumar">+</button>
+          </div>
+        </div>
+      `;
+    });
 
     const total = carrito.reduce((s, p) => s + p.precio * p.cantidad, 0);
 
