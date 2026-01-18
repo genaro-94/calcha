@@ -102,16 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let menuRubrosAbierto = false;
   let comercios = [];
 
-  // ------------------------
-  // LIGHTBOX GLOBAL
-  // ------------------------
-  const lightbox = document.createElement("div");
-  lightbox.id = "lightbox";
-  lightbox.className = "lightbox hidden";
-  const lightboxImg = document.createElement("img");
-  lightboxImg.id = "lightbox-img";
-  lightbox.appendChild(lightboxImg);
-  document.body.appendChild(lightbox);
 
 
   // ------------------------
