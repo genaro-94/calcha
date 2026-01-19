@@ -2,6 +2,7 @@
   {
   "id": 1,
   "nombre": "Sandwichería Don Pepe",
+  "ubicacion": "cafayate",
   "rubro": "gastronomia",
   "descripcion": "Sandwichería local con los mejores sándwiches y menú del día.",
   "imagen": "images/images8.jpeg",
@@ -43,6 +44,7 @@
     "id": 2,
     "nombre": "Artesanias Greco",
     "rubro": "artesanias",
+    "ubicacion": "cafayate",
     "descripcion": "Trabajos en ceramica fabricados y pintados a mano.",
     "imagen": "images/Harry.jpeg",
     "tipoOperacion": "pedido",
@@ -69,6 +71,7 @@
     "id": 3,
     "nombre": "Ferretería El Martillo",
     "rubro": "servicios",
+
     "descripcion": "Todo para el hogar, herramientas y materiales.",
     "imagen": "images/Pika.jpeg",
     "tipoOperacion": "pedido",
@@ -86,6 +89,7 @@
   {
   "id": 4,
   "nombre": "Hospedaje San Jorge",
+  "ubicacion": "cafayate",
   "rubro": "turismo",
   "descripcion": "Un hermoso lugar para descansar en el centro de Cafayate.",
   "imagen": "images/sanjo.jpg",
@@ -100,5 +104,33 @@
   "whatsapp": "3874000003",
   "estado": "activo",
   "destacado": false
-  }
+  },
+  {
+  "id": 1,
+  "nombre": "local ropa",
+  "rubro": "gastronomia",
+  "ubicacion": "cafayate",
+  "descripcion": "tienda de ropa",
+  "imagen": "images/buzo.jpeg",
+  "tipoOperacion": "pedido",
+  "menu": []
+  "galeria": [],
+  "whatsapp": 3872535433,
+  "estado": "activo",
+  "destacado": false
+},
+{
+  "id": 7,
+  "nombre": "Artesanías del Valle",
+  "rubro": "artesanias",
+  "ubicacion": "amaicha",
+  "descripcion": "artesanias de todo tipo",
+  "imagen": "images/artesanias.jpeg",
+  "tipoOperacion": "info",
+  "menu": [],
+  "galeria": [],
+  "whatsapp": 3868404422,
+  "estado": "activo",
+  "destacado": false
+}
 ]
