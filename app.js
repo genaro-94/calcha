@@ -11,7 +11,7 @@ let vistaActual = "home";
 let ubicacionActiva = null;   // "cafayate" | "santa-maria" | "amaicha" | null
 let rubroActivo = "todos";   // "todos" | "pizzerias" | "hoteleria" | etc
 let comercioActivo = null;
-
+let renderDesdeHamburguesa = false;
 let carrito = [];
 let tipoEntrega = null;
 let direccionEntrega = "";
@@ -172,6 +172,11 @@ function volverHome() {
   // ------------------------
 
 function renderHome() {
+  if (!renderDesdeHamburguesa) {
+    menuRubrosAbierto = false;
+  }
+
+  renderDesdeHamburguesa = false;
   vistaActual = "home";
   history.replaceState({ vista: "home" }, "", "#home");
 
