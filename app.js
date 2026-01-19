@@ -82,7 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-
+window.abrirLightbox = abrirLightbox;
+window.cerrarLightbox = cerrarLightbox;
+  
   document.addEventListener("click", e => {
     if (e.target.id === "lightbox") {
       cerrarLightbox();
