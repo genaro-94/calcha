@@ -71,7 +71,7 @@
     "id": 3,
     "nombre": "Ferretería El Martillo",
     "rubro": "servicios",
-    "ubicacion": "santamaria",
+    "ubicacion": "santa-maria",
     "descripcion": "Todo para el hogar, herramientas y materiales.",
     "imagen": "images/Pika.jpeg",
     "tipoOperacion": "pedido",
@@ -113,9 +113,9 @@
   "descripcion": "tienda de ropa",
   "imagen": "images/buzo.jpeg",
   "tipoOperacion": "pedido",
-  "menu": []
+  "menu": [],
   "galeria": [],
-  "whatsapp": 3872535433,
+  "whatsapp": "3872535433",
   "estado": "activo",
   "destacado": false
 },
