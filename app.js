@@ -247,6 +247,8 @@ function renderHome() {
   // ------------------------
   // Renderizar lista de comercios
   // ------------------------
+  const lista = document.getElementById("lista-comercios");
+lista.innerHTML = "";
 const filtrados = obtenerComerciosVisibles();
 
   filtrados.forEach(c => {
