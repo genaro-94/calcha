@@ -1,3 +1,4 @@
+js calcha
 // =========================
 // CALCHA - MOTOR COMPLETO (RESTAURADO)
 // =========================
@@ -168,8 +169,9 @@ function volverHome() {
 
 
   // ------------------------
-// HOME
-// ------------------------
+  // HOME
+  // ------------------------
+
 function renderHome() {
   vistaActual = "home";
   history.replaceState({ vista: "home" }, "", "#home");
@@ -185,108 +187,98 @@ function renderHome() {
     <button id="btn-rubros">☰</button>
 
     ${
-      menuRubrosAbierto
-        ? `
-          <div class="acciones">
-            <button id="btn-info" class="btn-menu">ℹ️ ¿Qué es Calcha?</button>
-            <button id="btn-sumar-comercio" class="btn-menu">➕ Sumar mi comercio</button>
-          </div>
-        `
-        : ""
+  menuRubrosAbierto
+    ? `
+      <div class="acciones">
+        <button id="btn-info" class="btn-menu">ℹ️ ¿Qué es Calcha?</button>
+        <button id="btn-sumar-comercio" class="btn-menu">➕ Sumar mi comercio</button>
+      </div>
+    `
+    : ""
     }
-
-    <div id="selector-ubicacion"></div>
-
+ <div id="selector-ubicacion"></div>
     <!-- Barra de búsqueda -->
     <div class="buscador">
       <input type="text" id="input-busqueda" placeholder="🔍 Buscar comercio..." autocomplete="off">
       <div id="resultados-busqueda" class="resultados-scroll"></div>
     </div>
+<section class="rubros-grid">
+  <button class="rubro-btn" data-rubro="gastronomia">
+    <span class="icon">🍽️</span>
+    <span class="text">Gastronomía</span>
+  </button>
 
-    <section class="rubros-grid">
-      <button class="rubro-btn" data-rubro="gastronomia">
-        <span class="icon">🍽️</span>
-        <span class="text">Gastronomía</span>
-      </button>
+  <button class="rubro-btn" data-rubro="turismo">
+    <span class="icon">🏨⛰️</span>
+    <span class="text">Turismo</span>
+  </button>
 
-      <button class="rubro-btn" data-rubro="turismo">
-        <span class="icon">🏨⛰️</span>
-        <span class="text">Turismo</span>
-      </button>
+  <button class="rubro-btn" data-rubro="almacen">
+    <span class="icon">🛒</span>
+    <span class="text">Almacén</span>
+  </button>
 
-      <button class="rubro-btn" data-rubro="almacen">
-        <span class="icon">🛒</span>
-        <span class="text">Almacén</span>
-      </button>
+  <button class="rubro-btn" data-rubro="servicios">
+    <span class="icon">🛠️</span>
+    <span class="text">Servicios</span>
+  </button>
 
-      <button class="rubro-btn" data-rubro="servicios">
-        <span class="icon">🛠️</span>
-        <span class="text">Servicios</span>
-      </button>
+  <button class="rubro-btn" data-rubro="ropa">
+    <span class="icon">🛍️</span>
+    <span class="text">Ropa</span>
+  </button>
 
-      <button class="rubro-btn" data-rubro="ropa">
-        <span class="icon">🛍️</span>
-        <span class="text">Ropa</span>
-      </button>
-
-      <button class="rubro-btn" data-rubro="artesanias">
-        <span class="icon">🎨</span>
-        <span class="text">Artesanías</span>
-      </button>
-    </section>
-
+  <button class="rubro-btn" data-rubro="artesanias">
+    <span class="icon">🎨</span>
+    <span class="text">Artesanías</span>
+  </button>
+</section>
     <!-- Lista de comercios -->
     <div id="lista-comercios"></div>
   `;
-
+renderSelectorUbicacion();
   // ------------------------
-  // Selector de ubicación
-  // ------------------------
-  renderSelectorUbicacion();
-
-  // ------------------------
-  // Botón menú hamburguesa
-  // ------------------------
-  const btnRubros = document.getElementById("btn-rubros");
-  if (btnRubros) btnRubros.onclick = () => {
-    menuRubrosAbierto = !menuRubrosAbierto;
-    renderHome(); // vuelve a renderizar con menú abierto/cerrado
-  };
-
-  // ------------------------
-  // Botón "Sumar mi comercio"
+  // Botones generales del home
   // ------------------------
   const btnSumar = document.getElementById("btn-sumar-comercio");
   if (btnSumar) btnSumar.onclick = sumarMiComercio;
 
-  // ------------------------
-  // Botón "¿Qué es Calcha?"
-  // ------------------------
-  const btnInfo = document.getElementById("btn-info");
-  if (btnInfo) btnInfo.onclick = () => {
-    vistaActual = "info";
-    history.pushState({ vista: "info" }, "", "#info");
-    renderInfo();
+  document.getElementById("btn-rubros").onclick = () => {
+    menuRubrosAbierto = !menuRubrosAbierto;
+    renderHome();
   };
 
-  // ------------------------
-  // Botones de rubros
-  // ------------------------
-  document.querySelectorAll(".rubro-btn").forEach(b => {
-    b.onclick = () => {
-      rubroActivo = b.dataset.rubro;
-      menuRubrosAbierto = false;
-      history.pushState({ vista: "home", rubro: rubroActivo }, "", "#rubro-" + rubroActivo);
-      renderHome();
+  const btnInfo = document.getElementById("btn-info");
+  if (btnInfo) {
+    btnInfo.onclick = () => {
+      vistaActual = "info";
+      history.pushState({ vista: "info" }, "", "#info");
+      renderInfo();
     };
-  });
+  }
+
+  document.querySelectorAll("[data-rubro]").forEach(b => {
+  b.onclick = () => {
+    rubroActivo = b.dataset.rubro;
+    menuRubrosAbierto = false;
+
+    history.pushState(
+      { vista: "home", rubro: rubroActivo },
+      "",
+      "#rubro-" + rubroActivo
+    );
+
+    renderHome();
+  };
+});
 
   // ------------------------
   // Renderizar lista de comercios
   // ------------------------
   const lista = document.getElementById("lista-comercios");
-  lista.innerHTML = "";
-  const filtrados = obtenerComerciosVisibles();
+lista.innerHTML = "";
+const filtrados = obtenerComerciosVisibles();
+
   filtrados.forEach(c => {
     const card = document.createElement("div");
     card.className = "card-comercio";
@@ -296,6 +288,7 @@ function renderHome() {
       <p>${c.descripcion}</p>
       <button>Ver</button>
     `;
+
     card.querySelector("button").onclick = () => {
       comercioActivo = c;
       carrito = [];
@@ -325,24 +318,29 @@ function renderHome() {
           break;
       }
     };
+
     lista.appendChild(card);
   });
 
   // ------------------------
-  // Búsqueda autocomplete
+  // Autocomplete / Búsqueda con scroll tipo TikTok/Instagram
   // ------------------------
   const inputBusqueda = document.getElementById("input-busqueda");
   const resultados = document.getElementById("resultados-busqueda");
+
   if (inputBusqueda) {
     inputBusqueda.oninput = () => {
       const texto = inputBusqueda.value.trim().toLowerCase();
       resultados.innerHTML = "";
+
       if (texto === "") return;
-      lista.innerHTML = "";
+     const lista = document.getElementById("lista-comercios");
+     lista.innerHTML = "";
       const filtrados = obtenerComerciosVisibles().filter(c =>
-        c.nombre.toLowerCase().includes(texto) ||
-        c.descripcion.toLowerCase().includes(texto)
-      );
+  c.nombre.toLowerCase().includes(texto) ||
+  c.descripcion.toLowerCase().includes(texto)
+);
+
       filtrados.forEach(c => {
         const div = document.createElement("div");
         const regex = new RegExp(`(${texto})`, "gi");
@@ -362,6 +360,7 @@ function renderHome() {
       });
     };
 
+    // Cerrar resultados si haces click fuera
     document.addEventListener("click", e => {
       if (!e.target.closest(".buscador")) {
         resultados.innerHTML = "";
@@ -434,139 +433,132 @@ function renderSelectorUbicacion() {
   });
 }
   // ------------------------
-// PEDIDO
-// ------------------------
-function renderPedido() {
-  if (!comercioActivo) return renderHome();
+  // PEDIDO
+  // ------------------------
+  function renderPedido() {
+    if (!comercioActivo) return renderHome();
 
   let menuHTML = "";
-  let categoriaActual = "";
+let categoriaActual = "";
 
-  comercioActivo.menu.forEach((item, i) => {
-    if (item.categoria !== categoriaActual) {
-      categoriaActual = item.categoria;
-      menuHTML += `
-        <div class="menu-categoria">
-          ${categoriaActual}
-        </div>
-      `;
-    }
-
-    const enCarrito = carrito.find(p => p.nombre === item.nombre);
-
+comercioActivo.menu.forEach((item, i) => {
+  if (item.categoria !== categoriaActual) {
+    categoriaActual = item.categoria;
     menuHTML += `
-      <div class="item-menu">
-        <span>${item.nombre} - $${item.precio}</span>
-        <div>
-          ${enCarrito ? `<button data-i="${i}" data-a="restar">−</button>
-          <strong>${enCarrito.cantidad}</strong>` : ""}
-          <button data-i="${i}" data-a="sumar">+</button>
-        </div>
+      <div class="menu-categoria">
+        ${categoriaActual}
       </div>
     `;
-  });
+  }
 
-  const total = carrito.reduce((s, p) => s + p.precio * p.cantidad, 0);
+  const enCarrito = carrito.find(p => p.nombre === item.nombre);
 
-  app.innerHTML = `
-    <button class="btn-volver">← Volver</button>
-
-    <img src="${comercioActivo.imagen}" class="comercio-img">
-
-    <h2>${comercioActivo.nombre}</h2>
-    <p>${comercioActivo.descripcion}</p>
-
-    ${
-      comercioActivo.galeria && comercioActivo.galeria.length > 0
-        ? `<div class="galeria-comercio">
-            ${comercioActivo.galeria.map(img => `<img src="${img}" class="galeria-img">`).join("")}
-          </div>`
-        : ""
-    }
-
-    <div class="menu">${menuHTML}</div>
-
-    <h3>Entrega</h3>
-    <div class="entrega">
-      <button id="retiro" class="${tipoEntrega === "retiro" ? "activo" : ""}">🏠 Retiro</button>
-      ${
-        comercioActivo.permiteDelivery
-          ? `<button id="delivery" class="${tipoEntrega === "delivery" ? "activo" : ""}">🛵 Delivery</button>`
-          : ""
-      }
-    </div>
-
-    ${
-      tipoEntrega === "delivery"
-        ? `<input id="direccion" placeholder="Dirección" value="${direccionEntrega}">`
-        : ""
-    }
-
-    <div class="carrito">
-      <strong>Total: $${total}</strong>
-      <button class="btn-continuar" ${!total || !tipoEntrega ? "disabled" : ""} id="continuar">
-        Continuar
-      </button>
+  menuHTML += `
+    <div class="item-menu">
+      <span>${item.nombre} - $${item.precio}</span>
+      <div>
+        ${enCarrito ? `<button data-i="${i}" data-a="restar">−</button>
+        <strong>${enCarrito.cantidad}</strong>` : ""}
+        <button data-i="${i}" data-a="sumar">+</button>
+      </div>
     </div>
   `;
+});
+    const total = carrito.reduce((s, p) => s + p.precio * p.cantidad, 0);
 
-  // ------------------------
-  // Eventos
-  // ------------------------
-  document.querySelector(".btn-volver").onclick = () => history.back();
+    app.innerHTML = `
+      <button class="btn-volver">← Volver</button>
 
-  document.querySelectorAll("[data-a]").forEach(b => {
-    b.onclick = () => {
-      const prod = comercioActivo.menu[b.dataset.i];
-      const ex = carrito.find(p => p.nombre === prod.nombre);
-      if (b.dataset.a === "sumar") {
-        if (ex) ex.cantidad++;
-        else carrito.push({ ...prod, cantidad: 1 });
+      <img src="${comercioActivo.imagen}" class="comercio-img">
+
+      <h2>${comercioActivo.nombre}</h2>
+      <p>${comercioActivo.descripcion}</p>
+
+      ${
+        comercioActivo.galeria && comercioActivo.galeria.length > 0
+          ? `<div class="galeria-comercio">
+              ${comercioActivo.galeria.map(img => `<img src="${img}" class="galeria-img">`).join("")}
+            </div>`
+          : ""
       }
-      if (b.dataset.a === "restar" && ex) {
-        ex.cantidad--;
-        if (ex.cantidad === 0) carrito = carrito.filter(p => p !== ex);
+
+      <div class="menu">${menuHTML}</div>
+
+      <h3>Entrega</h3>
+      <div class="entrega">
+        <button id="retiro" class="${tipoEntrega === "retiro" ? "activo" : ""}">🏠 Retiro</button>
+        ${
+          comercioActivo.permiteDelivery
+            ? `<button id="delivery" class="${tipoEntrega === "delivery" ? "activo" : ""}">🛵 Delivery</button>`
+            : ""
+        }
+      </div>
+
+      ${
+        tipoEntrega === "delivery"
+          ? `<input id="direccion" placeholder="Dirección" value="${direccionEntrega}">`
+          : ""
       }
-      renderPedido();
-    };
-  });
 
-  document.getElementById("retiro").onclick = () => {
-    tipoEntrega = "retiro";
-    direccionEntrega = "";
-    renderPedido();
-  };
+      <div class="carrito">
+        <strong>Total: $${total}</strong>
+        <button class="btn-continuar" ${!total || !tipoEntrega ? "disabled" : ""} id="continuar">
+          Continuar
+        </button>
+      </div>
+    `;
 
-  const btnDel = document.getElementById("delivery");
-  if (btnDel) {
-    btnDel.onclick = () => {
-      tipoEntrega = "delivery";
-      renderPedido();
-    };
-  }
+    // ------------------------
+    // Eventos
+    // ------------------------
+    document.querySelector(".btn-volver").onclick = () => history.back();
 
-  const dir = document.getElementById("direccion");
-  if (dir) dir.oninput = e => direccionEntrega = e.target.value;
-
-  document.getElementById("continuar").onclick = () => {
-    vistaActual = "confirmar";
-    history.pushState({ vista: "confirmar" }, "", "#confirmar");
-    renderConfirmar();
-  };
-
-  // ------------------------
-  // Lightbox: hacer clic en miniaturas (reparado)
-  // ------------------------
-  if (comercioActivo.galeria && comercioActivo.galeria.length > 0) {
-    document.querySelectorAll(".galeria-img").forEach(img => {
-      img.onclick = () => {
-        lightboxImg.src = img.src; // referencia global
-        lightbox.classList.remove("hidden");
-        history.pushState({ lightbox: true }, "");
+    document.querySelectorAll("[data-a]").forEach(b => {
+      b.onclick = () => {
+        const prod = comercioActivo.menu[b.dataset.i];
+        const ex = carrito.find(p => p.nombre === prod.nombre);
+        if (b.dataset.a === "sumar") {
+          if (ex) ex.cantidad++;
+          else carrito.push({ ...prod, cantidad: 1 });
+        }
+        if (b.dataset.a === "restar" && ex) {
+          ex.cantidad--;
+          if (ex.cantidad === 0) carrito = carrito.filter(p => p !== ex);
+        }
+        renderPedido();
       };
     });
+
+    document.getElementById("retiro").onclick = () => {
+      tipoEntrega = "retiro";
+      direccionEntrega = "";
+      renderPedido();
+    };
+
+    const btnDel = document.getElementById("delivery");
+    if (btnDel) {
+      btnDel.onclick = () => {
+        tipoEntrega = "delivery";
+        renderPedido();
+      };
+    }
+
+    const dir = document.getElementById("direccion");
+    if (dir) dir.oninput = e => direccionEntrega = e.target.value;
+
+    document.getElementById("continuar").onclick = () => {
+      vistaActual = "confirmar";
+      history.pushState({ vista: "confirmar" }, "", "#confirmar");
+      renderConfirmar();
+    };
+
+    // ------------------------
+    // Lightbox: hacer clic en miniaturas
+    // ------------------------
+    document.querySelectorAll(".galeria-img").forEach(img => {
+      img.addEventListener("click", () => abrirLightbox(img.src));
+    });
   }
-}
 
   // ------------------------
   // CONFIRMAR
@@ -615,48 +607,40 @@ function renderPedido() {
     document.querySelector(".btn-volver").onclick = () => history.back();
   }
 
-  / ------------------------
-// RESERVA
-// ------------------------
-function renderReserva() {
-  if (!comercioActivo) return renderHome();
-
-  const urlReserva = comercioActivo.urlReserva ||
-    `https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent("Hola, quiero reservar")}`;
-
-  app.innerHTML = `
-    <button class="btn-volver">← Volver</button>
-    <img src="${comercioActivo.imagen}" class="comercio-img">
-    <h2>${comercioActivo.nombre}</h2>
-    <p>${comercioActivo.descripcion}</p>
-
-    ${
-      comercioActivo.galeria && comercioActivo.galeria.length > 0
-        ? `<div class="galeria-comercio">
-            ${comercioActivo.galeria.map(img => `<img src="${img}" class="galeria-img">`).join("")}
-          </div>`
-        : ""
-    }
-
-    <button onclick="window.open('${urlReserva}','_blank')">📅 Reservar</button>
-    <button onclick="window.open('https://wa.me/54${comercioActivo.whatsapp}','_blank')">💬 Contactar</button>
-  `;
-
-  document.querySelector(".btn-volver").onclick = () => history.back();
-
   // ------------------------
-  // Lightbox en reserva
+  // NUEVAS VISTAS
   // ------------------------
-  if (comercioActivo.galeria && comercioActivo.galeria.length > 0) {
+  function renderReserva() {
+    if (!comercioActivo) return renderHome();
+
+    const urlReserva = comercioActivo.urlReserva ||
+      `https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent("Hola, quiero reservar")}`;
+
+    app.innerHTML = `
+      <button class="btn-volver">← Volver</button>
+      <img src="${comercioActivo.imagen}" class="comercio-img">
+      <h2>${comercioActivo.nombre}</h2>
+      <p>${comercioActivo.descripcion}</p>
+
+      ${
+        comercioActivo.galeria && comercioActivo.galeria.length > 0
+          ? `<div class="galeria-comercio">
+              ${comercioActivo.galeria.map(img => `<img src="${img}" class="galeria-img">`).join("")}
+            </div>`
+          : ""
+      }
+
+      <button onclick="window.open('${urlReserva}','_blank')">📅 Reservar</button>
+      <button onclick="window.open('https://wa.me/54${comercioActivo.whatsapp}','_blank')">💬 Contactar</button>
+    `;
+
+    document.querySelector(".btn-volver").onclick = () => history.back();
+
+    // Agregar evento lightbox
     document.querySelectorAll(".galeria-img").forEach(img => {
-      img.onclick = () => {
-        lightboxImg.src = img.src;
-        lightbox.classList.remove("hidden");
-        history.pushState({ lightbox: true }, "");
-      };
+      img.addEventListener("click", () => abrirLightbox(img.src));
     });
   }
-}
 
   function renderInfoComercio() {
     if (!comercioActivo) return renderHome();
