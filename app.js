@@ -25,15 +25,19 @@ document.addEventListener("DOMContentLoaded", () => {
     window.open(url, "_blank");
   }
 
-  let vistaActual = "home"; 
-  let ubicacionActiva = null;
-  let comercioActivo = null;
-  let carrito = [];
-  let tipoEntrega = null;
-  let direccionEntrega = "";
-  let rubroActivo = "todos";
-  let menuRubrosAbierto = false;
-  let comercios = [];
+let vistaActual = "home";
+
+let ubicacionActiva = null;   // "cafayate" | "santa-maria" | "amaicha" | null
+let rubroActivo = "todos";   // "todos" | "pizzerias" | "hoteleria" | etc
+
+let comercioActivo = null;
+
+let carrito = [];
+let tipoEntrega = null;
+let direccionEntrega = "";
+
+let menuRubrosAbierto = false;
+let comercios = [];
 
   // ------------------------
 // ------------------------
