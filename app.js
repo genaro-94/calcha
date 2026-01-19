@@ -363,6 +363,26 @@ function irARubro(rubro) {
 
   return lista;
   }
+
+  // =========================
+// SELECTOR DE UBICACIÓN
+// =========================
+function renderSelectorUbicacion() {
+  const cont = document.getElementById("selector-ubicacion");
+  if (!cont) return;
+
+  cont.innerHTML = `
+    <div class="ubicaciones">
+      <button class="ubi-btn" data-ubi="cafayate">📍 Cafayate</button>
+      <button class="ubi-btn" data-ubi="santa maria">📍 Santa María</button>
+      <button class="ubi-btn" data-ubi="amaicha">📍 Amaicha</button>
+    </div>
+  `;
+
+  document.querySelectorAll(".ubi-btn").forEach(btn => {
+    btn.onclick = () => setUbicacion(btn.dataset.ubi);
+  });
+}
   // ------------------------
   // PEDIDO
   // ------------------------
