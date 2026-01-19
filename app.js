@@ -119,6 +119,9 @@ document.addEventListener("DOMContentLoaded", () => {
     renderApp();
   });
 
+  // ⚠️ CLAVE: exponemos renderApp al scope global
+  window.renderApp = renderApp;
+
   renderApp();
 });
 
