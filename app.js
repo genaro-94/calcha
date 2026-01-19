@@ -360,7 +360,10 @@ function irARubro(rubro) {
   if (rubroActivo && rubroActivo !== "todos") {
     lista = lista.filter(c => c.rubro === rubroActivo);
   }
-
+// 🔹 Filtro por ubicación
+  if (ubicacionActiva) {
+    lista = lista.filter(c => c.ubicacion === ubicacionActiva);
+  }
   return lista;
   }
 
