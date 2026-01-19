@@ -235,6 +235,17 @@ function renderHome() {
     <!-- Lista de comercios -->
     <div id="lista-comercios"></div>
   `;
+  if (menuRubrosAbierto) {
+  const btnSumar = document.getElementById("btn-sumar-comercio");
+  if (btnSumar) btnSumar.onclick = sumarMiComercio;
+
+  const btnInfo = document.getElementById("btn-info");
+  if (btnInfo) btnInfo.onclick = () => {
+    vistaActual = "info";
+    history.pushState({ vista: "info" }, "", "#info");
+    renderInfo();
+  };
+}
 renderSelectorUbicacion();
   // ------------------------
   // Botones generales del home
