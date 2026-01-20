@@ -81,15 +81,17 @@ button:disabled {
 
 .btn-home {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: #8b5a2b;
-  color: white;
-  font-size: 24px;
-  z-index: 1000;
+top: 20px;
+right: 20px;
+bottom: auto;
+left: auto;
+width: 52px;
+height: 52px;
+border-radius: 50%;
+background: #8b5a2b;
+color: white;
+font-size: 24px;
+z-index: 1000;
 }
 
 /* =========================
