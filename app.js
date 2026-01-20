@@ -342,13 +342,63 @@ function renderInfo() {
 
 function renderReserva() {
   if (!comercioActivo) return volverHome();
-  app.innerHTML = `<button onclick="history.back()">←</button><h2>${comercioActivo.nombre}</h2>`;
+
+  const urlReserva = comercioActivo.urlReserva ||
+    `https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent("Hola, quiero reservar")}`;
+
+  app.innerHTML = `
+    <button class="btn-volver">← Volver</button>
+    <img src="${comercioActivo.imagen}" class="comercio-img">
+    <h2>${comercioActivo.nombre}</h2>
+    <p>${comercioActivo.descripcion}</p>
+
+    ${
+      comercioActivo.galeria && comercioActivo.galeria.length > 0
+        ? `<div class="galeria-comercio">
+            ${comercioActivo.galeria.map(img => `<img src="${img}" class="galeria-img">`).join("")}
+          </div>`
+        : ""
+    }
+
+    <button onclick="window.open('${urlReserva}','_blank')">📅 Reservar</button>
+    <button onclick="window.open('https://wa.me/54${comercioActivo.whatsapp}','_blank')">💬 Contactar</button>
+  `;
+
+  document.querySelector(".btn-volver").onclick = () => history.back();
+
+  // Agregar evento lightbox
+  document.querySelectorAll(".galeria-img").forEach(img => {
+    img.addEventListener("click", () => abrirLightbox(img.src));
+  });
 }
 
 function renderInfoComercio() {
   if (!comercioActivo) return volverHome();
-  app.innerHTML = `<button onclick="history.back()">←</button><h2>${comercioActivo.nombre}</h2>`;
-}
+
+  app.innerHTML = `
+    <button class="btn-volver">← Volver</button>
+    <img src="${comercioActivo.imagen}" class="comercio-img">
+    <h2>${comercioActivo.nombre}</h2>
+    <p>${comercioActivo.descripcion}</p>
+
+    ${
+      comercioActivo.galeria && comercioActivo.galeria.length > 0
+        ? `<div class="galeria-comercio">
+            ${comercioActivo.galeria.map(img => `<img src="${img}" class="galeria-img">`).join("")}
+          </div>`
+        : ""
+    }
+
+    <button onclick="window.open('https://wa.me/54${comercioActivo.whatsapp}','_blank')">💬 Contactar</button>
+  `;
+
+  document.querySelector(".btn-volver").onclick = () => history.back();
+
+  // Agregar evento lightbox
+  document.querySelectorAll(".galeria-img").forEach(img => {
+    img.addEventListener("click", () => abrirLightbox(img.src));
+  });
+                                                                                               }
 
 
 // =========================
