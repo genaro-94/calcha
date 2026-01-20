@@ -7,8 +7,8 @@ const FILES_TO_CACHE = [
   "/app.js",
   "/manifest.json",
   "/comercios.json",
-  "/Icon-192.png",
-  "/Icon-512.png"
+  "/Icon-1922.png",
+  "/Icon-5122.png"
 ];
 
 self.addEventListener("install", e => {
