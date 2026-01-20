@@ -540,30 +540,40 @@ function activarBusqueda() {
   };
 }
 
+const lightbox = document.getElementById("lightbox");
 
-// =========================
+// ------------------------
 // LIGHTBOX
-// =========================
-
-let lightbox, lightboxImg;
-
-function crearLightbox() {
-  lightbox = document.createElement("div");
-  lightbox.className = "lightbox hidden";
-  lightboxImg = document.createElement("img");
-
-  lightbox.appendChild(lightboxImg);
-  document.body.appendChild(lightbox);
-
-  lightbox.onclick = () => lightbox.classList.add("hidden");
-}
+// ------------------------
 
 function abrirLightbox(src) {
-  lightboxImg.src = src;
+  const img = document.getElementById("lightbox-img");
+  img.src = src;
   lightbox.classList.remove("hidden");
+
+  history.pushState({ lightbox: true }, "");
 }
 
+function cerrarLightbox() {
+  lightbox.classList.add("hidden");
+}
 
+// Back físico
+window.addEventListener("popstate", () => {
+  if (!lightbox.classList.contains("hidden")) {
+    cerrarLightbox();
+  }
+});
+
+// Click afuera
+document.addEventListener("click", e => {
+  if (e.target.id === "lightbox") {
+    cerrarLightbox();
+    if (history.state && history.state.lightbox) {
+      history.back();
+    }
+  }
+});
 // =========================
 // UTIL
 // =========================
