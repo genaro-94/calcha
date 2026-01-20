@@ -169,11 +169,12 @@ button:disabled {
 }
 .comercio-portada {
   width: 100%;
-  height: 200px;
+  height: 180px;        /* ajustá si querés 160 / 200 */
   object-fit: cover;
+  display: block;
   border-radius: 16px;
   margin-bottom: 12px;
-}
+   }
 .card-comercio p {
   font-size: 13px;
   opacity: 0.75;
