@@ -64,8 +64,15 @@ window.renderApp = renderApp;
 // =========================
 
 function manejarBackButton() {
+function manejarBackButton() {
   window.addEventListener("popstate", e => {
     const s = e.state || { vista: "home" };
+
+    // 👇 PRIORIDAD LIGHTBOX
+    if (s.lightbox) {
+      cerrarLightbox();
+      return;
+    }
 
     vistaActual = s.vista || "home";
     rubroActivo = s.rubro ?? rubroActivo;
@@ -80,7 +87,6 @@ function manejarBackButton() {
     renderApp();
   });
 }
-
 
 // =========================
 // DATA
@@ -558,12 +564,7 @@ function cerrarLightbox() {
   lightbox.classList.add("hidden");
 }
 
-// Back físico
-window.addEventListener("popstate", () => {
-  if (!lightbox.classList.contains("hidden")) {
-    cerrarLightbox();
-  }
-});
+
 
 // Click afuera
 document.addEventListener("click", e => {
