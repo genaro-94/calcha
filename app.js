@@ -143,19 +143,19 @@ function renderHome() {
   </button>
 
   <button class="rubro-btn" data-rubro="servicios">
-    <span class="icon">🛠️</span>
+    <span class="icon">🚕🛠️</span>
     <span class="text">Servicios</span>
   </button>
 
   <button class="rubro-btn" data-rubro="ropa">
-    <span class="icon">🛍️</span>
-    <span class="text">Ropa</span>
+    <span class="icon">🛍️💍</span>
+    <span class="text">Ropa y accesorios</span>
   </button>
 
-  <button class="rubro-btn" data-rubro="artesanias">
-    <span class="icon">🎨</span>
-    <span class="text">Artesanías</span>
-  </button>
+  <<button class="rubro-btn" data-rubro="todos">
+  <span class="icon">🎨👟🍔</span>
+  <span class="text">Todos</span>
+</button>
 </section>
 
     <div id="lista-comercios"
