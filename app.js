@@ -273,9 +273,11 @@ function obtenerComerciosVisibles() {
 function renderSelectorUbicacion() {
   const cont = document.getElementById("selector-ubicacion");
   cont.innerHTML = `
-    <button onclick="setUbicacion('cafayate')">Cafayate</button>
-    <button onclick="setUbicacion('santa maria')">Santa María</button>
-    <button onclick="setUbicacion('amaicha')">Amaicha</button>
+      <div class="ubicaciones">
+      <button class="ubi-btn" data-ubi="cafayate">📍 Cafayate</button>
+      <button class="ubi-btn" data-ubi="santa maria">📍 Santa María</button>
+      <button class="ubi-btn" data-ubi="amaicha">📍 Amaicha</button>
+    </div>
   `;
 }
 
