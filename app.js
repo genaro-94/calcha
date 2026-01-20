@@ -167,6 +167,7 @@ function renderHome() {
   renderListaComercios();
   activarBusqueda();
   activarRubros();
+  activarUbicaciones();
 }
 
 
