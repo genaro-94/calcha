@@ -291,6 +291,13 @@ function setUbicacion(ubi) {
   renderHome();
 }
 
+function activarUbicaciones() {
+  document.querySelectorAll("[data-ubi]").forEach(btn => {
+    btn.onclick = () => {
+      setUbicacion(btn.dataset.ubi);
+    };
+  });
+}
 
 // =========================
 // BOTÓN HOME
