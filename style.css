@@ -375,8 +375,14 @@ z-index: 1000;
 
 
 /* LOGO */
-.logo-calcha {
-  height: 40px;     /* 👈 clave */
-  width: auto;      /* mantiene proporción */
-  max-width: 120px; /* seguridad extra */
+..logo-fijo {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+
+  height: 36px;        /* 👈 tamaño controlado */
+  width: auto;         /* mantiene proporción */
+  max-width: 120px;    /* seguridad */
+
+  z-index: 900;
 }
