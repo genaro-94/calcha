@@ -502,11 +502,7 @@ function renderInfoComercio() {
 }
 
   document.querySelector(".btn-volver").onclick = () => history.back();
-
-  // Agregar evento lightbox
-  document.querySelectorAll(".galeria-img").forEach(img => {
-    img.addEventListener("click", () => abrirLightbox(img.src));
-  });
+  
 }
 
 function renderReserva() {
@@ -534,13 +530,7 @@ function renderReserva() {
     <button onclick="window.open('${urlReserva}','_blank')">📅 Reservar</button>
     <button onclick="window.open('https://wa.me/54${comercioActivo.whatsapp}','_blank')">💬 Contactar</button>
   `;
-  document.querySelector(".btn-volver").onclick = () => history.back();
-
-  // Agregar evento lightbox
-  document.querySelectorAll(".galeria-img").forEach(img => {
-    img.addEventListener("click", () => abrirLightbox(img.src));
-  });
-                                                                                               }
+  document.querySelector(".btn-volver").onclick = () => history.back();                                                                                               }
 
 
 // =========================
