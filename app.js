@@ -719,55 +719,81 @@ function activarBusqueda() {
   };
 }
 
-
-
 // =========================
 // LIGHTBOX COMPLETO
 // =========================
 
+let fotosActuales = [];
+let indiceFoto = 0;
+let lightboxDiv = null;
+
+// Abrir imagen en lightbox
 function abrirLightbox(src, fotos) {
-  fotosActuales = fotos;
-  indiceFoto = fotos.indexOf(src);
+  fotosActuales = fotos || [src];
+  indiceFoto = fotosActuales.indexOf(src);
 
-  const lightbox = document.createElement("div");
-  lightbox.className = "lightbox";
-  lightbox.innerHTML = `
-    <button class="lightbox-close">✖️</button>
-    <button class="lightbox-prev">◀️</button>
-    <img src="${fotosActuales[indiceFoto]}" class="lightbox-img">
-    <button class="lightbox-next">▶️</button>
-  `;
-  document.body.appendChild(lightbox);
+  // Crear lightbox solo si no existe
+  if (!lightboxDiv) {
+    lightboxDiv = document.createElement("div");
+    lightboxDiv.id = "lightbox";
+    lightboxDiv.className = "lightbox hidden"; 
+    lightboxDiv.innerHTML = `
+      <button class="lightbox-close">✖️</button>
+      <button class="lightbox-prev">◀️</button>
+      <img id="lightbox-img" class="lightbox-img">
+      <button class="lightbox-next">▶️</button>
+    `;
+    document.body.appendChild(lightboxDiv);
 
-  const img = lightbox.querySelector(".lightbox-img");
+    // Cerrar con ✖️
+    lightboxDiv.querySelector(".lightbox-close").onclick = cerrarLightbox;
 
-  // Cerrar con botón ✖️
-  lightbox.querySelector(".lightbox-close").onclick = () => lightbox.remove();
+    // Cerrar al click fuera de la imagen
+    lightboxDiv.addEventListener("click", e => {
+      if (e.target === lightboxDiv) cerrarLightbox();
+    });
 
-  // Cerrar al click fuera de la imagen
-  lightbox.addEventListener("click", e => {
-    if (e.target === lightbox) lightbox.remove();
-  });
+    // Navegar foto anterior
+    lightboxDiv.querySelector(".lightbox-prev").onclick = e => {
+      e.stopPropagation();
+      indiceFoto = (indiceFoto - 1 + fotosActuales.length) % fotosActuales.length;
+      lightboxDiv.querySelector("#lightbox-img").src = fotosActuales[indiceFoto];
+    };
 
-  // Navegar foto anterior
-  lightbox.querySelector(".lightbox-prev").onclick = () => {
-    indiceFoto = (indiceFoto - 1 + fotosActuales.length) % fotosActuales.length;
-    img.src = fotosActuales[indiceFoto];
-  };
+    // Navegar foto siguiente
+    lightboxDiv.querySelector(".lightbox-next").onclick = e => {
+      e.stopPropagation();
+      indiceFoto = (indiceFoto + 1) % fotosActuales.length;
+      lightboxDiv.querySelector("#lightbox-img").src = fotosActuales[indiceFoto];
+    };
+  }
 
-  // Navegar foto siguiente
-  lightbox.querySelector(".lightbox-next").onclick = () => {
-    indiceFoto = (indiceFoto + 1) % fotosActuales.length;
-    img.src = fotosActuales[indiceFoto];
-  };
-      }
+  // Mostrar foto actual
+  lightboxDiv.querySelector("#lightbox-img").src = fotosActuales[indiceFoto];
+  lightboxDiv.classList.remove("hidden");
+
+  // Marcar en historial que estamos en lightbox
+  history.pushState({ lightbox: true }, "");
+}
+
+// Cerrar lightbox
+function cerrarLightbox() {
+  if (lightboxDiv && !lightboxDiv.classList.contains("hidden")) {
+    lightboxDiv.classList.add("hidden");
+
+    // Volver en historial solo si veníamos de un lightbox
+    if (history.state && history.state.lightbox) {
+      history.back();
+    }
+  }
+}
 
 // Back físico / historial
 window.addEventListener("popstate", e => {
-  if (!lightbox.classList.contains("hidden")) {
-    cerrarLightbox(); // cierra lightbox antes de ir al historial anterior
+  if (lightboxDiv && !lightboxDiv.classList.contains("hidden")) {
+    cerrarLightbox();
   } else {
-    // aquí va tu manejo de back normal para vistas (home, pedido, etc.)
+    // Manejo normal de vistas
     const s = e.state || { vista: "home" };
     vistaActual = s.vista || "home";
     rubroActivo = s.rubro ?? rubroActivo;
@@ -783,10 +809,15 @@ window.addEventListener("popstate", e => {
 
 // Activar click en galería
 function activarGaleria() {
-  document.querySelectorAll(".galeria-img").forEach(img => {
-    img.onclick = () => abrirLightbox(img.src);
+  document.querySelectorAll(".galeria-comercio").forEach(galeria => {
+    const fotos = Array.from(galeria.querySelectorAll(".galeria-img")).map(img => img.src);
+    galeria.querySelectorAll(".galeria-img").forEach(img => {
+      img.onclick = () => abrirLightbox(img.src, fotos);
+    });
   });
 }
+
+
 // =========================
 // UTIL
 // =========================
