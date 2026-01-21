@@ -497,7 +497,9 @@ function renderInfoComercio() {
 
     <button onclick="window.open('https://wa.me/54${comercioActivo.whatsapp}','_blank')">💬 Contactar</button>
   `;
-
+document.querySelectorAll(".galeria-img").forEach(img => {
+  img.onclick = () => abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
+});
   document.querySelector(".btn-volver").onclick = () => history.back();
 }
 
@@ -513,19 +515,22 @@ function renderReserva() {
     <h2>${comercioActivo.nombre}</h2>
     <p>${comercioActivo.descripcion}</p>
 
-    ${comercioActivo.galerias
-      ? Object.entries(comercioActivo.galerias).map(([categoria, fotos]) => `
-          <h3>${categoria}</h3>
-          <div class="galeria-comercio">
-            ${fotos.map(img => `<img src="${img}" class="galeria-img" onclick="abrirLightbox('${img}', ${JSON.stringify(fotos)})">`).join("")}
-          </div>
-        `).join("")
-      : ""
-    }
+${comercioActivo.galerias
+  ? Object.entries(comercioActivo.galerias).map(([categoria, fotos]) => `
+      <h3>${categoria}</h3>
+      <div class="galeria-comercio">
+        ${fotos.map(img => `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`).join("")}
+      </div>
+    `).join("")
+  : ""
+}
 
     <button onclick="window.open('${urlReserva}','_blank')">📅 Reservar</button>
     <button onclick="window.open('https://wa.me/54${comercioActivo.whatsapp}','_blank')">💬 Contactar</button>
   `;
+  document.querySelectorAll(".galeria-img").forEach(img => {
+  img.onclick = () => abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
+});
   document.querySelector(".btn-volver").onclick = () => history.back();                                                                                               }
 
 
@@ -594,6 +599,9 @@ function renderPedido() {
       </button>
     </div>
   `;
+  document.querySelectorAll(".galeria-img").forEach(img => {
+  img.onclick = () => abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
+});
     // ------------------------
     // Eventos
     // ------------------------
