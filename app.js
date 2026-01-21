@@ -352,8 +352,38 @@ function renderInfo() {
   app.innerHTML = `
     <button class="btn-volver">←</button>
     <h2>¿Qué es Calcha?</h2>
-    <p>Conecta comercios locales sin intermediarios.</p>
-  `;
+    <p>Calcha es una plataforma que conecta personas con comercios y servicios
+    locales. No realiza pagos ni interviene en acuerdos entre las partes.
+  </p>
+
+  <p>
+    Los pedidos, reservas o contactos se coordinan directamente entre usuarios
+    y comercios o prestadores de servicios.
+  </p>
+
+  <button id="btn-terminos" class="btn-secundario">
+    📄 Términos y Condiciones
+  </button>
+
+  <div id="terminos-container" class="terminos oculto">
+    <!-- ACÁ VAN LOS TÉRMINOS -->
+    <h3>Términos y Condiciones</h3>
+
+    <p>
+      Calcha es una plataforma de contacto que permite a los usuarios encontrar
+      comercios y prestadores de servicios locales.
+    </p>
+
+    <p>
+      Calcha no participa en pagos, entregas ni acuerdos entre las partes.
+    </p>
+
+    <p>
+      El uso de la plataforma implica la aceptación de estos términos.
+    </p>
+    <!-- pegás acá el texto completo que ya tenés -->
+  </div>
+`;
   document.querySelector(".btn-volver").onclick = () => history.back();
 }
 
