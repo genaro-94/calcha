@@ -128,7 +128,7 @@ function renderHome() {
 
   <section class="rubros-grid">
   <button class="rubro-btn" data-rubro="gastronomia">
-    <span class="icon">🍽️</span>
+    <span class="icon">🍽️🍔</span>
     <span class="text">Gastronomía</span>
   </button>
 
@@ -153,7 +153,7 @@ function renderHome() {
   </button>
 
   <button class="rubro-btn" data-rubro="todos">
-  <span class="icon">🎨👟🍔</span>
+  <span class="icon">🎨👟🍟</span>
   <span class="text">Todos</span>
 </button>
 <button class="rubro-btn" data-rubro="motodelivery">
