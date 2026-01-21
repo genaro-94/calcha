@@ -30,7 +30,8 @@
       "precio": 250
     }
   ],
-  "galeria": [
+  "galerias": { 
+    [
     "images/fritas.png",
     "images/lomo.jpg",
     "images/mila.jpeg"
@@ -56,11 +57,13 @@
        "precio": 15000},
       { "categoria": "ceramica","nombre": "llamitas portasahumerios", "precio": 8000 }
     ],
-    "galeria": ["images/Oca1.jpg",
+    "galerias": {
+      "ocarinas": [ "images/Oca1.jpg",
     "images/oca2.jpg",
     "images/oca3.jpg",
     "images/ocam1.jpg",
-    "images/ocam2.jpg",
+    "images/ocam2.jpg"],
+    "llamitas": [  
     "images/llama1.jpg",
     "images/llama2.jpg",
     "images/llama3.jpg",
@@ -82,8 +85,9 @@
       { "nombre": "Martillo", "precio": 1200 },
       { "nombre": "Taladro eléctrico", "precio": 5500 },
       { "nombre": "Clavos x 1kg", "precio": 450 }
-    ],
-    "galeria": [],
+    ]
+  },
+    "galerias": [],
     "whatsapp": "3874000003",
     "estado": "activo",
     "destacado": false
@@ -98,7 +102,7 @@
   "tipoOperacion": "reserva",
   "permiteDelivery": false,
   "menu": [],
-  "galeria": [
+  "galerias": [
     "images/hab1.jpg",
     "images/hab2.jpg",
     "images/hab3.jpg"
@@ -116,7 +120,7 @@
   "imagen": "images/buzo.jpeg",
   "tipoOperacion": "pedido",
   "menu": [],
-  "galeria": [],
+  "galerias": [],
   "whatsapp": "3872535433",
   "estado": "activo",
   "destacado": false
@@ -130,7 +134,7 @@
   "imagen": "images/artesanias .jpeg",
   "tipoOperacion": "info",
   "menu": [],
-  "galeria": [],
+  "galerias": [],
   "whatsapp": "3868404422",
   "estado": "activo",
   "destacado": false
