@@ -186,6 +186,7 @@ if (mensajeRubro) {
   activarBusqueda();
   activarRubros();
   activarUbicaciones();
+  activarGaleriasScroll();
   crearLightbox(); 
   activarGaleria();
 }
@@ -468,7 +469,32 @@ btnTerminos.addEventListener("click", () => {
 });
   document.querySelector(".btn-volver").onclick = () => history.back();
 }
+// Función que activa los botones ◀️▶️ de todas las galerías
 
+function activarGaleriasScroll() {
+  document.querySelectorAll(".galeria-wrapper").forEach(wrapper => {
+    const galeria = wrapper.querySelector(".galeria-comercio");
+    const btnPrev = wrapper.querySelector(".prev");
+    const btnNext = wrapper.querySelector(".next");
+
+    const scrollAmount = 220; // ajustá según tamaño de las fotos
+
+    // Evitar múltiples listeners si la función se llama varias veces
+    btnPrev.replaceWith(btnPrev.cloneNode(true));
+    btnNext.replaceWith(btnNext.cloneNode(true));
+
+    const newBtnPrev = wrapper.querySelector(".prev");
+    const newBtnNext = wrapper.querySelector(".next");
+
+    newBtnPrev.addEventListener("click", () => {
+      galeria.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    });
+
+    newBtnNext.addEventListener("click", () => {
+      galeria.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    });
+  });
+}
 
 // =========================
 // RESERVA / INFO COMERCIO
@@ -506,7 +532,7 @@ ${comercioActivo.galerias
     <button onclick="window.open('${urlReserva}','_blank')">📅 Reservar</button>
     <button onclick="window.open('https://wa.me/54${comercioActivo.whatsapp}','_blank')">💬 Contactar</button>
   `;
-
+activarGaleriasScroll();
   document.querySelector(".btn-volver").onclick = () => history.back();
 
   // Agregar evento lightbox
@@ -544,7 +570,7 @@ ${comercioActivo.galerias
 
     <button onclick="window.open('https://wa.me/54${comercioActivo.whatsapp}','_blank')">💬 Contactar</button>
   `;
-
+activarGaleriasScroll();
   document.querySelector(".btn-volver").onclick = () => history.back();
 
   // Agregar evento lightbox
@@ -640,7 +666,7 @@ ${comercioActivo.galerias
         </button>
       </div>
     `;
-
+activarGaleriasScroll();
     // ------------------------
     // Eventos
     // ------------------------
