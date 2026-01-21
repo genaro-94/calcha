@@ -482,7 +482,8 @@ function renderReserva() {
 
   app.innerHTML = `
     <button class="btn-volver">← Volver</button>
-    <img src="${comercioActivo.imagen}" class="comercio-img">
+   <img src="${comercioActivo.imagen}"
+      class="comercio-portada">
     <h2>${comercioActivo.nombre}</h2>
     <p>${comercioActivo.descripcion}</p>
 
@@ -513,7 +514,8 @@ function renderInfoComercio() {
 
   app.innerHTML = `
     <button class="btn-volver">← Volver</button>
-    <img src="${comercioActivo.imagen}" class="comercio-img">
+    <img src="${comercioActivo.imagen}"
+      class="comercio-portada">
     <h2>${comercioActivo.nombre}</h2>
     <p>${comercioActivo.descripcion}</p>
 
