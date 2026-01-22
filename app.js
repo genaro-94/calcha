@@ -114,6 +114,8 @@ function renderHome() {
   vistaActual = "home";
 
   app.innerHTML = `
+  <div class="home-header">
+      <img src="images/Logo.png" alt="Calcha" class="logo-calcha">
     <h1 class="titulo">CALCHA</h1>
 <p class="subtitulo">El mercado vallista en tu mano</p>
 
