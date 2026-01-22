@@ -419,11 +419,8 @@ z-index: 1000;
 
 /* Logo arriba a la derecha, tamaño igual al botón */
 .logo-calcha {
-  width: 44px;              /* un poquito más chico que el botón */
-  height: 44px;
-  position: fixed;
-  top: 4px;                 /* un poco más cerca del borde superior */
-  right: 4px;               /* un poco separado del botón */
-  z-index: 1001;            /* encima del botón y contenido */
-  object-fit: contain;      /* mantiene proporción sin recortar */
+  display: block;
+  height: 40px;
+  width: auto;
+  margin: 40px 0 6px 12px; 
 }
