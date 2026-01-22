@@ -20,8 +20,9 @@ body {
 
 #app {
   max-width: 430px;
-  margin: 4px;
+  margin: auto;
   padding: 8px;
+   margin: 4px;
 }
 
 /* =========================
