@@ -765,10 +765,6 @@ function abrirLightbox(src, fotos) {
   }
 
   mostrarFotoActual();
-
-  // mostrar overlay inmediatamente
-  lightboxDiv.classList.remove("hidden");
-
   history.pushState({ lightbox: true }, "");
       }
 // Mostrar foto (con preload)
@@ -776,13 +772,18 @@ function mostrarFotoActual() {
   const img = lightboxDiv.querySelector("#lightbox-img");
 
   img.style.opacity = "0";
+
+  const src = fotosActuales[indiceFoto];
+
   img.onload = () => {
-    img.style.opacity = "1";
+    lightboxDiv.classList.remove("hidden"); // 🔑 mostrar recién acá
+    requestAnimationFrame(() => {
+      img.style.opacity = "1";
+    });
   };
 
-  img.src = fotosActuales[indiceFoto];
+  img.src = src;
 }
-
 // Cerrar lightbox
 function cerrarLightbox() {
   if (lightboxDiv) {
