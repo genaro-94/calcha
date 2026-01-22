@@ -719,88 +719,42 @@ function activarBusqueda() {
   };
 }
 
+
 // =========================
-// LIGHTBOX COMPLETO
+// LIGHTBOX SIMPLE (estable)
 // =========================
 let lightboxDiv = null;
-let fotosActuales = [];
-let indiceFoto = 0;
 
-// Abrir imagen en lightbox
-
-function abrirLightbox(src, fotos) {
-  fotosActuales = fotos || [src];
-  indiceFoto = fotosActuales.indexOf(src);
-
-  // Crear lightbox si no existe
+function abrirLightbox(src) {
   if (!lightboxDiv) {
     lightboxDiv = document.createElement("div");
-    lightboxDiv.id = "lightbox";
-    lightboxDiv.className = "lightbox hidden";
+    lightboxDiv.className = "lightbox";
     lightboxDiv.innerHTML = `
-      <button class="lightbox-close">✖️</button>
-      <button class="lightbox-prev">◀️</button>
-      <img id="lightbox-img" class="lightbox-img">
-      <button class="lightbox-next">▶️</button>
+      <span class="lightbox-close">✖</span>
+      <img class="lightbox-img">
     `;
     document.body.appendChild(lightboxDiv);
 
+    // cerrar con botón
     lightboxDiv.querySelector(".lightbox-close").onclick = cerrarLightbox;
 
-    lightboxDiv.addEventListener("click", e => {
+    // cerrar tocando fondo
+    lightboxDiv.onclick = e => {
       if (e.target === lightboxDiv) cerrarLightbox();
-    });
-
-    lightboxDiv.querySelector(".lightbox-prev").onclick = e => {
-      e.stopPropagation();
-      indiceFoto = (indiceFoto - 1 + fotosActuales.length) % fotosActuales.length;
-      mostrarFotoActual();
-    };
-
-    lightboxDiv.querySelector(".lightbox-next").onclick = e => {
-      e.stopPropagation();
-      indiceFoto = (indiceFoto + 1) % fotosActuales.length;
-      mostrarFotoActual();
     };
   }
 
-  mostrarFotoActual();
-  history.pushState({ lightbox: true }, "");
-      }
-// Mostrar foto (con preload)
-function mostrarFotoActual() {
-  const img = lightboxDiv.querySelector("#lightbox-img");
-
-  img.style.opacity = "0";
-
-  const src = fotosActuales[indiceFoto];
-
-  img.onload = () => {
-    lightboxDiv.classList.remove("hidden"); // 🔑 mostrar recién acá
-    requestAnimationFrame(() => {
-      img.style.opacity = "1";
-    });
-  };
-
+  const img = lightboxDiv.querySelector(".lightbox-img");
   img.src = src;
+
+  lightboxDiv.style.display = "flex";
 }
-// Cerrar lightbox
+
 function cerrarLightbox() {
   if (lightboxDiv) {
-    lightboxDiv.classList.add("hidden");
-
-    // Volver en historial solo si veníamos de un lightbox
-    if (history.state && history.state.lightbox) {
-      history.back();
-    }
+    lightboxDiv.style.display = "none";
   }
 }
-
-// Back físico / historial
-window.addEventListener("popstate", e => {
-  if (lightboxDiv && !lightboxDiv.classList.contains("hidden")) {
-    cerrarLightbox();
-  } else {
     // Manejo normal de vistas
     const s = e.state || { vista: "home" };
     vistaActual = s.vista || "home";
