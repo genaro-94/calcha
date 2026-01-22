@@ -758,6 +758,8 @@ function cerrarLightbox() {
     lightboxDiv.style.display = "none";
   }
 }
+
+window.addEventListener("popstate", e => {
     // Manejo normal de vistas
     const s = e.state || { vista: "home" };
     vistaActual = s.vista || "home";
