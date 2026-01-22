@@ -422,7 +422,7 @@ z-index: 1000;
   width: auto;           /* mantiene proporción */
   position: fixed;       /* lo mantiene fijo en pantalla */
   top: 8px;              /* distancia desde arriba */
-  right: 8px;            /* distancia desde la derecha */
+  left: 8px;            /* distancia desde la derecha */
   z-index: 1000;         /* que quede encima de todo */
   object-fit: contain;   /* para que no se distorsione */
 }
