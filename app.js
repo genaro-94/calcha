@@ -174,8 +174,8 @@ if (mensajeRubro) {
 
   if (rubroActivo === "motodelivery") {
     mensajeRubro.innerText =
-      "🛵 deliverys y servicios de paqueteria particulares – coordiná directo con el conductor
-📦 Para mayor tranquilidad, sugerimos solicitar la ubicación en tiempo real por WhatsApp";
+      `🛵 deliverys y servicios de paqueteria particulares – coordiná directo con el conductor
+📦 Para mayor tranquilidad, sugerimos solicitar la ubicación en tiempo real por WhatsApp`;
   }
 }
   document.getElementById("btn-menu").onclick = () => {
