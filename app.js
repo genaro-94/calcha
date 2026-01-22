@@ -722,16 +722,16 @@ function activarBusqueda() {
 // =========================
 // LIGHTBOX COMPLETO
 // =========================
-
 let lightboxDiv = null;
 let fotosActuales = [];
 let indiceFoto = 0;
+
 // Abrir imagen en lightbox
 function abrirLightbox(src, fotos) {
   fotosActuales = fotos || [src];
   indiceFoto = fotosActuales.indexOf(src);
 
-  // Crear lightbox solo si no existe
+  // Crear lightbox solo una vez
   if (!lightboxDiv) {
     lightboxDiv = document.createElement("div");
     lightboxDiv.id = "lightbox";
@@ -744,22 +744,36 @@ function abrirLightbox(src, fotos) {
     `;
     document.body.appendChild(lightboxDiv);
 
-    // Cerrar con ✖️
+    // Cerrar
     lightboxDiv.querySelector(".lightbox-close").onclick = cerrarLightbox;
 
-    // Cerrar al click fuera de la imagen
     lightboxDiv.addEventListener("click", e => {
       if (e.target === lightboxDiv) cerrarLightbox();
     });
 
     // Navegación
-    lightboxDiv.querySelector(".lightbox-prev").onclick = fotoAnterior;
-    lightboxDiv.querySelector(".lightbox-next").onclick = fotoSiguiente;
+    lightboxDiv.querySelector(".lightbox-prev").onclick = e => {
+      e.stopPropagation();
+      indiceFoto =
+        (indiceFoto - 1 + fotosActuales.length) % fotosActuales.length;
+      mostrarFoto();
+    };
+
+    lightboxDiv.querySelector(".lightbox-next").onclick = e => {
+      e.stopPropagation();
+      indiceFoto =
+        (indiceFoto + 1) % fotosActuales.length;
+      mostrarFoto();
+    };
   }
 
+  mostrarFoto();
+}
+
+// Mostrar foto (con preload)
+function mostrarFoto() {
   const img = lightboxDiv.querySelector("#lightbox-img");
 
-  // ⬇️ CLAVE: ocultar mientras carga
   lightboxDiv.classList.add("hidden");
   img.src = "";
 
@@ -767,38 +781,15 @@ function abrirLightbox(src, fotos) {
     lightboxDiv.classList.remove("hidden");
   };
 
-  // Cargar imagen
-  img.src = src;
-}
-
-    // Navegar foto anterior
-    lightboxDiv.querySelector(".lightbox-prev").onclick = e => {
-      e.stopPropagation();
-      indiceFoto = (indiceFoto - 1 + fotosActuales.length) % fotosActuales.length;
-      lightboxDiv.querySelector("#lightbox-img").src = fotosActuales[indiceFoto];
-    };
-
-    // Navegar foto siguiente
-    lightboxDiv.querySelector(".lightbox-next").onclick = e => {
-      e.stopPropagation();
-      indiceFoto = (indiceFoto + 1) % fotosActuales.length;
-      lightboxDiv.querySelector("#lightbox-img").src = fotosActuales[indiceFoto];
-    };
-  }
-
-  // Mostrar foto actual
-  lightboxDiv.querySelector("#lightbox-img").src = fotosActuales[indiceFoto];
-  lightboxDiv.classList.remove("hidden");
-
-  // Marcar en historial que estamos en lightbox
-  history.pushState({ lightbox: true }, "");
+  img.src = fotosActuales[indiceFoto];
 }
 
 // Cerrar lightbox
 function cerrarLightbox() {
-  if (lightboxDiv && !lightboxDiv.classList.contains("hidden")) {
+  if (lightboxDiv) {
     lightboxDiv.classList.add("hidden");
-
+  }
+}
     // Volver en historial solo si veníamos de un lightbox
     if (history.state && history.state.lightbox) {
       history.back();
