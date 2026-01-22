@@ -742,6 +742,7 @@ function abrirLightbox(src) {
     lightboxDiv.onclick = e => {
       if (e.target === lightboxDiv) cerrarLightbox();
     };
+  }
   lightboxDiv.querySelector(".lightbox-img").onclick = e => {
   e.stopPropagation();
 };
@@ -768,7 +769,6 @@ function cerrarLightbox() {
       comercioActivo = null;
     }
     renderApp();
-  }
 });
 
 // Activar click en galería
