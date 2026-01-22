@@ -788,8 +788,7 @@ function mostrarFoto() {
 function cerrarLightbox() {
   if (lightboxDiv) {
     lightboxDiv.classList.add("hidden");
-  }
-}
+  
     // Volver en historial solo si veníamos de un lightbox
     if (history.state && history.state.lightbox) {
       history.back();
