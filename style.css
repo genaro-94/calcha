@@ -186,6 +186,33 @@ z-index: 1000;
 .rubros-grid:active {
   cursor: grabbing;
 }
+.acciones-fijas {
+  display: flex;
+  gap: 10px;
+  padding: 6px 4px 10px;
+}
+
+.accion-btn {
+  background: #f5ead8;
+  border: 1px solid #e0c9a6;
+  border-radius: 999px;
+
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b4a2b;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.accion-btn:active {
+  transform: scale(0.97);
+}
 /* =========================
    UBICACIONES
 ========================= */
