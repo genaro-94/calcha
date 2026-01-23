@@ -69,10 +69,12 @@ function manejarBackButton() {
 
     // 👇 PRIORIDAD LIGHTBOX
     if (s.lightbox) {
-      cerrarLightbox();
+      // lightbox abierto → cerrar sin cambiar vistaActual
+      if (lightboxDiv) lightboxDiv.style.display = "none";
       return;
     }
 
+    // Actualizar vistas normales
     vistaActual = s.vista || "home";
     rubroActivo = s.rubro ?? rubroActivo;
     ubicacionActiva = s.ubicacion ?? ubicacionActiva;
@@ -881,11 +883,10 @@ function actualizarLightbox() {
 function cerrarLightbox() {
   if (lightboxDiv) {
     lightboxDiv.style.display = "none";
-    // Limpiar lightbox del history actual sin romper otras vistas
+
+    // 🔹 Usar history.back() solo si el estado actual es lightbox
     if (history.state?.lightbox) {
-      const newState = { ...history.state };
-      delete newState.lightbox;
-      history.replaceState(newState, "");
+      history.back();
     }
   }
 }
