@@ -860,7 +860,7 @@ function abrirLightbox(src, fotos = []) {
 
   actualizarLightbox();
   lightboxDiv.style.display = "flex";
-history.pushState({ ...history.state, lightbox: true }, "", "");
+history.replaceState({ ...history.state, lightbox: true }, "");
 }
 
 function moverLightbox(dir) {
@@ -881,7 +881,9 @@ function cerrarLightbox() {
   if (lightboxDiv) {
     lightboxDiv.style.display = "none";
   if (history.state?.lightbox) {
-      history.back();
+      const newState = { ...history.state };
+      delete newState.lightbox;
+      history.replaceState(newState, "");
     }
   }
 }
