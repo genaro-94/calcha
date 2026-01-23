@@ -725,8 +725,6 @@ function renderPedido() {
 
     document.querySelector(".btn-volver").onclick = () => history.back();
   }
-
-function renderLinksComercio(c) {
 function renderLinksComercio(comercio) {
   if (!comercio.links) return "";
 
