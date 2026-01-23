@@ -387,7 +387,7 @@ z-index: 1000;
 }
 
 .galeria-img {
-  height: 120px;
+  height: 180px;
   min-width: 180px;
   object-fit: cover;
   border-radius: 14px;
