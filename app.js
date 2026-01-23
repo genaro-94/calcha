@@ -489,27 +489,29 @@ function renderInfoComercio() {
   if (!comercioActivo) return volverHome();
 
   app.innerHTML = `
-    <button class="btn-volver" onclick="volver()">←</button>
+    <button class="btn-volver">←</button>
     <img src="${comercioActivo.imagen}" class="comercio-portada">
     <h2>${comercioActivo.nombre}</h2>
     <p>${comercioActivo.descripcion}</p>
+
+    ${renderLinksComercio(comercioActivo)}
 
     ${comercioActivo.galerias
       ? Object.entries(comercioActivo.galerias).map(([categoria, fotos]) => `
           <h3>${categoria}</h3>
           <div class="galeria-comercio">
-            ${fotos.map(img => `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`).join("")}
+            ${fotos.map(img =>
+              `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`
+            ).join("")}
           </div>
         `).join("")
       : ""
     }
-
-    <button onclick="window.open('https://wa.me/54${comercioActivo.whatsapp}','_blank')">💬 Contactar</button>
   `;
 
-  // Hacer clic en las imágenes de la galería
   document.querySelectorAll(".galeria-img").forEach(img => {
-    img.onclick = () => abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
+    img.onclick = () =>
+      abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
   });
 
   document.querySelector(".btn-volver").onclick = () => history.back();
@@ -518,8 +520,11 @@ function renderInfoComercio() {
 function renderReserva() {
   if (!comercioActivo) return volverHome();
 
-  const urlReserva = comercioActivo.urlReserva ||
-    `https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent("Hola, quiero reservar")}`;
+  const urlReserva =
+    comercioActivo.urlReserva ||
+    `https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent(
+      "Hola, quiero reservar"
+    )}`;
 
   app.innerHTML = `
     <button class="btn-volver">←</button>
@@ -527,23 +532,26 @@ function renderReserva() {
     <h2>${comercioActivo.nombre}</h2>
     <p>${comercioActivo.descripcion}</p>
 
+    ${renderLinksComercio(comercioActivo)}
+
     ${comercioActivo.galerias
       ? Object.entries(comercioActivo.galerias).map(([categoria, fotos]) => `
           <h3>${categoria}</h3>
           <div class="galeria-comercio">
-            ${fotos.map(img => `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`).join("")}
+            ${fotos.map(img =>
+              `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`
+            ).join("")}
           </div>
         `).join("")
       : ""
     }
 
     <button onclick="window.open('${urlReserva}','_blank')">📅 Reservar</button>
-    <button onclick="window.open('https://wa.me/54${comercioActivo.whatsapp}','_blank')">💬 Contactar</button>
   `;
 
-  // Hacer clic en las imágenes de la galería
   document.querySelectorAll(".galeria-img").forEach(img => {
-    img.onclick = () => abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
+    img.onclick = () =>
+      abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
   });
 
   document.querySelector(".btn-volver").onclick = () => history.back();
@@ -570,15 +578,20 @@ function renderPedido() {
       <div class="item-menu">
         <span>${item.nombre} - $${item.precio}</span>
         <div>
-          ${enCarrito ? `<button data-i="${i}" data-a="restar">−</button>
-          <strong>${enCarrito.cantidad}</strong>` : ""}
+          ${enCarrito ? `
+            <button data-i="${i}" data-a="restar">−</button>
+            <strong>${enCarrito.cantidad}</strong>
+          ` : ""}
           <button data-i="${i}" data-a="sumar">+</button>
         </div>
       </div>
     `;
   });
 
-  const total = carrito.reduce((s, p) => s + p.precio * p.cantidad, 0);
+  const total = carrito.reduce(
+    (s, p) => s + p.precio * p.cantidad,
+    0
+  );
 
   app.innerHTML = `
     <button class="btn-volver">←</button>
@@ -586,11 +599,15 @@ function renderPedido() {
     <h2>${comercioActivo.nombre}</h2>
     <p>${comercioActivo.descripcion}</p>
 
+    ${renderLinksComercio(comercioActivo)}
+
     ${comercioActivo.galerias
       ? Object.entries(comercioActivo.galerias).map(([categoria, fotos]) => `
           <h3>${categoria}</h3>
           <div class="galeria-comercio">
-            ${fotos.map(img => `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`).join("")}
+            ${fotos.map(img =>
+              `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`
+            ).join("")}
           </div>
         `).join("")
       : ""
@@ -600,42 +617,53 @@ function renderPedido() {
 
     <h3>Entrega</h3>
     <div class="entrega">
-      <button id="retiro" class="${tipoEntrega === "retiro" ? "activo" : ""}">🏠 Retiro</button>
-      ${comercioActivo.permiteDelivery ? `<button id="delivery" class="${tipoEntrega === "delivery" ? "activo" : ""}">🛵 Delivery</button>` : ""}
+      <button id="retiro" class="${tipoEntrega === "retiro" ? "activo" : ""}">
+        🏠 Retiro
+      </button>
+      ${comercioActivo.permiteDelivery ? `
+        <button id="delivery" class="${tipoEntrega === "delivery" ? "activo" : ""}">
+          🛵 Delivery
+        </button>
+      ` : ""}
     </div>
 
-    ${tipoEntrega === "delivery" ? `<input id="direccion" placeholder="Dirección" value="${direccionEntrega}">` : ""}
+    ${tipoEntrega === "delivery"
+      ? `<input id="direccion" placeholder="Dirección" value="${direccionEntrega}">`
+      : ""
+    }
 
     <div class="carrito">
       <strong>Total: $${total}</strong>
-      <button class="btn-continuar" ${!total || !tipoEntrega ? "disabled" : ""} id="continuar">
+      <button class="btn-continuar"
+        ${!total || !tipoEntrega ? "disabled" : ""}
+        id="continuar">
         Continuar
       </button>
     </div>
   `;
 
-  // Hacer clic en las imágenes de la galería
   document.querySelectorAll(".galeria-img").forEach(img => {
-    img.onclick = () => abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
+    img.onclick = () =>
+      abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
   });
 
-  // ------------------------
-  // Eventos
-  // ------------------------
   document.querySelector(".btn-volver").onclick = () => history.back();
 
   document.querySelectorAll("[data-a]").forEach(b => {
     b.onclick = () => {
       const prod = comercioActivo.menu[b.dataset.i];
       const ex = carrito.find(p => p.nombre === prod.nombre);
+
       if (b.dataset.a === "sumar") {
-        if (ex) ex.cantidad++;
-        else carrito.push({ ...prod, cantidad: 1 });
+        ex ? ex.cantidad++ : carrito.push({ ...prod, cantidad: 1 });
       }
+
       if (b.dataset.a === "restar" && ex) {
         ex.cantidad--;
-        if (ex.cantidad === 0) carrito = carrito.filter(p => p !== ex);
+        if (ex.cantidad === 0)
+          carrito = carrito.filter(p => p !== ex);
       }
+
       renderPedido();
     };
   });
@@ -655,15 +683,14 @@ function renderPedido() {
   }
 
   const dir = document.getElementById("direccion");
-  if (dir) dir.oninput = e => direccionEntrega = e.target.value;
+  if (dir) dir.oninput = e => (direccionEntrega = e.target.value);
 
   document.getElementById("continuar").onclick = () => {
     vistaActual = "confirmar";
     history.pushState({ vista: "confirmar" }, "", "#confirmar");
     renderConfirmar();
   };
-      }
-
+}
   // ------------------------
   // CONFIRMAR
   // ------------------------
