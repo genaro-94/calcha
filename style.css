@@ -14,11 +14,12 @@
 
 body {
   font-family: "Inter", system-ui, sans-serif;
+  body {
   background: linear-gradient(
     180deg,
-    #f6efe7 0%,
-    #e8d5b7 40%,
-    #c97b3a 100%
+    #c85a2a 0%,   /* naranja rojizo (tipo C del logo) */
+    #e2a76f 45%,  /* terracota clara */
+    #f6efe7 100%  /* claro abajo */
   );
   font-family: "Inter", sans-serif;
 }
