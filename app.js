@@ -496,24 +496,25 @@ function renderInfoComercio() {
     <p>${comercioActivo.descripcion}</p>
 
     ${renderLinksComercio(comercioActivo)}
-
-    ${comercioActivo.galerias
-      ? Object.entries(comercioActivo.galerias).map(([categoria, fotos]) => `
-          <h3>${categoria}</h3>
-          <div class="galeria-comercio">
-            ${fotos.map(img =>
-              `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`
-            ).join("")}
-          </div>
-        `).join("")
-      : ""
-    }
   `;
 
-  document.querySelectorAll(".galeria-img").forEach(img => {
-    img.onclick = () =>
-      abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
-  });
+  // Insertar galerías
+  if (comercioActivo.galerias) {
+    Object.entries(comercioActivo.galerias).forEach(([categoria, fotos]) => {
+      const galeriaHTML = `
+        <h3>${categoria}</h3>
+        <div class="galeria-comercio">
+          ${fotos.map(img =>
+            `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`
+          ).join("")}
+        </div>
+      `;
+      app.insertAdjacentHTML("beforeend", galeriaHTML);
+    });
+
+    // 🔹 Activamos la galería solo una vez aquí
+    activarGaleria();
+  }
 
   document.querySelector(".btn-volver").onclick = () => history.back();
 }
@@ -893,6 +894,9 @@ function activarGaleria() {
     const fotos = Array.from(galeria.querySelectorAll(".galeria-img")).map(img => img.src);
 
     galeria.querySelectorAll(".galeria-img").forEach(img => {
+      // 🔹 Quitamos posibles listeners antiguos para no duplicar
+      img.onclick = null;
+
       img.onclick = () => {
         abrirLightbox(img.src, fotos);
       };
