@@ -859,8 +859,13 @@ function abrirLightbox(src, fotos = []) {
   lightboxDiv.style.display = "flex";
 
   // 🔹 Integración con historial
-  history.pushState({ ...history.state, lightbox: true }, "", "");
-}
+  history.pushState({
+  vista: vistaActual,
+  rubro: rubroActivo,
+  ubicacion: ubicacionActiva,
+  comercioId: comercioActivo?.id ?? null,
+  lightbox: true
+}, "", "");
 
 function moverLightbox(dir) {
   lightboxIndex += dir;
