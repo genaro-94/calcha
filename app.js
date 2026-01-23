@@ -133,7 +133,7 @@ function renderHome() {
   </button>
 
   <button class="accion-btn" data-rubro="motodelivery">
-    🛵📦 Delivery/Paqueteria
+    🛵Delivery📦envíos
   </button>
 </section>
   <section class="rubros-grid">
