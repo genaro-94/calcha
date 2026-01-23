@@ -837,7 +837,10 @@ function abrirLightbox(src, fotos = []) {
     `;
     document.body.appendChild(lightboxDiv);
 
-    lightboxDiv.querySelector(".lightbox-close").onclick = cerrarLightbox;
+    lightboxDiv.querySelector(".lightbox-close").onclick = () => {
+      cerrarLightbox();
+      history.back(); // 🔹 IMPORTANTE: hacer back al cerrar manualmente
+    };
 
     lightboxDiv.querySelector(".lightbox-prev").onclick = e => {
       e.stopPropagation();
@@ -850,7 +853,10 @@ function abrirLightbox(src, fotos = []) {
     };
 
     lightboxDiv.onclick = e => {
-      if (e.target === lightboxDiv) cerrarLightbox();
+      if (e.target === lightboxDiv) {
+        cerrarLightbox();
+        history.back(); // 🔹 cerrar clic afuera también hace back
+      }
     };
 
     lightboxDiv.querySelector(".lightbox-img").onclick = e => {
@@ -860,7 +866,7 @@ function abrirLightbox(src, fotos = []) {
 
   actualizarLightbox();
   lightboxDiv.style.display = "flex";
-history.pushState({ ...history.state, lightbox: true }, "", "");
+  history.pushState({ ...history.state, lightbox: true }, "", "");
 }
 
 function moverLightbox(dir) {
