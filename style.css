@@ -283,12 +283,17 @@ z-index: 1000;
   color: #fff;
 }
 .comercio-links {
+  position: fixed;          /* queda flotando */
+  right: 12px;              /* pegado al borde derecho */
+  top: 50%;                 /* centrado vertical */
+  transform: translateY(-50%);
+  
   display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin: 20px 0;
-}
+  flex-direction: column;   /* 👈 vertical */
+  gap: 12px;
 
+  z-index: 1000;
+}
 .comercio-links .icon-link {
   width: 48px;
   height: 48px;
