@@ -130,40 +130,45 @@ function renderHome() {
     </div>
 <section class="acciones-fijas">
   <button class="accion-btn" data-rubro="todos">
-    🎨👟🍟 Todos
+    <img src="images/todos.png" alt="Todos">
+    <span>Todos</span>
   </button>
 
   <button class="accion-btn" data-rubro="motodelivery">
-    🛵Delivery📦envíos
+    <img src="images/delivery.png" alt="Delivery y envíos">
+    <span>Delivery / Envíos</span>
   </button>
 </section>
+
 <div class="rubros-wrapper">
   <section class="rubros-grid">
-  <button class="rubro-btn" data-rubro="gastronomia">
-    <span class="icon">🍽️🍔</span>
-    <span class="text">Gastronomía</span>
-  </button>
 
-  <button class="rubro-btn" data-rubro="turismo">
-    <span class="icon">🏨⛰️</span>
-    <span class="text">Turismo</span>
-  </button>
+    <button class="rubro-btn" data-rubro="gastronomia">
+      <img src="images/gastronomia.png" alt="Gastronomía">
+      <span>Gastronomía</span>
+    </button>
 
-  <button class="rubro-btn" data-rubro="almacen">
-    <span class="icon">🛒</span>
-    <span class="text">Almacén</span>
-  </button>
+    <button class="rubro-btn" data-rubro="turismo">
+      <img src="images/turismo.png" alt="Turismo">
+      <span>Turismo</span>
+    </button>
 
-  <button class="rubro-btn" data-rubro="servicios">
-    <span class="icon">🚕🛠️</span>
-    <span class="text">Servicios</span>
-  </button>
+    <button class="rubro-btn" data-rubro="almacen">
+      <img src="images/almacen.png" alt="Almacén">
+      <span>Almacén</span>
+    </button>
 
-  <button class="rubro-btn" data-rubro="ropa">
-    <span class="icon">🛍️💍</span>
-    <span class="text">Ropa y accesorios</span>
-  </button>
-</section>
+    <button class="rubro-btn" data-rubro="servicios">
+      <img src="images/servicios.png" alt="Servicios">
+      <span>Servicios</span>
+    </button>
+
+    <button class="rubro-btn" data-rubro="ropa">
+      <img src="images/ropa.png" alt="Ropa y accesorios">
+      <span>Ropa y accesorios</span>
+    </button>
+
+  </section>
 </div>
 <div id="mensaje-rubro" class="mensaje-rubro"></div>
     <div id="lista-comercios"
