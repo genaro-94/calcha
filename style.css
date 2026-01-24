@@ -142,7 +142,7 @@ cursor: grab;
   padding: 8px 10px;
   overflow: hidden;
 
-  width: 100px;        /* mantiene columnas parejas */
+  width: 130px;        /* mantiene columnas parejas */
   height: auto;        /* 👈 CLAVE */
 
   background: #ffffff;
