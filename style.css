@@ -139,11 +139,11 @@ cursor: grab;
    BOTÓN / CARD DE RUBRO
    ========================= */
 .rubro-btn {
-  padding: 0;
+  padding: 8px 10px;
   overflow: hidden;
 
-  width: 100px;                   /* tamaño similar al anterior */
-  height: 95px;                   /* más cuadrado */
+  width: 100px;        /* mantiene columnas parejas */
+  height: auto;        /* 👈 CLAVE */
 
   background: #ffffff;
   border-radius: 18px;
@@ -152,12 +152,12 @@ cursor: grab;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
+  justify-content: flex-start;
+  gap: 4px;
 
   text-align: center;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   color: #6b4a2b;
 
   box-shadow: 0 4px 10px rgba(0,0,0,0.06);
@@ -219,18 +219,18 @@ cursor: grab;
 }
 
 .accion-btn {
-  background: #ffffff; 
-  border: 1px solid #e0c9a6;
-  border-radius: 999px;
+  width: 52px;
+  height: 52px;
 
-  padding: 8px 14px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #6b4a2b;
+  padding: 6px;
+
+  background: #ffffff;
+  border: 1px solid #e0c9a6;
+  border-radius: 16px;
 
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
 
   cursor: pointer;
   white-space: nowrap;
