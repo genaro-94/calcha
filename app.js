@@ -131,12 +131,10 @@ function renderHome() {
 <section class="acciones-fijas">
   <button class="accion-btn" data-rubro="todos">
     <img src="images/todos.png" alt="Todos">
-    <span>Todos</span>
   </button>
 
   <button class="accion-btn" data-rubro="motodelivery">
     <img src="images/delivery.png" alt="Delivery y envíos">
-    <span>Delivery / Envíos</span>
   </button>
 </section>
 
@@ -145,31 +143,26 @@ function renderHome() {
 
     <button class="rubro-btn" data-rubro="gastronomia">
       <img src="images/gastronomia.png" alt="Gastronomía">
-      <span>Gastronomía</span>
     </button>
 
     <button class="rubro-btn" data-rubro="turismo">
       <img src="images/turismo.png" alt="Turismo">
-      <span>Turismo</span>
     </button>
 
     <button class="rubro-btn" data-rubro="almacen">
       <img src="images/almacen.png" alt="Almacén">
-      <span>Almacén</span>
     </button>
 
     <button class="rubro-btn" data-rubro="servicios">
       <img src="images/servicios.png" alt="Servicios">
-      <span>Servicios</span>
     </button>
 
     <button class="rubro-btn" data-rubro="ropa">
       <img src="images/ropa.png" alt="Ropa y accesorios">
-      <span>Ropa y accesorios</span>
     </button>
-
   </section>
 </div>
+
 <div id="mensaje-rubro" class="mensaje-rubro"></div>
     <div id="lista-comercios"
     class="lista-comercios"></div>
