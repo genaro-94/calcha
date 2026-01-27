@@ -546,9 +546,6 @@ function renderInfoComercio() {
 
   document.querySelector(".btn-volver").onclick = ()=> history.back();
 }
-  renderHome();
-};
-}
 
 function renderReserva() {
   if (!comercioActivo) return volverHome();
