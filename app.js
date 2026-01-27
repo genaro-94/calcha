@@ -278,19 +278,30 @@ function activarRubros() {
     b.onclick = () => {
       const rubro = b.dataset.rubro;
 
+      // Si vengo desde HOME → creo nivel nuevo
+      if (vistaActual === "home") {
+        history.pushState(
+          { vista: "rubro", rubro },
+          "",
+          `#rubro-${rubro}`
+        );
+      } 
+      // Si ya estoy en un rubro → reemplazo (NO acumulo)
+      else {
+        history.replaceState(
+          { vista: "rubro", rubro },
+          "",
+          `#rubro-${rubro}`
+        );
+      }
+
       vistaActual = "rubro";
       rubroActivo = rubro;
-
-      history.pushState(
-        { vista: "rubro", rubro },
-        "",
-        `#rubro-${rubro}`
-      );
 
       renderApp();
     };
   });
-        }
+}
 function obtenerComerciosVisibles() {
   let lista = [...comercios];
 
