@@ -656,3 +656,19 @@ body.vista-menu #app {
 #btn-sumar:active {
   transform: scale(0.98);
 }
+html, body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: linear-gradient(
+    180deg,
+    #c85a2a 0%,
+    #e2a76f 50%,
+    #f6efe7 100%
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
