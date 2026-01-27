@@ -275,10 +275,10 @@ function activarRubros() {
     b.onclick = () => {
       rubroActivo = b.dataset.rubro;
 
-      history.pushState(
+      history.replaceState(
         { vista: "home", rubro: rubroActivo },
         "",
-        "#rubro-" + rubroActivo
+        "#home-" 
       );
 
       renderHome();
@@ -348,11 +348,11 @@ function renderSelectorUbicacion() {
 
 function setUbicacion(ubi) {
   ubicacionActiva = ubi;
-  history.pushState(
-    { vista: "home", ubicacion: ubi },
-    "",
-    "#ubicacion-" + ubi
-  );
+  history.replaceState(
+  { vista: "home", ubicacion: ubi },
+  "",
+  "#home"
+);
   renderHome();
 }
 
@@ -369,7 +369,6 @@ function activarUbicaciones() {
 // =========================
 function volverHome() {
   if (vistaActual === "home") {
-    // Ya estás en home → solo subir arriba
     window.scrollTo({
       top: 0,
       behavior: "smooth"
@@ -377,9 +376,9 @@ function volverHome() {
     return;
   }
 
-  // Reset total de estado
+
   vistaActual = "home";
-  rubroActivo = "todos";
+  rubroActivo = "home";
   ubicacionActiva = null;
   comercioActivo = null;
 
@@ -905,16 +904,6 @@ function actualizarLightbox() {
   lightboxDiv.querySelector(".lightbox-img").src = lightboxFotos[lightboxIndex];
 }
 
-function cerrarLightbox() {
-  if (lightboxDiv) {
-    lightboxDiv.style.display = "none";
-
-    // 🔹 Volver al estado anterior en el historial si estaba abierto
-    if (history.state?.lightbox) {
-      history.back();
-    }
-  }
-}
 
 // =========================
 // ACTIVAR GALERÍA
