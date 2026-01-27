@@ -185,17 +185,22 @@ function renderHome() {
   // =========================
   // 👉 SOLO DESTACADOS EN HOME
   // =========================
-  const comerciosOriginal = comercios;
+// =========================
+// 👉 SOLO DESTACADOS EN HOME
+// =========================
+const comerciosOriginal = comercios;
+
+if (rubroActivo === "todos") {
   const destacados = comercios.filter(c => c.destacado);
-
-  // Si todavía no hay destacados, mostramos todos
   window.comercios = destacados.length ? destacados : comerciosOriginal;
-
-  renderListaComercios();
-
-  // Restauramos lista completa para el resto de la app
+} else {
   window.comercios = comerciosOriginal;
 }
+
+renderListaComercios();
+
+// Restauramos lista completa
+window.comercios = comerciosOriginal;
 
 // =========================
 // MENÚ
