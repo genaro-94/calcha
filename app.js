@@ -272,12 +272,12 @@ function activarRubros() {
   document.querySelectorAll("[data-rubro]").forEach(b => {
     b.onclick = () => {
       rubroActivo = b.dataset.rubro;
-      history.pushState(
-        { vista: "home", rubro: rubroActivo },
-        "",
-        "#rubro-" + rubroActivo
-      );
-      renderHome();
+      history.replaceState(
+  { vista: "home", rubro: rubroActivo },
+  "",
+  "#rubro-" + rubroActivo
+);
+renderHome();
     };
   });
 }
@@ -320,12 +320,12 @@ function renderSelectorUbicacion() {
 
 function setUbicacion(ubi) {
   ubicacionActiva = ubi;
-  history.pushState(
-    { vista: "home", ubicacion: ubi },
-    "",
-    "#ubicacion-" + ubi
-  );
-  renderHome();
+  history.replaceState(
+  { vista: "home", ubicacion: ubi },
+  "",
+  "#ubicacion-" + ubi
+);
+renderHome();
 }
 
 function activarUbicaciones() {
