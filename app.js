@@ -172,6 +172,9 @@ function renderHome() {
 </div>
 
 <div id="mensaje-rubro" class="mensaje-rubro"></div>
+<h3 class="titulo-destacados">⭐ Comercios destacados</h3>
+<div id="destacados" class="lista-comercios"></div>
+<hr>
     <div id="lista-comercios"
     class="lista-comercios"></div>
   `;
@@ -193,6 +196,7 @@ if (mensajeRubro) {
   };
 
   renderSelectorUbicacion();
+  renderDestacados();
   renderListaComercios();
   activarBusqueda();
   activarRubros();
@@ -231,12 +235,51 @@ function renderMenu() {
 // =========================
 // LISTA COMERCIOS
 // =========================
+function renderDestacados() {
+  const cont = document.getElementById("destacados");
+  if (!cont) return;
 
+  cont.innerHTML = "";
+
+  obtenerComerciosVisibles()
+    .filter(c => c.destacado)
+    .forEach(c => {
+      const card = document.createElement("div");
+      card.className = "card-comercio";
+
+      card.innerHTML = `
+        <div class="badge-destacado">⭐ Destacado</div>
+        <img src="${c.imagen}">
+        <h3>${c.nombre}</h3>
+        <p>${c.descripcion}</p>
+        <button>Ver</button>
+      `;
+
+      card.querySelector("button").onclick = () => {
+        comercioActivo = c;
+        vistaActual =
+          c.tipoOperacion === "reserva" ? "reserva" :
+          c.tipoOperacion === "info" ? "infoComercio" :
+          "pedido";
+
+        history.pushState(
+          { vista: vistaActual, comercioId: c.id },
+          "",
+          "#" + vistaActual
+        );
+        renderApp();
+      };
+
+      cont.appendChild(card);
+    });
+          }
 function renderListaComercios() {
   const lista = document.getElementById("lista-comercios");
   lista.innerHTML = "";
 
-  obtenerComerciosVisibles().forEach(c => {
+  obtenerComerciosVisibles()
+  .filter(c => !c.destacado)
+  .forEach(c => {
   const card = document.createElement("div");
 card.className = "card-comercio";
 
@@ -519,6 +562,7 @@ function renderInfoComercio() {
 
   app.innerHTML = `
     <button class="btn-volver">←</button>
+    ${comercioActivo.destacado ? `<div class="badge-destacado">⭐ Destacado</div>` : ""}
     <img src="${comercioActivo.imagen}" class="comercio-portada">
     <h2>${comercioActivo.nombre}</h2>
     <p>${comercioActivo.descripcion}</p>
@@ -558,6 +602,7 @@ function renderReserva() {
 
   app.innerHTML = `
     <button class="btn-volver">←</button>
+    ${comercioActivo.destacado ? `<div class="badge-destacado">⭐ Destacado</div>` : ""}
     <img src="${comercioActivo.imagen}" class="comercio-portada">
     <h2>${comercioActivo.nombre}</h2>
     <p>${comercioActivo.descripcion}</p>
@@ -625,6 +670,7 @@ function renderPedido() {
 
   app.innerHTML = `
     <button class="btn-volver">←</button>
+    ${comercioActivo.destacado ? `<div class="badge-destacado">⭐ Destacado</div>` : ""}
     <img src="${comercioActivo.imagen}" class="comercio-portada">
     <h2>${comercioActivo.nombre}</h2>
     <p>${comercioActivo.descripcion}</p>
