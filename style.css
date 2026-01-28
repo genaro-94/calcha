@@ -266,13 +266,11 @@ cursor: grab;
   background: linear-gradient(
     180deg,
     #ffffff 0%,
-    #fbf6ef 100%
+    #fff7ef 100%
   );
-  border-radius: 20px;
-  padding: 14px;
-  margin-bottom: 16px;
- box-shadow:
-    0 8px 18px rgba(0,0,0,0.08),
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.08),
     inset 0 1px 0 rgba(255,255,255,0.6);
 
    transition: 
@@ -281,8 +279,11 @@ cursor: grab;
     box-shadow 0.15s ease;
 }
 .card-comercio h3 {
-  font-size: 16px;
-  font-weight: 600;
+   margin-top: 6px;
+  font-size: 21px;  
+  font-weight: 650;
+   text-align: center;
+   font-family: "Playfair Display", "DM Serif Display", serif;
   letter-spacing: -0.2px;
   margin: 6px 0 4px;
   color: #2b2b2b;
@@ -292,7 +293,7 @@ cursor: grab;
   height: 180px;
   object-fit: cover;
   border-radius: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
 .comercio-portada {
@@ -304,10 +305,12 @@ cursor: grab;
   margin-bottom: 12px;
    }
 .card-comercio p {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.45;
+   opacity: 0.7;
   color: #6b6b6b;
-  margin-bottom: 0;
+   text-align: center;
+   margin: 0;
 }
 
 .card-comercio:hover {
@@ -316,7 +319,9 @@ cursor: grab;
     0 12px 28px rgba(0,0,0,0.12),
     inset 0 1px 0 rgba(255,255,255,0.6);
 }
-
+.card-comercio:hover h3 {
+  transform: translateY(-1px);
+}
 .card-comercio:active {
   transform: scale(0.97);
 }
