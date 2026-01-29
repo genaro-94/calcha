@@ -570,8 +570,9 @@ margin-bottom: 18px;
 ========================= */
 
 .galeria-comercio {
-  display: flex;
-  gap: 12px;
+  display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 8px;
   overflow-x: auto;
   padding: 6px 2px 12px;
   margin: 14px 0;
@@ -581,7 +582,14 @@ margin-bottom: 18px;
 .galeria-comercio::-webkit-scrollbar {
   display: none;
 }
-
+.galeria-media {
+  width: 100%;
+  aspect-ratio: 1 / 1;   
+  object-fit: cover;    
+  border-radius: 10px;
+  background: #000;
+  cursor: pointer;
+}
 .galeria-img {
   height: 140px;
   min-width: 120px;
