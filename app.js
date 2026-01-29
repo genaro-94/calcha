@@ -644,8 +644,10 @@ function renderInfoComercio() {
     });
 
     // 🔹 Activamos la galería solo una vez aquí
-    activarGaleria();
-  }
+    document.querySelectorAll(".galeria-img").forEach(img => {
+  img.onclick = () =>
+    abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
+});
 
   // Botón volver
   document.querySelector(".btn-volver").onclick = () => history.back();
