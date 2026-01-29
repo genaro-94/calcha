@@ -797,6 +797,21 @@ function renderPedido() {
     const enCarrito = carrito.find(p => p.nombre === item.nombre);
 
     menuHTML += `
+function renderPedido() {
+  if (!comercioActivo) return renderHome();
+
+  let menuHTML = "";
+  let categoriaActual = "";
+
+  comercioActivo.menu.forEach((item, i) => {
+    if (item.categoria !== categoriaActual) {
+      categoriaActual = item.categoria;
+      menuHTML += `<div class="menu-categoria">${categoriaActual}</div>`;
+    }
+
+    const enCarrito = carrito.find(p => p.nombre === item.nombre);
+
+    menuHTML += `
       <div class="item-menu">
         <span>${item.nombre} - $${item.precio}</span>
         <div>
@@ -891,7 +906,7 @@ function renderPedido() {
     history.pushState({ vista: "confirmar" }, "", "#confirmar");
     renderConfirmar();
   };
-}
+      }
   // ------------------------
   // CONFIRMAR
   // ------------------------
