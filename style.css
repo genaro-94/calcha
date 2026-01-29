@@ -592,9 +592,11 @@ margin-bottom: 18px;
   box-shadow: 0 6px 14px rgba(0,0,0,0.15);
   transition: transform 0.2s ease;
 }
+
 .galeria-img:active {
   transform: scale(0.96);
 }
+
 .lightbox {
   position: fixed;
   top: 0;
@@ -751,27 +753,4 @@ body {
   );
   background-repeat: no-repeat;
   background-attachment: scroll;
-}
-.estado {
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 8px;
-  border-radius: 999px;
-  display: inline-block;
-  margin-bottom: 6px;
-}
-
-.estado.abierto {
-  background: #e6f6ec;
-  color: #15803d;
-}
-
-.estado.cierra-pronto {
-  background: #fff7ed;
-  color: #c2410c;
-}
-
-.estado.cerrado {
-  background: #fdecec;
-  color: #b91c1c;
 }
