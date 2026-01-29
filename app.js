@@ -628,38 +628,20 @@ function renderInfoComercio() {
     <button class="btn-volver">←</button>
     <img src="${comercioActivo.imagen}" class="comercio-portada">
     <h2>${comercioActivo.nombre}</h2>
+
     ${enlaceConsulta
       ? `<button class="btn-reservar" onclick="window.open('${enlaceConsulta}','_blank')">Consultar 💬</button>`
       : ""}
+
     <p>${comercioActivo.descripcion}</p>
+
     ${renderLinksComercio(comercioActivo)}
+
+    ${renderGalerias(comercioActivo.galerias)}
   `;
 
-  // Insertar galerías
-  if (comercioActivo.galerias) {
-    Object.entries(comercioActivo.galerias).forEach(([categoria, fotos]) => {
-      const galeriaHTML = `
-        <h3>${categoria}</h3>
-        <div class="galeria-comercio">
-          ${fotos
-            .map(
-              img =>
-                `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(
-                  fotos
-                )}'>`
-            )
-            .join("")}
-        </div>
-      `;
-      app.insertAdjacentHTML("beforeend", galeriaHTML);
-    });
-
-  
-    document.querySelectorAll(".galeria-img").forEach(img => {
-      img.onclick = () =>
-        abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
-    });
-  } 
+  // activar lightbox (imagenes y futuros videos)
+  activarGaleria();
 
   document.querySelector(".btn-volver").onclick = () => history.back();
 }
@@ -1059,6 +1041,45 @@ function cerrarLightbox(volverHistorial = true) {
   if (volverHistorial && history.state?.lightbox) {
     history.back();
   }
+}
+function renderGalerias(galerias) {
+  if (!galerias) return "";
+
+  let html = "";
+
+  Object.entries(galerias).forEach(([categoria, items]) => {
+    html += `
+      <h3>${categoria}</h3>
+      <div class="galeria-comercio">
+        ${items.map(src => {
+          const esVideo = src.endsWith(".mp4") || src.endsWith(".webm");
+
+          return esVideo
+            ? `<video 
+                 src="${src}" 
+                 class="galeria-video" 
+                 muted 
+                 playsinline 
+                 data-media='${JSON.stringify(items)}'>
+               </video>`
+            : `<img 
+                 src="${src}" 
+                 class="galeria-img" 
+                 data-media='${JSON.stringify(items)}'>`;
+        }).join("")}
+      </div>
+    `;
+  });
+
+  return html;
+    }
+function activarGaleria() {
+  document
+    .querySelectorAll(".galeria-img, .galeria-video")
+    .forEach(el => {
+      el.onclick = () =>
+        abrirLightbox(el.src, JSON.parse(el.dataset.media));
+    });
 }
 // =========================
 // UTIL
