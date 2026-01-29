@@ -570,7 +570,7 @@ margin-bottom: 18px;
 ========================= */
 
 .galeria-comercio {
-  display: grid;
+  display: flex;
   gap: 12px;
   overflow-x: auto;
   padding: 6px 2px 12px;
