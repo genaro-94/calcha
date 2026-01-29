@@ -968,6 +968,10 @@ let lightboxDiv = null;
 let lightboxFotos = [];
 let lightboxIndex = 0;
 
+function esVideo(src) {
+  return src.endsWith(".mp4") || src.endsWith(".webm");
+}
+
 function abrirLightbox(src, fotos = []) {
   const lightboxAbierto = lightboxDiv && lightboxDiv.style.display === "flex";
 
@@ -981,14 +985,13 @@ function abrirLightbox(src, fotos = []) {
     lightboxDiv.innerHTML = `
       <span class="lightbox-close">✖</span>
       <span class="lightbox-prev">◀</span>
-      <img class="lightbox-img">
+      <div class="lightbox-media"></div>
       <span class="lightbox-next">▶</span>
     `;
     document.body.appendChild(lightboxDiv);
 
     lightboxDiv.querySelector(".lightbox-close").onclick = cerrarLightbox;
     lightboxDiv.onclick = e => { if (e.target === lightboxDiv) cerrarLightbox(); };
-    lightboxDiv.querySelector(".lightbox-img").onclick = e => e.stopPropagation();
     lightboxDiv.querySelector(".lightbox-prev").onclick = e => { e.stopPropagation(); moverLightbox(-1); };
     lightboxDiv.querySelector(".lightbox-next").onclick = e => { e.stopPropagation(); moverLightbox(1); };
   }
@@ -1008,7 +1011,6 @@ function abrirLightbox(src, fotos = []) {
   }
 }
 
-
 function moverLightbox(dir) {
   lightboxIndex += dir;
   if (lightboxIndex < 0) lightboxIndex = lightboxFotos.length - 1;
@@ -1017,24 +1019,47 @@ function moverLightbox(dir) {
 }
 
 function actualizarLightbox() {
-  lightboxDiv.querySelector(".lightbox-img").src = lightboxFotos[lightboxIndex];
+  const cont = lightboxDiv.querySelector(".lightbox-media");
+  cont.innerHTML = "";
+
+  const src = lightboxFotos[lightboxIndex];
+
+  if (esVideo(src)) {
+    const video = document.createElement("video");
+    video.src = src;
+    video.controls = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.style.maxWidth = "100%";
+    video.style.maxHeight = "90vh";
+    cont.appendChild(video);
+  } else {
+    const img = document.createElement("img");
+    img.src = src;
+    img.className = "lightbox-img";
+    cont.appendChild(img);
+  }
 }
 
-
 // =========================
-// ACTIVAR GALERÍA
+// CERRAR LIGHTBOX
 // =========================
 function cerrarLightbox(volverHistorial = true) {
   if (!lightboxDiv) return;
 
+  // 🔹 detener video si hay
+  const video = lightboxDiv.querySelector("video");
+  if (video) {
+    video.pause();
+    video.src = "";
+  }
+
   lightboxDiv.style.display = "none";
 
-  // 🔹 SOLO volver en el historial si el cierre fue manual
   if (volverHistorial && history.state?.lightbox) {
     history.back();
   }
 }
-
 // =========================
 // UTIL
 // =========================
