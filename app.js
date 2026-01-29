@@ -1032,13 +1032,15 @@ function renderGalerias(galerias) {
           const esVideo = src.endsWith(".mp4") || src.endsWith(".webm");
 
           return esVideo
-            ? `<video 
-                 src="${src}" 
-                 class="galeria-video" 
-                 muted 
-                 playsinline 
-                 data-media='${JSON.stringify(items)}'>
-               </video>`
+            ? `<video
+  src="${src}"
+  class="galeria-video"
+  muted
+  playsinline
+  preload="metadata"
+  tabindex="-1"
+  data-media='${JSON.stringify(items)}'>
+</video>`
             : `<img 
                  src="${src}" 
                  class="galeria-img" 
