@@ -374,11 +374,11 @@ function activarRubros() {
     b.onclick = () => {
       rubroActivo = b.dataset.rubro;
       history.replaceState(
-  { vista: "home", rubro: rubroActivo },
-  "",
-  "#rubro-" + rubroActivo
-);
-renderHome();
+        { vista: "home", rubro: rubroActivo },
+        "",
+        "#rubro-" + rubroActivo
+      );
+      renderHome();
     };
   });
 }
@@ -396,14 +396,18 @@ function obtenerComerciosVisibles() {
     lista = lista.filter(c => c.rubro === rubroActivo);
   }
 
-  // 3️⃣ Filtrar por ubicación (CLAVE)
+  // 3️⃣ Filtrar por ubicación (soporta string o array)
   if (ubicacionActiva) {
-    lista = lista.filter(c => c.ubicacion === ubicacionActiva);
+    lista = lista.filter(c => {
+      if (Array.isArray(c.ubicacion)) {
+        return c.ubicacion.includes(ubicacionActiva);
+      }
+      return c.ubicacion === ubicacionActiva;
+    });
   }
 
   return lista;
 }
-
 // =========================
 // UBICACIÓN
 // =========================
