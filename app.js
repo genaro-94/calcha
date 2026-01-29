@@ -610,13 +610,13 @@ btnTerminos.addEventListener("click", () => {
 function renderInfoComercio() {
   if (!comercioActivo) return volverHome();
 
-  // Determinar el enlace de consulta
   let enlaceConsulta = "";
   if (comercioActivo.urlReserva) {
     enlaceConsulta = comercioActivo.urlReserva;
   } else if (comercioActivo.whatsapp) {
-    // WhatsApp con mensaje predefinido
-    const msg = encodeURIComponent(`Hola, quiero consultar sobre ${comercioActivo.nombre}`);
+    const msg = encodeURIComponent(
+      `Hola, quiero consultar sobre ${comercioActivo.nombre}`
+    );
     enlaceConsulta = `https://wa.me/${comercioActivo.whatsapp}?text=${msg}`;
   }
 
@@ -624,7 +624,9 @@ function renderInfoComercio() {
     <button class="btn-volver">←</button>
     <img src="${comercioActivo.imagen}" class="comercio-portada">
     <h2>${comercioActivo.nombre}</h2>
-    ${enlaceConsulta ? `<button class="btn-reservar" onclick="window.open('${enlaceConsulta}','_blank')">Consultar 💬</button>` : ''}
+    ${enlaceConsulta
+      ? `<button class="btn-reservar" onclick="window.open('${enlaceConsulta}','_blank')">Consultar 💬</button>`
+      : ""}
     <p>${comercioActivo.descripcion}</p>
     ${renderLinksComercio(comercioActivo)}
   `;
@@ -635,21 +637,26 @@ function renderInfoComercio() {
       const galeriaHTML = `
         <h3>${categoria}</h3>
         <div class="galeria-comercio">
-          ${fotos.map(img =>
-            `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`
-          ).join("")}
+          ${fotos
+            .map(
+              img =>
+                `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(
+                  fotos
+                )}'>`
+            )
+            .join("")}
         </div>
       `;
       app.insertAdjacentHTML("beforeend", galeriaHTML);
     });
 
-    // 🔹 Activamos la galería solo una vez aquí
+  
     document.querySelectorAll(".galeria-img").forEach(img => {
-  img.onclick = () =>
-    abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
-});
+      img.onclick = () =>
+        abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
+    });
+  } 
 
-  // Botón volver
   document.querySelector(".btn-volver").onclick = () => history.back();
 }
 
