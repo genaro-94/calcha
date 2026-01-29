@@ -161,7 +161,7 @@
     {
     "id": 7,
     "nombre": "Vivero Plantas son amores",
-    "ubicacion": "cafayate",
+    "ubicacion": ["cafayate", "amaicha"],
     "rubro": "vivero",
     "descripcion": "suculentas por mato y menor, tambien tenemos algunas variedades de ornamentales de interior.",
     "imagen": "images/sucus7.jpg",
