@@ -641,13 +641,14 @@ function renderInfoComercio() {
       const galeriaHTML = `
         <h3>${categoria}</h3>
         <div class="galeria-comercio">
-          ${fotos
-            .map(
-              img =>
-                `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(
-                  fotos
-                )}'>`
-            )
+          ${fotos.map((img, index) =>
+  `<img 
+     src="${img}" 
+     class="galeria-img" 
+     data-fotos='${JSON.stringify(fotos)}'
+     data-index="${index}"
+   >`
+)
             .join("")}
         </div>
       `;
@@ -656,10 +657,13 @@ function renderInfoComercio() {
 
   
     document.querySelectorAll(".galeria-img").forEach(img => {
-      img.onclick = () =>
-        abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
-    });
-  } 
+  img.onclick = () => {
+    abrirLightboxDesdeIndice(
+      JSON.parse(img.dataset.fotos),
+      parseInt(img.dataset.index)
+    );
+  };
+});
 
   document.querySelector(".btn-volver").onclick = () => history.back();
 }
@@ -685,9 +689,15 @@ function renderReserva() {
       ? Object.entries(comercioActivo.galerias).map(([categoria, fotos]) => `
           <h3>${categoria}</h3>
           <div class="galeria-comercio">
-            ${fotos.map(img =>
-              `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`
-            ).join("")}
+            ${fotos.map((img, index) =>
+  `<img 
+     src="${img}" 
+     class="galeria-img" 
+     data-fotos='${JSON.stringify(fotos)}'
+     data-index="${index}"
+   >`
+)
+              .join("")}
           </div>
         `).join("")
       : ""
@@ -697,9 +707,13 @@ function renderReserva() {
   `;
 
   document.querySelectorAll(".galeria-img").forEach(img => {
-    img.onclick = () =>
-      abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
-  });
+  img.onclick = () => {
+    abrirLightboxDesdeIndice(
+      JSON.parse(img.dataset.fotos),
+      parseInt(img.dataset.index)
+    );
+  };
+});
 
   document.querySelector(".btn-volver").onclick = () => history.back();
 }
@@ -752,9 +766,15 @@ function renderPedido() {
       ? Object.entries(comercioActivo.galerias).map(([categoria, fotos]) => `
           <h3>${categoria}</h3>
           <div class="galeria-comercio">
-            ${fotos.map(img =>
-              `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`
-            ).join("")}
+            ${ffotos.map((img, index) =>
+  `<img 
+     src="${img}" 
+     class="galeria-img" 
+     data-fotos='${JSON.stringify(fotos)}'
+     data-index="${index}"
+   >`
+)
+              .join("")}
           </div>
         `).join("")
       : ""
@@ -789,10 +809,14 @@ function renderPedido() {
     </div>
   `;
 
-  document.querySelectorAll(".galeria-img").forEach(img => {
-    img.onclick = () =>
-      abrirLightbox(img.src, JSON.parse(img.dataset.fotos));
-  });
+ document.querySelectorAll(".galeria-img").forEach(img => {
+  img.onclick = () => {
+    abrirLightboxDesdeIndice(
+      JSON.parse(img.dataset.fotos),
+      parseInt(img.dataset.index)
+    );
+  };
+});
 
   document.querySelector(".btn-volver").onclick = () => history.back();
 
@@ -1060,6 +1084,36 @@ function cerrarLightbox(volverHistorial = true) {
     history.back();
   }
 }
+  function abrirLightboxDesdeIndice(fotos, index) {
+  lightboxFotos = fotos;
+  lightboxIndex = index;
+
+  if (!lightboxDiv) {
+    lightboxDiv = document.createElement("div");
+    lightboxDiv.className = "lightbox";
+    lightboxDiv.innerHTML = `
+      <span class="lightbox-close">✖</span>
+      <span class="lightbox-prev">◀</span>
+      <div class="lightbox-media"></div>
+      <span class="lightbox-next">▶</span>
+    `;
+    document.body.appendChild(lightboxDiv);
+
+    lightboxDiv.querySelector(".lightbox-close").onclick = cerrarLightbox;
+    lightboxDiv.onclick = e => { if (e.target === lightboxDiv) cerrarLightbox(); };
+    lightboxDiv.querySelector(".lightbox-prev").onclick = e => { e.stopPropagation(); moverLightbox(-1); };
+    lightboxDiv.querySelector(".lightbox-next").onclick = e => { e.stopPropagation(); moverLightbox(1); };
+  }
+
+  actualizarLightbox();
+  lightboxDiv.style.display = "flex";
+
+  history.pushState({
+    vista: vistaActual,
+    comercioId: comercioActivo?.id ?? null,
+    lightbox: true
+  }, "", "");
+  }
 // =========================
 // UTIL
 // =========================
