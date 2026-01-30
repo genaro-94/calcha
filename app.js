@@ -251,7 +251,7 @@ function renderDestacados() {
 
       card.innerHTML = `
         <div class="badge-destacado">👑 Destacado</div>
-        <img src="${c.imagen}">
+        <img src="${c.imagen}" loading="lazy">
         <h3>${c.nombre}</h3>
         <p>${c.descripcion}</p>
       `;
@@ -295,7 +295,7 @@ function renderListaComercios() {
 card.className = "card-comercio";
 
 card.innerHTML = `
-  <img src="${c.imagen}" alt="${c.nombre}">
+<img src="${c.imagen}" alt="${c.nombre}" loading="lazy">
   <div class="info">
     <h3>${c.nombre}</h3>
     <p>${c.descripcion}</p>
@@ -644,8 +644,7 @@ function renderInfoComercio() {
           ${fotos
             .map(
               img =>
-                `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(
-                  fotos
+                `<img src="${img}" class="galeria-img" loading="lazy" data-fotos='...'>
                 )}'>`
             )
             .join("")}
@@ -686,7 +685,7 @@ function renderReserva() {
           <h3>${categoria}</h3>
           <div class="galeria-comercio">
             ${fotos.map(img =>
-              `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`
+              `<img src="${img}" class="galeria-img" loading="lazy" data-fotos='...'>`
             ).join("")}
           </div>
         `).join("")
@@ -753,7 +752,7 @@ function renderPedido() {
           <h3>${categoria}</h3>
           <div class="galeria-comercio">
             ${fotos.map(img =>
-              `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`
+              `<img src="${img}" class="galeria-img" loading="lazy" data-fotos='...'>`
             ).join("")}
           </div>
         `).join("")
