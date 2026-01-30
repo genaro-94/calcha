@@ -664,7 +664,7 @@ function renderInfoComercio() {
     );
   };
 });
-
+)
   document.querySelector(".btn-volver").onclick = () => history.back();
 }
 
