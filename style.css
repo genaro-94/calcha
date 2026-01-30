@@ -616,8 +616,6 @@ margin-bottom: 18px;
 .lightbox.hidden {
   display: none;
 }
-
-.lightbox-img {
   .lightbox-img {
   width: auto;
   height: auto;
