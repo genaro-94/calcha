@@ -127,11 +127,10 @@ function renderHome() {
   vistaActual = "home";
 
   app.innerHTML = `
-<div class="home-header">
-  <img src="images/Logo.png" alt="Calcha" class="logo-calcha" loading="lazy">
-  <div class="header-logo">
-    <img src="images/calcha1.png" alt="Calcha Market" loading="lazy">
-  </div>
+  <div class="home-header">
+      <img src="images/Logo.png" alt="Calcha" class="logo-calcha">
+    <div class="header-logo">
+  <img src="images/calcha1.png" alt="Calcha Market" />
 </div>
     <button id="btn-menu">ℹ️</button>
 
@@ -252,7 +251,7 @@ function renderDestacados() {
 
       card.innerHTML = `
         <div class="badge-destacado">👑 Destacado</div>
-        <img src="${c.imagen}" loading="lazy">
+        <img src="${c.imagen}">
         <h3>${c.nombre}</h3>
         <p>${c.descripcion}</p>
       `;
@@ -296,7 +295,7 @@ function renderListaComercios() {
 card.className = "card-comercio";
 
 card.innerHTML = `
-<img src="${c.imagen}" alt="${c.nombre}" loading="lazy">
+  <img src="${c.imagen}" alt="${c.nombre}">
   <div class="info">
     <h3>${c.nombre}</h3>
     <p>${c.descripcion}</p>
@@ -645,7 +644,8 @@ function renderInfoComercio() {
           ${fotos
             .map(
               img =>
-                `<img src="${img}" class="galeria-img" loading="lazy" data-fotos='...'>
+                `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(
+                  fotos
                 )}'>`
             )
             .join("")}
@@ -686,7 +686,7 @@ function renderReserva() {
           <h3>${categoria}</h3>
           <div class="galeria-comercio">
             ${fotos.map(img =>
-              `<img src="${img}" class="galeria-img" loading="lazy" data-fotos='...'>`
+              `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`
             ).join("")}
           </div>
         `).join("")
@@ -753,7 +753,7 @@ function renderPedido() {
           <h3>${categoria}</h3>
           <div class="galeria-comercio">
             ${fotos.map(img =>
-              `<img src="${img}" class="galeria-img" loading="lazy" data-fotos='...'>`
+              `<img src="${img}" class="galeria-img" data-fotos='${JSON.stringify(fotos)}'>`
             ).join("")}
           </div>
         `).join("")
@@ -1074,4 +1074,4 @@ WhatsApp:
 Gracias, espero su respuesta. 😊`);
 
   window.open(`https://wa.me/${WHATSAPP_ADMIN}?text=${msg}`, "_blank");
-}
+  }
