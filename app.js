@@ -766,7 +766,7 @@ function renderPedido() {
       ? Object.entries(comercioActivo.galerias).map(([categoria, fotos]) => `
           <h3>${categoria}</h3>
           <div class="galeria-comercio">
-            ${ffotos.map((img, index) =>
+            ${fotos.map((img, index) =>
   `<img 
      src="${img}" 
      class="galeria-img" 
