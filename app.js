@@ -654,6 +654,7 @@ app.innerHTML = `
 )
             .join("")}
         </div>
+        </div>
       `;
       app.insertAdjacentHTML("beforeend", galeriaHTML);
     });
@@ -710,6 +711,7 @@ function renderReserva() {
     }
 
     <button onclick="window.open('${urlReserva}','_blank')">📅 Reservar</button>
+ </div>
   `;
 
   document.querySelectorAll(".galeria-img").forEach(img => {
@@ -815,6 +817,7 @@ function renderPedido() {
         id="continuar">
         Continuar
       </button>
+    </div>
     </div>
   `;
 
