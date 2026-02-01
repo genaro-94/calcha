@@ -608,6 +608,10 @@ btnTerminos.addEventListener("click", () => {
   document.querySelector(".btn-volver").onclick = () => history.back();
 }
 
+function aplicarTema(comercio) {
+  app.dataset.theme = comercio.theme || "default";
+  // por ahora no hace nada
+  }
 // =========================
 // RESERVA / INFO COMERCIO
 // =========================
