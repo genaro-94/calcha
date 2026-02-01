@@ -23,20 +23,27 @@
 }
 .vista-comercio h2,
 .vista-comercio h3 {
-  color: var(--primary);
+  color: var(--ui-title, var(--primary));
 }
+
 .btn-volver {
-  background: var(--primary);
-  color: var(--secondary);
-  border-radius: 12px;
+  background: var(--ui-buttonBackBg, var(--primary));
+  color: var(--ui-buttonBackText, var(--secondary));
 }
+
 .entrega button.activo {
-  background: var(--primary);
-  color: var(--secondary);
-  border: 2px solid var(--accent);
+  background: var(--ui-deliveryActiveBg, var(--primary));
+  border: 2px solid var(--ui-deliveryActiveBorder, var(--accent));
+  color: var(--ui-deliveryActiveText, var(--secondary));
 }
+
+.btn-continuar {
+  background: var(--ui-buttonContinueBg, var(--accent));
+  color: var(--ui-buttonContinueText, #111);
+}
+
 .carrito strong {
-  color: var(--primary);
+  color: var(--ui-cartTotal, var(--primary));
 }
 
 .btn-continuar {
