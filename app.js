@@ -613,7 +613,9 @@ btnTerminos.addEventListener("click", () => {
 // =========================
 function renderInfoComercio() {
   if (!comercioActivo) return volverHome();
-
+  
+  aplicarTema(comercioActivo);
+  
   let enlaceConsulta = "";
   if (comercioActivo.urlReserva) {
     enlaceConsulta = comercioActivo.urlReserva;
@@ -625,6 +627,7 @@ function renderInfoComercio() {
   }
 
 app.innerHTML = `
+<div class="vista-comercio vista-pedido rubro-${comercioActivo.rubro}">
     <button class="btn-volver">←</button>
     <img src="${comercioActivo.imagen}" class="comercio-portada">
     <h2>${comercioActivo.nombre}</h2>
@@ -671,6 +674,8 @@ app.innerHTML = `
 function renderReserva() {
   if (!comercioActivo) return volverHome();
 
+  aplicarTema(comercioActivo);
+  
   const urlReserva =
     comercioActivo.urlReserva ||
     `https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent(
@@ -678,6 +683,7 @@ function renderReserva() {
     )}`;
 
   app.innerHTML = `
+  <div class="vista-comercio vista-pedido rubro-${comercioActivo.rubro}">
     <button class="btn-volver">←</button>
     <img src="${comercioActivo.imagen}" class="comercio-portada">
     <h2>${comercioActivo.nombre}</h2>
@@ -724,6 +730,8 @@ function renderReserva() {
 function renderPedido() {
   if (!comercioActivo) return renderHome();
 
+  aplicarTema(comercioActivo);
+ 
   let menuHTML = "";
   let categoriaActual = "";
 
@@ -755,6 +763,7 @@ function renderPedido() {
   );
 
   app.innerHTML = `
+    <div class="vista-comercio vista-pedido rubro-${comercioActivo.rubro}">
     <button class="btn-volver">←</button>
     <img src="${comercioActivo.imagen}" class="comercio-portada">
     <h2>${comercioActivo.nombre}</h2>
