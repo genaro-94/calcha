@@ -221,28 +221,38 @@
     "background": "#FFF9F5",
     "font": "Poppins"
   },
-    {
-    "id": 7,
-    "nombre": "Vivero Plantas son amores",
-    "lun": ["11:00-15:30"],
-    "mar": ["11:00-15:30"],
-    "mie": ["11:00-15:30"],
-    "jue": ["11:00-15:30"],
-    "vie": ["11:00-15:30"],
-    "sab": ["11:00-15:30"],
-    "dom": ["11:00-15:30"],
-    "ubicacion": ["cafayate", "amaicha"],
-    "rubro": "vivero",
-    "descripcion": "suculentas por mato y menor, tambien tenemos algunas variedades de ornamentales de interior.",
-    "imagen": "images/sucus7.jpg",
-    "tipoOperacion": "info",
-    "permiteDelivery": false,
-    "menu": [],
-    "galerias": { "habitaciones": ["images/sucu.jpg","images/sucus1.jpg","images/sucus2.jpg","images/sucus3.jpg","images/sucus4.jpg","images/sucus5.jpg","images/sucus6.jpg"] },
-    "whatsapp": "3875181644",
-    "estado": "activo",
-    "destacado": true,
-     "theme": {
+{
+  "id": 7,
+  "nombre": "Vivero Plantas son amores",
+  "lun": ["11:00-15:30"],
+  "mar": ["11:00-15:30"],
+  "mie": ["11:00-15:30"],
+  "jue": ["11:00-15:30"],
+  "vie": ["11:00-15:30"],
+  "sab": ["11:00-15:30"],
+  "dom": ["11:00-15:30"],
+  "ubicacion": ["cafayate", "amaicha"],
+  "rubro": "vivero",
+  "descripcion": "suculentas por mato y menor, tambien tenemos algunas variedades de ornamentales de interior.",
+  "imagen": "images/sucus7.jpg",
+  "tipoOperacion": "info",
+  "permiteDelivery": false,
+  "menu": [],
+  "galerias": {
+    "habitaciones": [
+      "images/sucu.jpg",
+      "images/sucus1.jpg",
+      "images/sucus2.jpg",
+      "images/sucus3.jpg",
+      "images/sucus4.jpg",
+      "images/sucus5.jpg",
+      "images/sucus6.jpg"
+    ]
+  },
+  "whatsapp": "3875181644",
+  "estado": "activo",
+  "destacado": true,
+  "theme": {
     "primary": "#8B1E1E",
     "secondary": "#F4EDE4",
     "accent": "#CFA44A",
@@ -250,5 +260,5 @@
     "background": "#FFF9F5",
     "font": "Poppins"
   }
+  }
 ]
-
