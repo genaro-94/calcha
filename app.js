@@ -625,23 +625,13 @@ function renderInfoComercio() {
   }
 
 app.innerHTML = `
-  <button class="btn-volver">←</button>
-
-  <img src="${comercioActivo.imagen}" class="comercio-portada">
-
-  <h2>${comercioActivo.nombre}</h2>
-
-  <p>${comercioActivo.descripcion}</p>
-
-  ${
-    enlaceConsulta
-      ? `<button class="btn-reservar"
-          onclick="window.open('${enlaceConsulta}','_blank')">
-          Consultar 💬
-        </button>`
-      : ``
-  }
-`;
+    <button class="btn-volver">←</button>
+    <img src="${comercioActivo.imagen}" class="comercio-portada">
+    <h2>${comercioActivo.nombre}</h2>
+    ${enlaceConsulta
+      ? `<button class="btn-reservar" onclick="window.open('${enlaceConsulta}','_blank')">Consultar 💬</button>`
+      : ""}
+    <p>${comercioActivo.descripcion}</p>
     ${renderLinksComercio(comercioActivo)}
   `;
 
