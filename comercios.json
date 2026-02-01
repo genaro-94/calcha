@@ -61,11 +61,11 @@
     "estado": "activo",
     "destacado": true,
 "theme": {
-  "primary": "#C8102E",      // Rojo River clásico
-  "secondary": "#FFFFFF",    // Blanco limpio
-  "accent": "#CFA44A",       // Dorado elegante (detalles)
-  "text": "#1A1A1A",         // Negro profundo (tipografía)
-  "background": "#FAFAFA",   // Blanco suave (no encandila)
+  "primary": "#C8102E",      
+  "secondary": "#FFFFFF",    
+  "accent": "#CFA44A",       
+  "text": "#1A1A1A",         
+  "background": "#FAFAFA",  
   "font": "Poppins"
 }
   },
