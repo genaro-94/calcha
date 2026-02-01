@@ -19,7 +19,7 @@
     },
     "whatsapp": "3874000001",
     "estado": "activo",
-    "destacado": true
+    "destacado": true,
      "theme": {
     "primary": "#8B1E1E",
     "secondary": "#F4EDE4",
@@ -59,7 +59,7 @@
     "instagram": "https://www.instagram.com/artesanias.greco?igsh=MXB0bXgzOXg4dGd3ag==",
    "maps": "https://maps.app.goo.gl/WD4y2hmZbXEfcnDVA"},
     "estado": "activo",
-    "destacado": true
+    "destacado": true,
      "theme": {
     "primary": "#8B1E1E",
     "secondary": "#F4EDE4",
@@ -85,7 +85,7 @@
     "galerias": [],
     "whatsapp": "3874000003",
     "estado": "activo",
-    "destacado": false
+    "destacado": false,
      "theme": {
     "primary": "#8B1E1E",
     "secondary": "#F4EDE4",
@@ -107,7 +107,7 @@
     "galerias": { "habitaciones": ["images/hab1.jpg","images/hab2.jpg","images/hab3.jpg"] },
     "whatsapp": "3875181644",
     "estado": "activo",
-    "destacado": false
+    "destacado": false,
      "theme": {
     "primary": "#8B1E1E",
     "secondary": "#F4EDE4",
@@ -128,7 +128,7 @@
     "galerias": [],
     "whatsapp": "3875181644",
     "estado": "activo",
-    "destacado": false
+    "destacado": false,
      "theme": {
     "primary": "#8B1E1E",
     "secondary": "#F4EDE4",
@@ -149,7 +149,7 @@
     "galerias": [],
     "whatsapp": "3868404422",
     "estado": "activo",
-    "destacado": false
+    "destacado": false,
      "theme": {
     "primary": "#8B1E1E",
     "secondary": "#F4EDE4",
@@ -170,7 +170,7 @@
     "galerias": {},
     "whatsapp": "3874001122",
     "estado": "activo",
-    "destacado": false
+    "destacado": false,
      "theme": {
     "primary": "#8B1E1E",
     "secondary": "#F4EDE4",
@@ -191,7 +191,7 @@
     "galerias": {},
     "whatsapp": "3868409988",
     "estado": "activo",
-    "destacado": false
+    "destacado": false,
      "theme": {
     "primary": "#8B1E1E",
     "secondary": "#F4EDE4",
@@ -212,7 +212,7 @@
     "galerias": {},
     "whatsapp": "3868405566",
     "estado": "activo",
-    "destacado": false
+    "destacado": false,
      "theme": {
     "primary": "#8B1E1E",
     "secondary": "#F4EDE4",
@@ -241,7 +241,7 @@
     "galerias": { "habitaciones": ["images/sucu.jpg","images/sucus1.jpg","images/sucus2.jpg","images/sucus3.jpg","images/sucus4.jpg","images/sucus5.jpg","images/sucus6.jpg"] },
     "whatsapp": "3875181644",
     "estado": "activo",
-    "destacado": true
+    "destacado": true,
      "theme": {
     "primary": "#8B1E1E",
     "secondary": "#F4EDE4",
