@@ -641,7 +641,13 @@ function aplicarTema(comercio) {
 // =========================
 function renderInfoComercio() {
   if (!comercioActivo) return volverHome();
-  
+  if (window.analytics) {
+  logEvent(window.analytics, "ver_comercio", {
+    tipo: "info",
+    comercio: comercioActivo.slug || comercioActivo.nombre,
+    rubro: comercioActivo.rubro
+  });
+  }
   aplicarTema(comercioActivo);
   
   let enlaceConsulta = "";
@@ -702,7 +708,13 @@ app.innerHTML = `
 
 function renderReserva() {
   if (!comercioActivo) return volverHome();
-
+if (window.analytics) {
+  logEvent(window.analytics, "ver_comercio", {
+    tipo: "reserva",
+    comercio: comercioActivo.slug || comercioActivo.nombre,
+    rubro: comercioActivo.rubro
+  });
+}
   aplicarTema(comercioActivo);
   
   const urlReserva =
@@ -759,7 +771,13 @@ function renderReserva() {
 // =========================
 function renderPedido() {
   if (!comercioActivo) return renderHome();
-
+if (window.analytics) {
+  logEvent(window.analytics, "ver_comercio", {
+    tipo: "pedido",
+    comercio: comercioActivo.slug || comercioActivo.nombre,
+    rubro: comercioActivo.rubro
+  });
+}
   aplicarTema(comercioActivo);
  
   let menuHTML = "";
