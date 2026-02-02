@@ -21,13 +21,34 @@
     "estado": "activo",
     "destacado": true,
      "theme": {
-    "primary": "#E9C46A",
-    "secondary": "#F9C74F",
-    "accent": "#F9C74F",
-    "text": "#E9C46A",
-    "background": "#F94144",
-  "font": "PoppinPoppins" 
-     }
+  "colors": {
+    "primary": "#E9C46A",                
+    "secondary": "#F9C74F",              
+    "background": "#F94144",             
+    "text": "#FFFFFF",                    
+
+    // Botones
+    "buttonBackBg": "#E9C46A",          
+    "buttonBackText": "#FFFFFF",         
+    "buttonContinueBg": "#F9C74F",       
+    "buttonContinueText": "#111111",     
+    "deliveryActiveBg": "#E9C46A",       
+    "deliveryActiveBorder": "#F9C74F",   
+    "deliveryActiveText": "#FFFFFF",     
+
+    // Carrito y confirmación
+    "cartTotal": "#F9C74F",              
+    "resumenItemName": "#FFFFFF",         
+    "resumenItemPrice": "#F9C74F",       
+    "confirmTitle": "#FFFFFF",            
+    "confirmTotal": "#F9C74F",            
+
+    // Galerías
+    "galleryTitle": "#FFFFFF",            
+    "galleryBorder": "#F9C74F"            
+  },
+  "font": "Poppins"
+}
   },
   {
     "id": 2,
