@@ -11,45 +11,38 @@
 /* =========================
    VARIABLES BASE
 ========================= */
-:root {
-  /* Colores base */
-  --primary: #c96c3b;
-  --secondary: #ffffff;
-  --accent: #f5c542;
-  --text: #222222;
-  --background: #fffaf3;
+:root { 
+--primary: #c96c3b; 
+--secondary: #ffffff; 
+--accent: #f5c542; 
+--text: #222222; 
+--background: #fffaf3; 
+   --galleryTitle: #FFFFFF;
+   --galletyBorder: #FFFFFF;
+   --confirmTotal: #FFFFFF;
+      --buttonBackBg: #FDF0D5;
+   --buttonBackText: #003049;
+      --buttonContinueBg: #FFFFFF;
+   --buttonContinueText: #003049;
+   --deliveryActiveBg: #FFFFFF;
+  --deliveryActiveBorder: #003049;
+   --deliveryActiveText: #003049;
+   --cartTotal: #FFFFFF;
+   --resumeItemName: #FFFFFF;
+   --resumeItemPrice: #F9C74F;
+   --confirmTitle: #FFFFFF;
+   --confirmTotal: #F9C74F;
+   --galleryTitle: #FFFFFF;
+   --galleryBorder: #FFFFFF;
+--font: system-ui; }
 
-  /* Tipografía */
-  --font: system-ui;
-
-  /* UI defaults (fallbacks) */
-  --buttonBackBg: var(--primary);
-  --buttonBackText: var(--secondary);
-
-  --buttonContinueBg: var(--accent);
-  --buttonContinueText: #111;
-
-  --deliveryActiveBg: var(--primary);
-  --deliveryActiveBorder: var(--accent);
-  --deliveryActiveText: var(--secondary);
-
-  --cartTotal: var(--primary);
-
-  --galleryTitle: var(--primary);
-
-  --confirmTitle: var(--primary);
-  --confirmTotal: var(--primary);
-
-  --resumenItemName: var(--text);
-  --resumenItemPrice: var(--primary);
-}
 .vista-comercio {
   background: var(--background);
   color: var(--text);
   font-family: var(--font);
 }
 
-/* Títulos */
+
 .vista-comercio h2 {
   color: var(--primary);
 }
