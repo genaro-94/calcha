@@ -130,7 +130,23 @@
     "secondary": "#FFFFFF",
     "accent": "#CFA44A",
     "text": "#FFFFFF",
-    "background": "#0077B6",
+    "background": "#0077B6"
+     },
+  "ui": {
+    "title": "#C8102E",
+    "subtitle": "#E63946",
+    "buttonBackBg": "#7F5539",
+    "buttonBackText": "#7F5539",
+
+    "buttonContinueBg": "#CFA44A",
+    "buttonContinueText": "#111111",
+
+    "deliveryActiveBg": "#C8102E",
+    "deliveryActiveBorder": "#CFA44A",
+    "deliveryActiveText": "#FFFFFF",
+
+    "cartTotal": "#C8102E"
+  },
   "font": "Poppins"
   },
   {
