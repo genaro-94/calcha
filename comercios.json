@@ -26,25 +26,8 @@
     "accent": "#CFA44A",
     "text": "#E9C46A",
     "background": "#C1121F"
-     },
-         "ui": {
-      "pedido": {
-    "title": "#C8102E",
-    "subtitle": "#E63946",
-    "buttonBackBg": "#7F5539",
-    "buttonBackText": "#7F5539",
-
-    "buttonContinueBg": "#CFA44A",
-    "buttonContinueText": "#111111",
-
-    "deliveryActiveBg": "#C8102E",
-    "deliveryActiveBorder": "#CFA44A",
-    "deliveryActiveText": "#FFFFFF",
-
-    "cartTotal": "#C8102E"
-  },
-  "font": "Poppins"
-         }
+  "font": "PoppinPoppins" 
+     }
   },
   {
     "id": 2,
@@ -84,24 +67,6 @@
   "accent": "#0077B6",       
   "text": "#1A1A1A",         
   "background": "#FAFAFA"
-  },
-
-  "ui": {
-      "pedido": {
-    "title": "#C8102E",
-    "subtitle": "#E63946",
-    "buttonBackBg": "#7F5539",
-    "buttonBackText": "#7F5539",
-
-    "buttonContinueBg": "#CFA44A",
-    "buttonContinueText": "#111111",
-
-    "deliveryActiveBg": "#C8102E",
-    "deliveryActiveBorder": "#CFA44A",
-    "deliveryActiveText": "#FFFFFF",
-
-    "cartTotal": "#C8102E"
-  },
   "font": "Poppins"
   }
   },
@@ -125,27 +90,10 @@
     "destacado": false,
      "theme": {
     "primary": "#8B1E1E",
-    "secondary": "#F4EDE4",
-    "accent": "#CFA44A",
+    "secondary": "#BC6C25",
+    "accent": "#BC6C25",
     "text": "#2B2B2B",
-    "background": "#FFF9F5"
-     },
-      "ui": {
-      "pedido": {
-    "title": "#C8102E",
-    "subtitle": "#E63946",
-    "buttonBackBg": "#7F5539",
-    "buttonBackText": "#7F5539",
-
-    "buttonContinueBg": "#CFA44A",
-    "buttonContinueText": "#111111",
-
-    "deliveryActiveBg": "#C8102E",
-    "deliveryActiveBorder": "#CFA44A",
-    "deliveryActiveText": "#FFFFFF",
-
-    "cartTotal": "#C8102E"
-  },
+    "background": "#BC6C25"
   "font": "Poppins"
   }
   },
@@ -169,17 +117,6 @@
     "accent": "#CFA44A",
     "text": "#FFFFFF",
     "background": "#0077B6"
-  },
-  "ui": {
-    "reserva": {
-      "title": "#1A73E8",
-      "subtitle": "#4285F4",
-      "buttonBackBg": "#E8F0FE",
-      "buttonBackText": "#0077B6",
-      "buttonReservaBg": "#34A853",
-      "buttonReservaText": "#FFFFFF",
-      "sectionBg": "#F1F3F4"
-    },
     "font": "Poppins"
   }
 },
@@ -198,21 +135,10 @@
     "destacado": false,
      "theme": {
     "primary": "#8B1E1E",
-    "secondary": "#F4EDE4",
-    "accent": "#CFA44A",
+    "secondary": "#BC6C25",
+    "accent": "#BC6C25",
     "text": "#2B2B2B",
-    "background": "#FFF9F5"
-       },
-    "ui": {
-      "info": {
-    "title": "#FFFFFF",
-    "subtitle": "#FFFFFF",
-    "buttonBackBg": "#FFFFFF",
-    "buttonBackText": "#606C38",
-    "buttonConsultaBg": "#FFFFFF",
-    "buttonConsultaText": "#606C38",
-    "sectionBg": "#FFFFFF"
-      },
+    "background": "#BC6C25"
     "font": "Poppins"
     }
   },
@@ -231,21 +157,10 @@
     "destacado": false,
      "theme": {
     "primary": "#8B1E1E",
-    "secondary": "#F4EDE4",
-    "accent": "#CFA44A",
+    "secondary": "#BC6C25",
+    "accent": "#BC6C25",
     "text": "#2B2B2B",
-    "background": "#D4A373"   
-    },
-    "ui": {
-      "info": {
-    "title": "#FFFFFF",
-    "subtitle": "#FFFFFF",
-    "buttonBackBg": "#FFFFFF",
-    "buttonBackText": "#606C38",
-    "buttonConsultaBg": "#FFFFFF",
-    "buttonConsultaText": "#606C38",
-    "sectionBg": "#FFFFFF"
-      },
+    "background": "#BC6C25"   
     "font": "Poppins"
   }
   },
@@ -264,21 +179,10 @@
     "destacado": false,
      "theme": {
     "primary": "#8B1E1E",
-    "secondary": "#F4EDE4",
-    "accent": "#CFA44A",
+    "secondary": "#BC6C25",
+    "accent": "#BC6C25",
     "text": "#2B2B2B",
-    "background": "#FFF9F5"
-       },
-    "ui": {
-      "info": {
-    "title": "#FFFFFF",
-    "subtitle": "#FFFFFF",
-    "buttonBackBg": "#FFFFFF",
-    "buttonBackText": "#606C38",
-    "buttonConsultaBg": "#FFFFFF",
-    "buttonConsultaText": "#606C38",
-    "sectionBg": "#FFFFFF"
-      },
+    "background": "#BC6C25"
     "font": "Poppins"
   }
   },
@@ -297,21 +201,10 @@
     "destacado": false,
      "theme": {
     "primary": "#8B1E1E",
-    "secondary": "#F4EDE4",
-    "accent": "#CFA44A",
+    "secondary": "#BC6C25",
+    "accent": "#BC6C25",
     "text": "#2B2B2B",
-    "background": "#FFF9F5"
-       },
-    "ui": {
-      "info": {
-    "title": "#FFFFFF",
-    "subtitle": "#FFFFFF",
-    "buttonBackBg": "#FFFFFF",
-    "buttonBackText": "#606C38",
-    "buttonConsultaBg": "#FFFFFF",
-    "buttonConsultaText": "#606C38",
-    "sectionBg": "#FFFFFF"
-      },
+    "background": "#BC6C25"
     "font": "Poppins"
   }
   },
@@ -330,21 +223,10 @@
     "destacado": false,
      "theme": {
     "primary": "#8B1E1E",
-    "secondary": "#F4EDE4",
-    "accent": "#CFA44A",
+    "secondary": "#BC6C25",
+    "accent": "#BC6C25",
     "text": "#2B2B2B",
-    "background": "#FFF9F5"
-     },
-    "ui": {
-      "info": {
-    "title": "#FFFFFF",
-    "subtitle": "#FFFFFF",
-    "buttonBackBg": "#FFFFFF",
-    "buttonBackText": "#606C38",
-    "buttonConsultaBg": "#FFFFFF",
-    "buttonConsultaText": "#606C38",
-    "sectionBg": "#FFFFFF"
-      },
+    "background": "#BC6C25"
     "font": "Poppins"
   }  
   },
@@ -385,17 +267,6 @@
     "accent": "#606C38",
     "text": "#FFFFFF",
     "background": "#606C38"
-  },
-    "ui": {
-      "info": {
-    "title": "#FFFFFF",
-    "subtitle": "#FFFFFF",
-    "buttonBackBg": "#FFFFFF",
-    "buttonBackText": "#606C38",
-    "buttonConsultaBg": "#FFFFFF",
-    "buttonConsultaText": "#606C38",
-    "sectionBg": "#FFFFFF"
-      },
     "font": "Poppins"
   }
 }
