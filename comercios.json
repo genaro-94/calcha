@@ -69,6 +69,7 @@
   },
 
   "ui": {
+      "pedido": {
     "title": "#C8102E",
     "subtitle": "#E63946",
     "buttonBackBg": "#7F5539",
@@ -84,7 +85,8 @@
     "cartTotal": "#C8102E"
   },
   "font": "Poppins"
-},
+  }
+  },
   {
     "id": 3,
     "nombre": "Ferretería El Martillo",
@@ -111,39 +113,40 @@
     "background": "#FFF9F5",
     "font": "Poppins" }
   },
-  {
-    "id": 4,
-    "nombre": "Hospedaje San Jorge",
-    "ubicacion": "cafayate",
-    "rubro": "turismo",
-    "descripcion": "Un hermoso lugar para descansar en el centro de Cafayate.",
-    "imagen": "images/sanjo.jpg",
-    "tipoOperacion": "reserva",
-    "permiteDelivery": false,
-    "menu": [],
-    "galerias": { "habitaciones": ["images/hab1.jpg","images/hab2.jpg","images/hab3.jpg"] },
-    "whatsapp": "3875181644",
-    "estado": "activo",
-    "destacado": false,
-     "theme": {
+{
+  "id": 4,
+  "nombre": "Hospedaje San Jorge",
+  "ubicacion": "cafayate",
+  "rubro": "turismo",
+  "descripcion": "Un hermoso lugar para descansar en el centro de Cafayate.",
+  "imagen": "images/sanjo.jpg",
+  "tipoOperacion": "reserva",
+  "permiteDelivery": false,
+  "menu": [],
+  "galerias": { "habitaciones": ["images/hab1.jpg","images/hab2.jpg","images/hab3.jpg"] },
+  "whatsapp": "3875181644",
+  "estado": "activo",
+  "destacado": false,
+  "theme": {
     "primary": "#FFFFFF",
     "secondary": "#FFFFFF",
     "accent": "#CFA44A",
     "text": "#FFFFFF",
     "background": "#0077B6"
-     }
+  },
   "ui": {
- "reserva": {
-    "title": "#1A73E8",
-    "subtitle": "#4285F4",
-    "buttonBackBg": "#E8F0FE",
-    "buttonBackText": "#1A73E8",
-    "buttonReservaBg": "#34A853",
-    "buttonReservaText": "#FFFFFF",
-    "sectionBg": "#F1F3F4"
-  },
-  "font": "Poppins"
-  },
+    "reserva": {
+      "title": "#1A73E8",
+      "subtitle": "#4285F4",
+      "buttonBackBg": "#E8F0FE",
+      "buttonBackText": "#1A73E8",
+      "buttonReservaBg": "#34A853",
+      "buttonReservaText": "#FFFFFF",
+      "sectionBg": "#F1F3F4"
+    },
+    "font": "Poppins"
+  }
+},
   {
     "id": 5,
     "nombre": "local ropa",
