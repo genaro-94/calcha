@@ -666,7 +666,13 @@ app.innerHTML = `
     <img src="${comercioActivo.imagen}" class="comercio-portada">
     <h2>${comercioActivo.nombre}</h2>
     ${enlaceConsulta
-      ? `<button class="btn-reservar" onclick="window.open('${enlaceConsulta}','_blank')">Consultar 💬</button>`
+      ? `<button class="btn-reservar"
+  onclick="
+    registrarClickContacto('whatsapp');
+    window.open('${enlaceConsulta}','_blank');
+  ">
+  Consultar 💬
+</button>`
       : ""}
     <p>${comercioActivo.descripcion}</p>
     ${renderLinksComercio(comercioActivo)}
@@ -750,7 +756,12 @@ if (window.analytics) {
       : ""
     }
 
-    <button onclick="window.open('${urlReserva}','_blank')">📅 Reservar</button>
+<button onclick="
+  registrarClickContacto('reserva');
+  window.open('${urlReserva}','_blank');
+">
+  📅 Reservar
+</button>
  </div>
   `;
 
@@ -946,10 +957,16 @@ if (window.analytics) {
 
       <h3>Total: $${total}</h3>
 
-      <button class="btn-confirmar"
-        onclick="window.open('https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent(msg)}','_blank')">
-        Enviar por WhatsApp
-      </button>
+<button class="btn-confirmar"
+  onclick="
+    registrarClickContacto('pedido');
+    window.open(
+      'https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent(msg)}',
+      '_blank'
+    );
+  ">
+  Enviar por WhatsApp
+</button>
     `;
 
     document.querySelector(".btn-volver").onclick = () => history.back();
