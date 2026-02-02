@@ -135,11 +135,11 @@
   "ui": {
     "title": "#FFFFFF",
     "subtitle": "#E63946",
-    "buttonBackBg": "#7F5539",
-    "buttonBackText": "#7F5539",
+    "buttonBackBg": "#FFFFFF",
+    "buttonBackText": "#0077B6",
 
-    "buttonContinueBg": "#CFA44A",
-    "buttonContinueText": "#111111",
+    "buttonContinueBg": "#FFFFFF",
+    "buttonContinueText": "#0077B6",
 
     "deliveryActiveBg": "#C8102E",
     "deliveryActiveBorder": "#CFA44A",
