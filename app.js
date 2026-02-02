@@ -613,28 +613,32 @@ btnTerminos.addEventListener("click", () => {
 
 function aplicarTema(comercio) {
   const t = comercio.theme;
-  const ui = comercio.ui;
-
-  const root = document.documentElement;
-
   if (!t) return;
 
-  // 🎨 Colores base
-  root.style.setProperty("--primary", t.primary || "#c96c3b");
-  root.style.setProperty("--secondary", t.secondary || "#ffffff");
-  root.style.setProperty("--accent", t.accent || "#f5c542");
-  root.style.setProperty("--text", t.text || "#222222");
-  root.style.setProperty("--background", t.background || "#fffaf3");
+  const contenedor = document.querySelector(".vista-comercio");
+  if (!contenedor) return;
 
-  // 🎛️ UI específica
-  if (ui) {
-    Object.entries(ui).forEach(([k, v]) => {
-      root.style.setProperty(`--ui-${k}`, v);
+  // Resetear primero (importantísimo)
+  contenedor.removeAttribute("style");
+
+  // Colores base
+  if (t.primary) contenedor.style.setProperty("--primary", t.primary);
+  if (t.secondary) contenedor.style.setProperty("--secondary", t.secondary);
+  if (t.accent) contenedor.style.setProperty("--accent", t.accent);
+  if (t.text) contenedor.style.setProperty("--text", t.text);
+  if (t.background) contenedor.style.setProperty("--background", t.background);
+
+  // UI específica
+  if (t.ui) {
+    Object.entries(t.ui).forEach(([k, v]) => {
+      contenedor.style.setProperty(`--${k}`, v);
     });
   }
 
-  // 🔤 Fuente
-  root.style.setProperty("--font", comercio.font || "system-ui");
+  // Fuente
+  if (t.font) {
+    contenedor.style.setProperty("--font", t.font);
+  }
 }
 
 // =========================
