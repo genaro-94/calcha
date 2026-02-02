@@ -20,57 +20,80 @@
 --font: system-ui;
 }
 .vista-comercio {
-background: var(--background);
-color: var(--text);
-font-family: var(--font);
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font);
 }
-.vista-comercio h2,
+
+/* Títulos */
+.vista-comercio h2 {
+  color: var(--primary);
+}
 .vista-comercio h3 {
-color: var(--ui-title, var(--primary));
+  color: var(--galleryTitle);
 }
 
+/* Botón volver */
 .btn-volver {
-background: var(--ui-buttonBackBg, var(--primary));
-color: var(--ui-buttonBackText, var(--secondary));
+  background: var(--buttonBackBg);
+  color: var(--buttonBackText);
+  border-radius: 12px;
+  font-weight: 600;
 }
 
+/* Botón activo "Retiro personalmente" / Delivery */
 .entrega button.activo {
-background: var(--ui-deliveryActiveBg, var(--primary));
-border: 2px solid var(--ui-deliveryActiveBorder, var(--accent));
-color: var(--ui-deliveryActiveText, var(--secondary));
+  background: var(--deliveryActiveBg);
+  border: 2px solid var(--deliveryActiveBorder);
+  color: var(--deliveryActiveText);
 }
 
-.carrito strong {
-color: var(--ui-cartTotal, var(--primary));
-}
-
+/* Botón continuar */
 .btn-continuar {
-background: var(--ui-buttonContinueBg, var(--accent));
-color: var(--ui-buttonContinueText, #111);
-border: none;
-box-shadow: 0 2px 6px rgba(0,0,0,.15);
-font-weight: 600;
-}
-.btn-continuar:hover,
-.btn-volver:hover {
-filter: brightness(0.95);
-}
-.btn-reservar {
-background-color: var(--ui-buttonReservaBg);
-color: var(--ui-buttonReservaText);
+  background: var(--buttonContinueBg);
+  color: var(--buttonContinueText);
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  font-weight: 600;
 }
 
-.btn-consulta {
-background-color: var(--ui-buttonConsultaBg);
-color: var(--ui-buttonConsultaText);
+/* Carrito */
+.carrito strong {
+  color: var(--cartTotal);
 }
 
-h2 {
-color: var(--ui-title);
+/* Resumen en pantalla de confirmar */
+.item-confirmacion span:first-child {
+  color: var(--resumenItemName);
+}
+.item-confirmacion span:last-child {
+  color: var(--resumenItemPrice);
 }
 
+/* Total final en confirmación */
 h3 {
-color: var(--ui-subtitle);
+  color: var(--confirmTotal);
+}
+
+/* Título confirmación */
+h2 {
+  color: var(--confirmTitle);
+}
+
+/* Galería */
+.galeria-comercio h3 {
+  color: var(--galleryTitle);
+}
+.galeria-comercio img {
+  border: 2px solid var(--galleryBorder);
+  border-radius: 8px;
+}
+
+/* Efectos hover */
+.btn-continuar:hover,
+.btn-volver:hover,
+.entrega button:hover {
+  filter: brightness(0.95);
 }
 /* =========================
    BASE
