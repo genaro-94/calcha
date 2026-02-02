@@ -1068,7 +1068,6 @@ window.registrarClickContacto = function (tipo) {
     vista: vistaActual
   });
 };
-}
 // =========================
 // LIGHTBOX
 // =========================
