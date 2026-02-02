@@ -636,6 +636,46 @@ function aplicarTema(comercio) {
   // 🔤 Fuente
   root.style.setProperty("--font", comercio.font || "system-ui");
 }
+function aplicarUI(comercio) {
+  if (!comercio.ui) return;
+
+  // Detecta qué tipo de UI tiene: pedido, reserva, info
+  const tipos = ["pedido", "reserva", "info"];
+  let tipoUI = tipos.find(t => comercio.ui[t]);
+  if (!tipoUI) return;
+
+  const ui = comercio.ui[tipoUI];
+
+  // Aplica todas las variables CSS
+  const root = document.documentElement;
+
+  // Variables genéricas
+  if (ui.title) root.style.setProperty('--ui-title', ui.title);
+  if (ui.subtitle) root.style.setProperty('--ui-subtitle', ui.subtitle);
+  if (ui.buttonBackBg) root.style.setProperty('--ui-buttonBackBg', ui.buttonBackBg);
+  if (ui.buttonBackText) root.style.setProperty('--ui-buttonBackText', ui.buttonBackText);
+  if (ui.buttonContinueBg) root.style.setProperty('--ui-buttonContinueBg', ui.buttonContinueBg);
+  if (ui.buttonContinueText) root.style.setProperty('--ui-buttonContinueText', ui.buttonContinueText);
+  if (ui.deliveryActiveBg) root.style.setProperty('--ui-deliveryActiveBg', ui.deliveryActiveBg);
+  if (ui.deliveryActiveBorder) root.style.setProperty('--ui-deliveryActiveBorder', ui.deliveryActiveBorder);
+  if (ui.deliveryActiveText) root.style.setProperty('--ui-deliveryActiveText', ui.deliveryActiveText);
+  if (ui.cartTotal) root.style.setProperty('--ui-cartTotal', ui.cartTotal);
+
+  // Variables de reserva
+  if (ui.buttonReservaBg) root.style.setProperty('--ui-buttonReservaBg', ui.buttonReservaBg);
+  if (ui.buttonReservaText) root.style.setProperty('--ui-buttonReservaText', ui.buttonReservaText);
+  if (ui.sectionBg) root.style.setProperty('--ui-sectionBg', ui.sectionBg);
+
+  // Variables de info / consulta
+  if (ui.buttonConsultaBg) root.style.setProperty('--ui-buttonConsultaBg', ui.buttonConsultaBg);
+  if (ui.buttonConsultaText) root.style.setProperty('--ui-buttonConsultaText', ui.buttonConsultaText);
+
+  // Aplica la fuente si está definida
+  if (comercio.ui.font) {
+    root.style.setProperty('--font', comercio.ui.font);
+    document.body.style.fontFamily = comercio.ui.font;
+  }
+}
 // =========================
 // RESERVA / INFO COMERCIO
 // =========================
@@ -649,7 +689,7 @@ function renderInfoComercio() {
   });
   }
   aplicarTema(comercioActivo);
-  
+  aplicarUI(comercioActivo);
   let enlaceConsulta = "";
   if (comercioActivo.urlReserva) {
     enlaceConsulta = comercioActivo.urlReserva;
@@ -721,7 +761,7 @@ if (window.analytics) {
   });
 }
   aplicarTema(comercioActivo);
-  
+  aplicarUI(comercioActivo);
   const urlReserva =
     comercioActivo.urlReserva ||
     `https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent(
@@ -789,7 +829,7 @@ if (window.analytics) {
   });
 }
   aplicarTema(comercioActivo);
- 
+ aplicarUI(comercioActivo);
   let menuHTML = "";
   let categoriaActual = "";
 
