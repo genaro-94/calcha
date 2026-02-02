@@ -8,6 +8,9 @@
   box-sizing: border-box;
 }
 
+/* =========================
+   VARIABLES BASE
+========================= */
 :root {
   --primary: #c96c3b;
   --secondary: #ffffff;
@@ -16,21 +19,73 @@
   --background: #fffaf3;
   --font: system-ui;
 }
-.vista-comercio {
+
+/* =========================
+   CONTENEDORES GENERALES
+========================= */
+.vista-comercio,
+.vista-reserva,
+.vista-info {
   background: var(--background);
   color: var(--text);
   font-family: var(--font);
 }
+
+/* =========================
+   TITULOS
+========================= */
 .vista-comercio h2,
-.vista-comercio h3 {
+.vista-reserva h2,
+.vista-info h2 {
   color: var(--ui-title, var(--primary));
 }
 
+.vista-comercio h3,
+.vista-reserva h3,
+.vista-info h3 {
+  color: var(--ui-subtitle, var(--secondary));
+}
+
+/* =========================
+   BOTONES GENERALES
+========================= */
 .btn-volver {
   background: var(--ui-buttonBackBg, var(--primary));
   color: var(--ui-buttonBackText, var(--secondary));
 }
 
+.btn-continuar {
+  background: var(--ui-buttonContinueBg, var(--accent));
+  color: var(--ui-buttonContinueText, #111);
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  font-weight: 600;
+}
+
+.btn-continuar:hover,
+.btn-volver:hover {
+  filter: brightness(0.95);
+}
+
+/* =========================
+   BOTONES RESERVA
+========================= */
+.btn-reservar {
+  background-color: var(--ui-buttonReservaBg, var(--accent));
+  color: var(--ui-buttonReservaText, var(--text));
+}
+
+/* =========================
+   BOTONES INFO
+========================= */
+.btn-consulta {
+  background-color: var(--ui-buttonConsultaBg, var(--secondary));
+  color: var(--ui-buttonConsultaText, var(--text));
+}
+
+/* =========================
+   PEDIDO / DELIVERY
+========================= */
 .entrega button.activo {
   background: var(--ui-deliveryActiveBg, var(--primary));
   border: 2px solid var(--ui-deliveryActiveBorder, var(--accent));
@@ -41,33 +96,24 @@
   color: var(--ui-cartTotal, var(--primary));
 }
 
-.btn-continuar {
-  background: var(--ui-buttonContinueBg, var(--accent));
-  color: var(--ui-buttonContinueText, #111);
-  border: none;
-  box-shadow: 0 2px 6px rgba(0,0,0,.15);
-  font-weight: 600;
-}
-.btn-continuar:hover,
-.btn-volver:hover {
-  filter: brightness(0.95);
-}
-.btn-reservar {
-  background-color: var(--ui-buttonReservaBg);
-  color: var(--ui-buttonReservaText);
+/* =========================
+   SECCIONES
+========================= */
+.vista-comercio .section,
+.vista-reserva .section,
+.vista-info .section {
+  background: var(--ui-sectionBg, var(--secondary));
 }
 
-.btn-consulta {
-  background-color: var(--ui-buttonConsultaBg);
-  color: var(--ui-buttonConsultaText);
-}
-
+/* =========================
+   TITULOS EN HOME DESTACADOS (u otras secciones fuera de comercio)
+========================= */
 h2 {
-  color: var(--ui-title);
+  color: var(--ui-title, var(--primary));
 }
 
 h3 {
-  color: var(--ui-subtitle);
+  color: var(--ui-subtitle, var(--secondary));
 }
 /* =========================
    BASE
