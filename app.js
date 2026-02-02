@@ -665,14 +665,14 @@ app.innerHTML = `
     <button class="btn-volver">←</button>
     <img src="${comercioActivo.imagen}" class="comercio-portada">
     <h2>${comercioActivo.nombre}</h2>
-    ${enlaceConsulta
-      ? `<button onclick="
-  registrarClickContacto('consulta');
-  window.open('${urlWhatsapp}','_blank');
-">
-  Contactar
-</button>`
-      : ""}
+${enlaceConsulta
+  ? `<button onclick="
+      registrarClickContacto('consulta');
+      window.open('${enlaceConsulta}','_blank');
+    ">
+      Contactar
+    </button>`
+  : ""}
     <p>${comercioActivo.descripcion}</p>
     ${renderLinksComercio(comercioActivo)}
   `;
