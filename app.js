@@ -886,23 +886,23 @@ function renderPedido() {
   document.querySelectorAll("[data-a]").forEach(b => {
     b.onclick = () => {
       const prod = comercioActivo.menu[b.dataset.i];
-      const ex = carrito.find(p => p.nombre === prod.nombre);
-
-      if (b.dataset.a === "sumar") {
-        ex ? ex.cantidad++ : carrito.push({ ...prod, cantidad: 1 });
-      }
+      const carrito = getCarritoActual();
+const index = carrito.findIndex(p => p.nombre === prod.nombre);
 
 if (b.dataset.a === "sumar") {
-  ex ? ex.cantidad++ : carrito.push({ ...prod, cantidad: 1 });
+  if (index >= 0) {
+    carrito[index].cantidad += 1;
+  } else {
+    carrito.push({ ...prod, cantidad: 1 });
+  }
 }
 
-if (b.dataset.a === "restar" && ex) {
-  ex.cantidad--;
-
-  if (ex.cantidad === 0) {
-    const c = getCarritoActual();
-    carritos[comercioActivo.id] = c.filter(p => p !== ex);
+if (b.dataset.a === "restar" && index >= 0) {
+  carrito[index].cantidad -= 1;
+  if (carrito[index].cantidad === 0) {
+    carrito.splice(index, 1);
   }
+}
 }
 
 renderPedido();
