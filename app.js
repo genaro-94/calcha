@@ -903,7 +903,7 @@ if (b.dataset.a === "restar" && index >= 0) {
     carrito.splice(index, 1);
   }
 }
-}
+
 
 renderPedido();
     };
