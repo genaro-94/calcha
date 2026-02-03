@@ -642,7 +642,6 @@ function renderInfoComercio() {
     rubro: comercioActivo.rubro
   });
   }
-  aplicarThemeComercio(comercioActivo);
   let enlaceConsulta = "";
   if (comercioActivo.urlReserva) {
     enlaceConsulta = comercioActivo.urlReserva;
@@ -688,6 +687,7 @@ ${enlaceConsulta
         </div>
         </div>
       `;
+      
       app.insertAdjacentHTML("beforeend", galeriaHTML);
     });
 
@@ -702,6 +702,7 @@ ${enlaceConsulta
 });
   }
   document.querySelector(".btn-volver").onclick = () => history.back();
+aplicarThemeComercio(comercioActivo);
 }
 
 function renderReserva() {
@@ -713,7 +714,6 @@ if (window.analytics) {
     rubro: comercioActivo.rubro
   });
 }
-  aplicarThemeComercio(comercioActivo);
   const urlReserva =
     comercioActivo.urlReserva ||
     `https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent(
@@ -766,6 +766,7 @@ if (window.analytics) {
 });
 
   document.querySelector(".btn-volver").onclick = () => history.back();
+aplicarThemeComercio(comercioActivo);
 }
 
 // =========================
@@ -780,7 +781,7 @@ if (window.analytics) {
     rubro: comercioActivo.rubro
   });
 }
-  aplicarThemeComercio(comercioActivo);
+
   let menuHTML = "";
   let categoriaActual = "";
 
@@ -920,6 +921,7 @@ if (window.analytics) {
     history.pushState({ vista: "confirmar" }, "", "#confirmar");
     renderConfirmar();
   };
+  aplicarThemeComercio(comercioActivo);
 }
   // ------------------------
   // CONFIRMAR
