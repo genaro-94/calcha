@@ -12,7 +12,7 @@ let ubicacionActiva = null;
 let rubroActivo = "todos";
 let comercioActivo = null;
 
-let carrito = [];
+let carritos = {}; 
 let tipoEntrega = null;
 let direccionEntrega = "";
 
@@ -774,13 +774,17 @@ aplicarThemeComercio(comercioActivo);
 // =========================
 function renderPedido() {
   if (!comercioActivo) return renderHome();
-if (window.analytics) {
-  logEvent(window.analytics, "ver_comercio", {
-    tipo: "pedido",
-    comercio: comercioActivo.slug || comercioActivo.nombre,
-    rubro: comercioActivo.rubro
-  });
-}
+
+  if (window.analytics) {
+    logEvent(window.analytics, "ver_comercio", {
+      tipo: "pedido",
+      comercio: comercioActivo.slug || comercioActivo.nombre,
+      rubro: comercioActivo.rubro
+    });
+  }
+
+  // 👇 OBTENER CARRITO DEL COMERCIO ACTUAL
+  const carrito = getCarritoActual();
 
   let menuHTML = "";
   let categoriaActual = "";
@@ -923,42 +927,58 @@ if (window.analytics) {
   };
   aplicarThemeComercio(comercioActivo);
 }
+
+function getCarritoActual() {
+  if (!comercioActivo) return [];
+
+  if (!carritos[comercioActivo.id]) {
+    carritos[comercioActivo.id] = [];
+  }
+
+  return carritos[comercioActivo.id];
+}
   // ------------------------
   // CONFIRMAR
   // ------------------------
   function renderConfirmar() {
-    const total = carrito.reduce((s, p) => s + p.precio * p.cantidad, 0);
+  // 👇 carrito SOLO del comercio actual
+  const carrito = getCarritoActual();
 
-    let resumen = carrito.map(p =>
-      `<div class="item-confirmacion">
-        <span>${p.nombre} x${p.cantidad}</span>
-        <span>$${p.precio * p.cantidad}</span>
-      </div>`
-    ).join("");
+  const total = carrito.reduce((s, p) => s + p.precio * p.cantidad, 0);
 
-    let msg = `🛒 Pedido - ${comercioActivo.nombre}\n`;
-    carrito.forEach(p => msg += `• ${p.nombre} x${p.cantidad}\n`);
-    msg += `\nTotal: $${total}\nEntrega: ${tipoEntrega}`;
-    if (tipoEntrega === "delivery") msg += `\nDirección: ${direccionEntrega}`;
+  let resumen = carrito.map(p =>
+    `<div class="item-confirmacion">
+      <span>${p.nombre} x${p.cantidad}</span>
+      <span>$${p.precio * p.cantidad}</span>
+    </div>`
+  ).join("");
 
-    app.innerHTML = `
-      <button class="btn-volver">←</button>
-      <h2>Confirmar pedido</h2>
+  let msg = `🛒 Pedido - ${comercioActivo.nombre}\n`;
+  carrito.forEach(p => msg += `• ${p.nombre} x${p.cantidad}\n`);
+  msg += `\nTotal: $${total}\nEntrega: ${tipoEntrega}`;
+  if (tipoEntrega === "delivery") msg += `\nDirección: ${direccionEntrega}`;
 
-      <div class="resumen">${resumen}</div>
+  app.innerHTML = `
+    <button class="btn-volver">←</button>
+    <h2>Confirmar pedido</h2>
 
-      <h3>Total: $${total}</h3>
+    <div class="resumen">${resumen}</div>
 
-<button class="btn-confirmar" onclick="
-  registrarClickContacto('pedido');
-  window.open('https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent(msg)}','_blank');
-">
-  Enviar por WhatsApp
-</button>
-    `;
+    <h3>Total: $${total}</h3>
 
-    document.querySelector(".btn-volver").onclick = () => history.back();
-  }
+    <button class="btn-confirmar" onclick="
+      registrarClickContacto('pedido');
+      window.open(
+        'https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent(msg)}',
+        '_blank'
+      );
+    ">
+      Enviar por WhatsApp
+    </button>
+  `;
+
+  document.querySelector(".btn-volver").onclick = () => history.back();
+}
 function renderLinksComercio(comercio) {
   if (!comercio.links) return "";
 
