@@ -943,7 +943,7 @@ function getCarritoActual() {
 
   return carritos[comercioActivo.id];
 }
-}
+
   // ------------------------
   // CONFIRMAR
   // ------------------------
