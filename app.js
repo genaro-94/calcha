@@ -614,7 +614,6 @@ btnTerminos.addEventListener("click", () => {
 }
 
 function aplicarThemeComercio(comercio) {
-function aplicarThemeComercio(comercio) {
   const vista = document.querySelector('.vista-comercio');
   if (!vista || !comercio?.theme) return;
 
