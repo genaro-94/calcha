@@ -22,11 +22,11 @@
     "destacado": true,
   "theme": {
   "colors": {
-    "primary": "#E9C46A",
-    "secondary": "#F9C74F",
+    "primary": "#006D77",
+    "secondary": "#132A13",
     "accent": "#F9C74F",
 
-    "background": "#F94144",
+    "background": "#F5EBE0",
     "text": "#FFFFFF",
 
     "buttonBackBg": "#C1121F",
