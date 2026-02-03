@@ -994,6 +994,7 @@ function renderLinksComercio(comercio) {
 
   html += `</div>`;
   return html;
+aplicarThemeComercio(comercioActivo);
 }
 // =========================
 // BÚSQUEDA
