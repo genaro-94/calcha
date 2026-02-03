@@ -884,3 +884,26 @@ body {
   font-size: 15px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.18);
    }
+
+.resumen {
+  background: var(--background, #fff); 
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.item-confirmacion span:first-child {
+  color: var(--resumenItemName, #000);
+}
+
+.item-confirmacion span:last-child {
+  color: var(--resumenItemPrice, #669BBC);
+}
+
+h2 {
+  color: var(--confirmTitle, #333);
+}
+
+.btn-confirmar {
+  background-color: var(--buttonContinueBg, #F9C74F);
+  color: var(--buttonContinueText, #111111);
+}
