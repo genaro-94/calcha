@@ -614,7 +614,19 @@ margin-bottom: 18px;
   justify-content: space-between;
   align-items: center;
 }
+.item-cantidad button {
+  background: var(--item-qty-btn-bg);
+  color: var(--item-qty-btn-text);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 20px;
+}
 
+.item-cantidad button:active {
+  background: var(--item-qty-btn-bg-active);
+}
 /* =========================
    CONFIRMACIÓN
 ========================= */
@@ -903,7 +915,12 @@ body {
   --tab-text: #000000;
   --tab-active-bg: #DD2D4A;
   --tab-active-text: #FFFFFF;
-
+/* --------------------
+   BOTONES + / -
+-------------------- */
+--item-qty-btn-bg: #DD2D4A;
+--item-qty-btn-text: #FFFFFF;
+--item-qty-btn-bg-active: #b9233c;
   /* --------------------
      CARDS GENERALES
   -------------------- */
