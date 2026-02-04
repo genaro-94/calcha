@@ -36,7 +36,7 @@
     "text": "#000000",
 
     "buttonBackBg": "#000000",
-    "buttonBackText": "#000000",
+    "buttonBackText": "#EDEDE9",
 
     "buttonContinueBg": "#DD2D4A",
     "buttonContinueText": "#EDEDE9",
@@ -56,14 +56,37 @@
     "galleryTitle": "#000000",
     "galleryBorder": "#F6BD60",
 
-    
-    "menuTabsBg": "#EDEDE9",
+    /* ===== NUEVAS VARIABLES ===== */
 
-    "menuTabBg": "#EDEDE9",
-    "menuTabText": "#000000",
+    /* Card título comercio */
+    "title-bg": "#FFFFFF",
+    "title-text": "#DD2D4A",
+    "title-shadow": "0 6px 16px rgba(0,0,0,0.08)",
 
-    "menuTabActiveBg": "#DD2D4A",
-    "menuTabActiveText": "#EDEDE9"
+    /* Card subtítulo */
+    "subtitle-bg": "#FFFFFF",
+    "subtitle-text": "#555555",
+    "subtitle-shadow": "0 6px 16px rgba(0,0,0,0.08)",
+
+    /* Título de sección (platos) */
+    "section-title-text": "#000000",
+
+    /* Tabs de categorías */
+    "menu-bg": "#F6BD60",
+    "tab-bg": "#EDEDE9",
+    "tab-text": "#000000",
+    "tab-active-bg": "#DD2D4A",
+    "tab-active-text": "#FFFFFF",
+
+    /* Cards de productos */
+    "item-bg": "#FFFFFF",
+    "item-text": "#000000",
+    "item-price": "#DD2D4A",
+    "item-shadow": "0 4px 14px rgba(0,0,0,0.08)",
+
+    /* Botón + */
+    "item-button-bg": "#DD2D4A",
+    "item-button-text": "#FFFFFF"
   },
   "font": "Poppins"
 }
