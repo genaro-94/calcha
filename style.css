@@ -854,18 +854,7 @@ body {
   box-shadow: 0 6px 18px rgba(0,0,0,0.18);
   margin-bottom: 10px;
 }
---card-bg
---card-text
---card-shadow
 
---title-bg
---title-text
-
---subtitle-bg
---subtitle-text
-
---item-btn-bg
---item-btn-text
 
 .menu .item-menu {
   background: var(--card-bg, #fff);
@@ -894,11 +883,25 @@ body {
   margin-left: 4px;
 }
 .rubro-gastronomia {
-  --tab-bg: #EDEDE9;
-  --tab-text: #000;
-  --tab-active-bg: #DD2D4A;
-  --tab-active-text: #fff;
   --menu-bg: #F6BD60;
+
+  --tab-bg: #EDEDE9;
+  --tab-text: #000000;
+  --tab-active-bg: #DD2D4A;
+  --tab-active-text: #FFFFFF;
+
+  --card-bg: #FFFFFF;
+  --card-text: #000000;
+  --card-shadow: 0 4px 14px rgba(0,0,0,0.08);
+
+  --title-bg: #FFFFFF;
+  --title-text: #DD2D4A;
+
+  --subtitle-bg: #FFFFFF;
+  --subtitle-text: #555555;
+
+  --item-btn-bg: #DD2D4A;
+  --item-btn-text: #FFFFFF;
 }
 .menu-tabs {
   display: flex;
