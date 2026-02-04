@@ -619,10 +619,21 @@ margin-bottom: 18px;
    CONFIRMACIÓN
 ========================= */
 
-.resumen {
-  background: #fff;
-  border-radius: 18px;
+..resumen {
+  background: var(--conf-resumen-bg);
+  color: var(--conf-resumen-text);
+  border-radius: var(--conf-radius);
   padding: 16px;
+}
+
+.total-confirmacion {
+  color: var(--conf-total-text);
+}
+
+.btn-confirmar {
+  background: var(--conf-btn-bg);
+  color: var(--conf-btn-text);
+  border-radius: var(--conf-radius);
 }
 
 /* =========================
