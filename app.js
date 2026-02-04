@@ -490,25 +490,7 @@ document.addEventListener("click", (e) => {
   volverHome(true);
 });
 
-// =========================
-// NAVEGACIÓN CENTRAL
-// =========================
-function navegarA(vista) {
-  if (!comercioActivo && vista !== "home") {
-    volverHome();
-    return;
-  }
 
-  if (vistaActual === vista) return;
-
-  vistaActual = vista;
-  history.pushState({ vista }, "", `#${vista}`);
-
-  if (vista === "home") renderHome();
-  if (vista === "info") renderInfoComercio();
-  if (vista === "pedido") renderPedido();
-  if (vista === "reserva") renderReserva();
-}
 
 // =========================
 // INFO
