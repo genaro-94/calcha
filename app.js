@@ -16,6 +16,7 @@ let carritos = {};
 let tipoEntrega = null;
 let direccionEntrega = "";
 let navegandoPorHistorial = false;
+let vengoDeHome = false;
 let comercios = [];
 let app = null;
 let lightbox;
@@ -289,11 +290,20 @@ card.onclick = () => {
     c.tipoOperacion === "info" ? "infoComercio" :
     "pedido";
 
+  if (vengoDeHome) {
+  history.replaceState(
+    { vista: vistaActual, comercioId: c.id },
+    "",
+    "#" + vistaActual
+  );
+  vengoDeHome = false;
+} else {
   history.pushState(
     { vista: vistaActual, comercioId: c.id },
     "",
     "#" + vistaActual
   );
+    }
 
   renderApp();
 };
@@ -337,13 +347,20 @@ card.onclick = () => {
     c.tipoOperacion === "reserva" ? "reserva" :
     c.tipoOperacion === "info" ? "infoComercio" :
     "pedido";
-
+if (vengoDeHome) {
+  history.replaceState(
+    { vista: vistaActual, comercioId: c.id },
+    "",
+    "#" + vistaActual
+  );
+  vengoDeHome = false;
+} else {
   history.pushState(
     { vista: vistaActual, comercioId: c.id },
     "",
     "#" + vistaActual
   );
-
+}
   renderApp();
 };
     lista.appendChild(card);
@@ -481,9 +498,9 @@ function volverHome(forzar = false) {
 document.addEventListener("click", (e) => {
   if (!e.target.closest(".btn-home")) return;
 
+  vengoDeHome = true;
   volverHome(true);
 });
-
 
 // =========================
 // INFO
