@@ -815,22 +815,25 @@ body {
    PERFIL COMERCIOS
 ========================= */
 .vista-comercio h2 {
-  background: #fff;
+  background: var(--title-bg, #fff);
+  color: var(--title-text, #000);
+
   margin: 12px;
   margin-bottom: 6px;
   padding: 14px 16px 6px;
   border-radius: 18px 18px 0 0;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  box-shadow: var(--title-shadow, 0 6px 16px rgba(0,0,0,0.08));
   font-size: 1.3rem;
-}
+   }
 
 .vista-comercio p {
-  background: #fff;
+  background: var(--subtitle-bg, #fff);
+  color: var(--subtitle-text, #555);
+
   margin: 0 12px 18px;
   padding: 0 16px 14px;
   border-radius: 0 0 18px 18px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-  color: #555;
+  box-shadow: var(--subtitle-shadow, 0 6px 16px rgba(0,0,0,0.08));
   line-height: 1.4;
 }
 
@@ -840,6 +843,8 @@ body {
   font-weight: 700;
   margin: 26px 0 12px;
   letter-spacing: 0.4px;
+
+  color: var(--section-title-text, #000);
 }
 .comercio-portada {
   width: 100%;
@@ -849,27 +854,41 @@ body {
   box-shadow: 0 6px 18px rgba(0,0,0,0.18);
   margin-bottom: 10px;
 }
+--card-bg
+--card-text
+--card-shadow
+
+--title-bg
+--title-text
+
+--subtitle-bg
+--subtitle-text
+
+--item-btn-bg
+--item-btn-text
+
 .menu .item-menu {
-  background: #fff;
+  background: var(--card-bg, #fff);
   margin: 10px 12px;
-  padding: 14px 14px;
+  padding: 14px;
   border-radius: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  box-shadow: var(--card-shadow, 0 4px 14px rgba(0,0,0,0.08));
 }
 
 .menu .item-menu span {
   font-size: 0.95rem;
-  color: #333;
+  color: var(--card-text, #333);
 }
+
 .menu .item-menu button {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: #c96a2c;
-  color: #fff;
+  background: var(--item-btn-bg, #c96a2c);
+  color: var(--item-btn-text, #fff);
   font-size: 18px;
   padding: 0;
   margin-left: 4px;
@@ -907,6 +926,8 @@ body {
   background: var(--tab-active-bg, #000);
   color: var(--tab-active-text, #fff);
 }
+
+
 .btn-reservar {
   display: block;
   width: calc(100% - 24px);
