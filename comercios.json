@@ -9,10 +9,16 @@
     "tipoOperacion": "pedido",
     "permiteDelivery": true,
     "menu": [
-      { "categoria": "Sándwiches", "nombre": "Hamburguesa clásica (queso, huevo)", "precio": 700 },
-      { "categoria": "Sándwiches", "nombre": "Lomito completo (queso, jamon, huevo, c/papas)", "precio": 850 },
-      { "categoria": "Guarniciones", "nombre": "Papas fritas", "precio": 400 },
-      { "categoria": "Bebidas", "nombre": "Gaseosa 500ml", "precio": 250 }
+{ "categoria": "Sándwiches", "nombre": "Hamburguesa clásica (queso, huevo)", "precio": 7000 },
+{ "categoria": "Sándwiches", "nombre": "Hamburguesa completa (queso,jamon, huevo, c/papas)", "precio": 8500 },      
+{ "categoria": "Sándwiches", "nombre": "Lomito clasico (queso, huevo)", "precio": 7000 },
+{ "categoria": "Sándwiches", "nombre": "Lomito completo (queso, jamon, huevo, c/papas)", "precio": 8500 },      
+{ "categoria": "Guarniciones", "nombre": "Papas fritas", "precio": 1500 },
+{ "categoria": "Guarniciones", "nombre": "ensalda simple (tomate, lechuga, zanahoria)", "precio": 1000 },      
+{ "categoria": "Bebidas", "nombre": "Gaseosa 500ml", "precio": 2500 },
+{ "categoria": "Bebidas", "nombre": "Gaseosa 1lt", "precio": 4500 },
+{ "categoria": "Bebidas", "nombre": "Gaseosa 1,5lt", "precio": 5500 },
+{ "categoria": "Bebidas", "nombre": "Gaseosa 3lt", "precio": 6500 }
     ],
     "galerias": {
       "platos": ["images/fritas.png", "images/lomo.jpg", "images/mila.jpeg"]
