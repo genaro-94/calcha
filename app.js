@@ -985,47 +985,68 @@ function getCarritoActual() {
   return carritos[comercioActivo.id];
 }
 
-  // ------------------------
-  // CONFIRMAR
-  // ------------------------
-  function renderConfirmar() {
-  // 👇 carrito SOLO del comercio actual
+// =========================
+// CONFIRMAR
+// =========================
+function renderConfirmar() {
+  if (!comercioActivo) return volverHome();
+
   const carrito = getCarritoActual();
 
-  const total = carrito.reduce((s, p) => s + p.precio * p.cantidad, 0);
+  const themeTexts = comercioActivo.theme?.texts || {};
 
-  let resumen = carrito.map(p =>
-    `<div class="item-confirmacion">
+  const titulo =
+    themeTexts.confirmTitle || "Confirmar pedido";
+
+  const btnLabel =
+    themeTexts.confirmButton || "Enviar por WhatsApp";
+
+  const total = carrito.reduce(
+    (s, p) => s + p.precio * p.cantidad,
+    0
+  );
+
+  let resumen = carrito.map(p => `
+    <div class="item-confirmacion">
       <span>${p.nombre} x${p.cantidad}</span>
       <span>$${p.precio * p.cantidad}</span>
-    </div>`
-  ).join("");
+    </div>
+  `).join("");
 
   let msg = `🛒 Pedido - ${comercioActivo.nombre}\n`;
   carrito.forEach(p => msg += `• ${p.nombre} x${p.cantidad}\n`);
   msg += `\nTotal: $${total}\nEntrega: ${tipoEntrega}`;
-  if (tipoEntrega === "delivery") msg += `\nDirección: ${direccionEntrega}`;
+  if (tipoEntrega === "delivery") {
+    msg += `\nDirección: ${direccionEntrega}`;
+  }
 
   app.innerHTML = `
-    <button class="btn-volver">←</button>
-    <h2>Confirmar pedido</h2>
+    <div class="vista-comercio vista-confirmacion rubro-${comercioActivo.rubro}">
+      <button class="btn-volver">←</button>
 
-    <div class="resumen">${resumen}</div>
+      <h2>${titulo}</h2>
 
-    <h3>Total: $${total}</h3>
+      <div class="resumen">
+        ${resumen}
+      </div>
 
-    <button class="btn-confirmar" onclick="
-      registrarClickContacto('pedido');
-      window.open(
-        'https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent(msg)}',
-        '_blank'
-      );
-    ">
-      Enviar por WhatsApp
-    </button>
+      <h3>Total: $${total}</h3>
+
+      <button class="btn-confirmar" onclick="
+        registrarClickContacto('pedido');
+        window.open(
+          'https://wa.me/54${comercioActivo.whatsapp}?text=${encodeURIComponent(msg)}',
+          '_blank'
+        );
+      ">
+        ${btnLabel}
+      </button>
+    </div>
   `;
 
   document.querySelector(".btn-volver").onclick = () => history.back();
+
+  aplicarThemeComercio(comercioActivo);
 }
 function renderLinksComercio(comercio) {
   if (!comercio.links) return "";
