@@ -784,37 +784,29 @@ function renderPedido() {
 
   // 👇 OBTENER CARRITO DEL COMERCIO ACTUAL
   const carrito = getCarritoActual();
-
+  const categorias = [...new Set(comercioActivo.menu.map(i => i.categoria))];
+if (!categoriaActiva) categoriaActiva = categorias[0];
   let menuHTML = "";
-  let categoriaActual = "";
 
-  comercioActivo.menu.forEach((item, i) => {
-    if (item.categoria !== categoriaActual) {
-      categoriaActual = item.categoria;
-      menuHTML += `<div class="menu-categoria">${categoriaActual}</div>`;
-    }
+comercioActivo.menu.forEach((item, i) => {
+  // 🔹 FILTRO POR CATEGORÍA ACTIVA
+  if (item.categoria !== categoriaActiva) return;
 
-    const enCarrito = carrito.find(p => p.nombre === item.nombre);
+  const enCarrito = carrito.find(p => p.nombre === item.nombre);
 
-    menuHTML += `
-      <div class="menu-tabs">
-  ${categorias.map(cat => `
-    <button 
-      class="menu-tab ${cat === categoriaActiva ? "active" : ""}" 
-      data-cat="${cat}">
-      ${cat}
-    </button>
-  `).join("")}
-</div>
-          ${enCarrito ? `
-            <button data-i="${i}" data-a="restar">−</button>
-            <strong>${enCarrito.cantidad}</strong>
-          ` : ""}
-          <button data-i="${i}" data-a="sumar">+</button>
-        </div>
+  menuHTML += `
+    <div class="item-menu">
+      <span>${item.nombre} - $${item.precio}</span>
+      <div>
+        ${enCarrito ? `
+          <button data-i="${i}" data-a="restar">−</button>
+          <strong>${enCarrito.cantidad}</strong>
+        ` : ""}
+        <button data-i="${i}" data-a="sumar">+</button>
       </div>
-    `;
-  });
+    </div>
+  `;
+});
 
   const total = carrito.reduce(
     (s, p) => s + p.precio * p.cantidad,
@@ -848,7 +840,17 @@ function renderPedido() {
       : ""
     }
 
-    <div class="menu">${menuHTML}</div>
+<div class="menu-tabs">
+  ${categorias.map(cat => `
+    <button 
+      class="menu-tab ${cat === categoriaActiva ? "active" : ""}" 
+      data-cat="${cat}">
+      ${cat}
+    </button>
+  `).join("")}
+</div>
+
+<div class="menu">${menuHTML}</div>
 
     <h3>Entrega</h3>
     <div class="entrega">
@@ -886,7 +888,12 @@ function renderPedido() {
     );
   };
 });
-
+document.querySelectorAll(".menu-tab").forEach(btn => {
+  btn.onclick = () => {
+    categoriaActiva = btn.dataset.cat;
+    renderPedido();
+  };
+});
   document.querySelector(".btn-volver").onclick = () => history.back();
 
   document.querySelectorAll("[data-a]").forEach(b => {
