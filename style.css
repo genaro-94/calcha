@@ -894,6 +894,9 @@ body {
   margin-left: 4px;
 }
 .rubro-gastronomia {
+  /* --------------------
+     MENÚ / TABS
+  -------------------- */
   --menu-bg: #F6BD60;
 
   --tab-bg: #EDEDE9;
@@ -901,18 +904,49 @@ body {
   --tab-active-bg: #DD2D4A;
   --tab-active-text: #FFFFFF;
 
+  /* --------------------
+     CARDS GENERALES
+  -------------------- */
   --card-bg: #FFFFFF;
   --card-text: #000000;
   --card-shadow: 0 4px 14px rgba(0,0,0,0.08);
 
   --title-bg: #FFFFFF;
   --title-text: #DD2D4A;
+  --title-shadow: 0 6px 16px rgba(0,0,0,0.08);
 
   --subtitle-bg: #FFFFFF;
   --subtitle-text: #555555;
+  --subtitle-shadow: 0 6px 16px rgba(0,0,0,0.08);
 
-  --item-btn-bg: #DD2D4A;
-  --item-btn-text: #FFFFFF;
+  --section-title-text: #000000;
+
+  /* --------------------
+     ITEMS PRODUCTO
+  -------------------- */
+  --item-bg: #FFFFFF;
+  --item-text: #000000;
+  --item-price: #DD2D4A;
+  --item-shadow: 0 4px 14px rgba(0,0,0,0.08);
+
+  --item-button-bg: #DD2D4A;
+  --item-button-text: #FFFFFF;
+
+  /* --------------------
+     CONFIRMAR PEDIDO
+  -------------------- */
+  --confirm-bg: #EDEDE9;
+
+  --confirm-card-bg: #FFFFFF;
+  --confirm-card-shadow: 0 6px 16px rgba(0,0,0,0.08);
+
+  --confirm-item-text: #000000;
+  --confirm-item-price: #DD2D4A;
+
+  --confirm-total-text: #DD2D4A;
+
+  --confirm-button-bg: #DD2D4A;
+  --confirm-button-text: #FFFFFF;
 }
 .menu-tabs {
   display: flex;
