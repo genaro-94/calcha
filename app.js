@@ -620,10 +620,12 @@ function aplicarThemeComercio(comercio) {
 
   const colors = comercio.theme.colors || comercio.theme;
 
+  // 🎨 aplicar todas las variables definidas en theme.colors
   Object.entries(colors).forEach(([key, value]) => {
     vista.style.setProperty(`--${key}`, value);
   });
 
+  // 🔤 fuente (opcional)
   if (comercio.theme.font) {
     vista.style.setProperty('--font', comercio.theme.font);
   }
