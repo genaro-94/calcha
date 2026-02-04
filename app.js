@@ -407,11 +407,13 @@ function activarRubros() {
   document.querySelectorAll("[data-rubro]").forEach(b => {
     b.onclick = () => {
       rubroActivo = b.dataset.rubro;
-      history.history.replaceState(
+
+      history.replaceState(
         { vista: "home", rubro: rubroActivo },
         "",
         "#rubro-" + rubroActivo
       );
+
       renderHome();
     };
   });
