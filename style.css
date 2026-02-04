@@ -880,7 +880,7 @@ body {
   --tab-active-bg: #DD2D4A;
   --tab-active-text: #fff;
   --menu-bg: #F6BD60;
-},
+}
 .menu-tabs {
   display: flex;
   gap: 8px;
