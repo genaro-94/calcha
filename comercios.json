@@ -56,35 +56,33 @@
     "galleryTitle": "#000000",
     "galleryBorder": "#F6BD60",
 
-    /* ===== NUEVAS VARIABLES ===== */
 
-    /* Card título comercio */
     "title-bg": "#FFFFFF",
     "title-text": "#DD2D4A",
     "title-shadow": "0 6px 16px rgba(0,0,0,0.08)",
 
-    /* Card subtítulo */
+    
     "subtitle-bg": "#FFFFFF",
     "subtitle-text": "#555555",
     "subtitle-shadow": "0 6px 16px rgba(0,0,0,0.08)",
 
-    /* Título de sección (platos) */
+    
     "section-title-text": "#000000",
 
-    /* Tabs de categorías */
+    
     "menu-bg": "#F6BD60",
     "tab-bg": "#EDEDE9",
     "tab-text": "#000000",
     "tab-active-bg": "#DD2D4A",
     "tab-active-text": "#FFFFFF",
 
-    /* Cards de productos */
+    
     "item-bg": "#FFFFFF",
     "item-text": "#000000",
     "item-price": "#DD2D4A",
     "item-shadow": "0 4px 14px rgba(0,0,0,0.08)",
 
-    /* Botón + */
+    
     "item-button-bg": "#DD2D4A",
     "item-button-text": "#FFFFFF"
   },
