@@ -627,6 +627,10 @@ margin-bottom: 18px;
 .item-cantidad button:active {
   background: var(--item-qty-btn-bg-active);
 }
+.btn-agregar-item {
+  background: var(--item-button-bg);
+  color: var(--item-button-text);
+}
 /* =========================
    CONFIRMACIÓN
 ========================= */
