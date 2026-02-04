@@ -9,7 +9,7 @@
     "tipoOperacion": "pedido",
     "permiteDelivery": true,
     "menu": [
-      { "categoria": "Sándwiches", "nombre": "Hamburguesa clásica", "precio": 700 },
+      { "categoria": "Sándwiches", "nombre": "Hamburguesa clásica (queso, huevo)", "precio": 700 },
       { "categoria": "Sándwiches", "nombre": "Lomito completo (queso, jamon, huevo, c/papas)", "precio": 850 },
       { "categoria": "Guarniciones", "nombre": "Papas fritas", "precio": 400 },
       { "categoria": "Bebidas", "nombre": "Gaseosa 500ml", "precio": 250 }
