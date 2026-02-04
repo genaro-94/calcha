@@ -624,24 +624,39 @@ btnTerminos.addEventListener("click", () => {
 }
 
 function aplicarThemeComercio(comercio) {
-  const vista = document.querySelector('.vista-comercio');
+  const vista = document.querySelector(".vista-comercio");
   if (!vista || !comercio?.theme) return;
 
-  vista.removeAttribute('style');
+  // limpiamos overrides previos
+  vista.removeAttribute("style");
 
-  const colors = comercio.theme.colors || comercio.theme;
+  const theme = comercio.theme;
+  const colors = theme.colors || {};
 
-  // 🎨 aplicar todas las variables definidas en theme.colors
-  Object.entries(colors).forEach(([key, value]) => {
-    vista.style.setProperty(`--${key}`, value);
-  });
-
-  // 🔤 fuente (opcional)
-  if (comercio.theme.font) {
-    vista.style.setProperty('--font', comercio.theme.font);
+  // helper recursivo para soportar objetos anidados
+  function aplicarVars(obj, prefix = "") {
+    Object.entries(obj).forEach(([key, value]) => {
+      if (typeof value === "object" && value !== null) {
+        aplicarVars(value, `${prefix}${key}-`);
+      } else {
+        vista.style.setProperty(`--${prefix}${key}`, value);
+      }
+    });
   }
-}
 
+  // 🎨 colores y sub-secciones (cards, confirm, etc.)
+  aplicarVars(colors);
+
+  // 🔤 fuente
+  if (theme.font) {
+    vista.style.setProperty("--font", theme.font);
+  }
+
+  // 📐 radius global (opcional)
+  if (theme.radius) {
+    aplicarVars(theme.radius, "radius-");
+  }
+    }
 // =========================
 // RESERVA / INFO COMERCIO
 // =========================
