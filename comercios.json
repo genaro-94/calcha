@@ -465,13 +465,35 @@
   "whatsapp": "3875181644",
   "estado": "activo",
   "destacado": true,
-  "theme": {
-    "primary": "#FFFFFF",
-    "secondary": "#F4EDE4",
-    "accent": "#606C38",
-    "text": "#FFFFFF",
-    "background": "#606C38",
-    "font": "Poppins"
-  }
+"theme": {
+  "colors": {
+    "primary": "#EE6055",
+    "secondary": "#B7E4C7",
+    "accent": "#FFD97D",
+
+    "background": "#B7E4C7",
+    "text": "#000000",
+
+    "gallery-title": "#000000",
+
+
+
+    "button-back-bg": "#FFD97D",
+    "button-back-text": "#000000",
+
+    "button-continue-bg": "#EE6055",
+    "button-continue-text": "#FFFFFF",
+
+  
+
+    "gallery-border": "#FFD97D",
+    
+    "item-bg": "#FFFFFF",
+    "item-text": "#000000",
+    "item-shadow": "0 4px 12px rgba(0,0,0,0.10)"
+  },
+
+  "font": "Poppins"
+}
 }
 ]
