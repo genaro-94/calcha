@@ -376,7 +376,7 @@ function activarRubros() {
   document.querySelectorAll("[data-rubro]").forEach(b => {
     b.onclick = () => {
       rubroActivo = b.dataset.rubro;
-      history.replaceState(
+      history.pushState(
         { vista: "home", rubro: rubroActivo },
         "",
         "#rubro-" + rubroActivo
@@ -428,7 +428,7 @@ function renderSelectorUbicacion() {
 
 function setUbicacion(ubi) {
   ubicacionActiva = ubi;
-  history.replaceState(
+  history.pushState(
   { vista: "home", ubicacion: ubi },
   "",
   "#ubicacion-" + ubi
