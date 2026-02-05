@@ -216,7 +216,7 @@ if (mensajeRubro) {
 }
   document.getElementById("btn-menu").onclick = () => {
     vistaActual = "menu";
-    history.pushState({ vista: "menu" }, "", "#menu");
+    history.history.replaceState({ vista: "menu" }, "", "#menu");
     renderMenu();
   };
 if (window.analytics) {
