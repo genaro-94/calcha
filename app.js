@@ -6,7 +6,7 @@
 // =========================
 // ESTADO GLOBAL
 // =========================
-let homeEsRoot = true;
+
 let vistaActual = "home";
 let ubicacionActiva = null;
 let rubroActivo = "todos";
@@ -294,26 +294,24 @@ card.innerHTML += `
 `;
       
 card.onclick = () => {
-  comercioActivo = c;
-  vistaActual = c.tipoOperacion === "reserva" ? "reserva" :
-                c.tipoOperacion === "info" ? "infoComercio" :
-                "pedido";
-
-  if (homeEsRoot) {
-  // primer comercio desde Home → reemplaza
-  history.replaceState(
+  // 1️⃣ Guardar estado actual (home con filtros)
+  history.pushState(
     {
       vista: vistaActual,
-      comercioId: c.id,
       rubro: rubroActivo,
       ubicacion: ubicacionActiva
     },
     "",
-    "#" + vistaActual
+    ""
   );
-  homeEsRoot = false;
-} else {
-  // navegación normal
+
+  // 2️⃣ Entrar al comercio
+  comercioActivo = c;
+  vistaActual =
+    c.tipoOperacion === "reserva" ? "reserva" :
+    c.tipoOperacion === "info" ? "infoComercio" :
+    "pedido";
+
   history.pushState(
     {
       vista: vistaActual,
@@ -324,7 +322,6 @@ card.onclick = () => {
     "",
     "#" + vistaActual
   );
-  }
 
   renderApp();
 };
@@ -359,26 +356,24 @@ card.innerHTML += `
   </div>
 `;
 card.onclick = () => {
-  comercioActivo = c;
-  vistaActual = c.tipoOperacion === "reserva" ? "reserva" :
-                c.tipoOperacion === "info" ? "infoComercio" :
-                "pedido";
-
-if (homeEsRoot) {
-  // primer comercio desde Home → reemplaza
-  history.replaceState(
+  // 1️⃣ Guardar estado actual (home con filtros)
+  history.pushState(
     {
       vista: vistaActual,
-      comercioId: c.id,
       rubro: rubroActivo,
       ubicacion: ubicacionActiva
     },
     "",
-    "#" + vistaActual
+    ""
   );
-  homeEsRoot = false;
-} else {
-  // navegación normal
+
+  // 2️⃣ Entrar al comercio
+  comercioActivo = c;
+  vistaActual =
+    c.tipoOperacion === "reserva" ? "reserva" :
+    c.tipoOperacion === "info" ? "infoComercio" :
+    "pedido";
+
   history.pushState(
     {
       vista: vistaActual,
@@ -389,7 +384,6 @@ if (homeEsRoot) {
     "",
     "#" + vistaActual
   );
-}
 
   renderApp();
 };
@@ -1188,11 +1182,37 @@ function activarBusqueda() {
         `;
 
         card.onclick = () => {
-          comercioActivo = c;
-          vistaActual = "pedido";
-          history.pushState({ vista: "pedido", comercioId: c.id }, "", "#pedido");
-          renderPedido();
-        };
+  // 1️⃣ Guardar estado actual (home con filtros)
+  history.pushState(
+    {
+      vista: vistaActual,
+      rubro: rubroActivo,
+      ubicacion: ubicacionActiva
+    },
+    "",
+    ""
+  );
+
+  // 2️⃣ Entrar al comercio
+  comercioActivo = c;
+  vistaActual =
+    c.tipoOperacion === "reserva" ? "reserva" :
+    c.tipoOperacion === "info" ? "infoComercio" :
+    "pedido";
+
+  history.pushState(
+    {
+      vista: vistaActual,
+      comercioId: c.id,
+      rubro: rubroActivo,
+      ubicacion: ubicacionActiva
+    },
+    "",
+    "#" + vistaActual
+  );
+
+  renderApp();
+};
 
         resultados.appendChild(card);
       });
