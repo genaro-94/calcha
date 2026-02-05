@@ -463,10 +463,7 @@ function volverHome() {
   direccionEntrega = "";
 
   history.replaceState({ vista: "home" }, "", "#home");
-  renderApp();
-});
-
-  renderHome();
+renderHome();
 
   app.scrollTo({ top: 0, behavior: "smooth" });
 }
