@@ -644,6 +644,7 @@
   "font": "Poppins"
 }
 },
+  {
   "id": 8,
     "nombre": "Don Arnaldo",
     "ubicacion": "cafayate",
@@ -725,4 +726,5 @@
   },
   "font": "Poppins"
 }
+  }
 ]
