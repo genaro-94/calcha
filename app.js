@@ -485,12 +485,14 @@ function activarUbicaciones() {
 // =========================
 // BOTÓN HOME
 // =========================
-function volverHome(forzar = false) {
-  if (vistaActual === "home" && !forzar) {
-    renderHome();
+function volverHome() {
+  // ✅ Si YA estoy en home → solo subir
+  if (vistaActual === "home") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     return;
   }
 
+  // 🔁 Si NO estoy en home → reset + render
   vistaActual = "home";
   rubroActivo = "todos";
   ubicacionActiva = null;
@@ -498,8 +500,13 @@ function volverHome(forzar = false) {
   tipoEntrega = null;
   direccionEntrega = "";
 
+  history.pushState({ vista: "home" }, "", "#home");
   renderHome();
-  app.scrollTo({ top: 0, behavior: "smooth" });
+
+  // scroll inmediato después del render
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  });
 }
 
 document.addEventListener("click", (e) => {
