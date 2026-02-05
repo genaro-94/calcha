@@ -487,7 +487,7 @@ function activarUbicaciones() {
 // =========================
 function volverHome(forzar = false) {
   if (vistaActual === "home" && !forzar) {
-    app.scrollTo({ top: 0, behavior: "smooth" });
+    renderHome();
     return;
   }
 
