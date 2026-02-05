@@ -485,6 +485,16 @@ function activarUbicaciones() {
 // =========================
 // BOTÓN HOME
 // =========================
+function scrollToTopAlways() {
+  // bajamos 1px y volvemos arriba
+  window.scrollTo(0, 1);
+
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+
 function volverHome(forzar = false) {
   if (vistaActual === "home" && !forzar) {
     app.scrollTo({ top: 0, behavior: "smooth" });
@@ -502,7 +512,7 @@ function volverHome(forzar = false) {
 
   // ⚠️ importante: esperar al render
   requestAnimationFrame(() => {
-    app.scrollTo({ top: 0, behavior: "smooth" });
+       scrollToTopAlways();
   });
 }
 
@@ -519,6 +529,7 @@ document.addEventListener("click", (e) => {
     volverHome(true);
   }
 });
+
 
 // =========================
 // INFO
