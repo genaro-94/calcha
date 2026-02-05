@@ -506,14 +506,7 @@ document.addEventListener("click", (e) => {
   if (!e.target.closest(".btn-home")) return;
 
   vengoDeHome = true;
-
-  // 👉 si ya estoy en home, NO forzar (solo scroll)
-  if (vistaActual === "home") {
-    volverHome(false);
-  } else {
-    // 👉 si estoy en otra vista, forzar reset + render
-    volverHome(true);
-  }
+  volverHome(true);
 });
 
 // =========================
