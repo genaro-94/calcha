@@ -664,14 +664,16 @@ function aplicarThemeComercio(comercio) {
 // RESERVA / INFO COMERCIO
 // =========================
 function renderInfoComercio() {
-if (!comercioActivo) return;
+  if (!comercioActivo) return;
+
   if (window.analytics) {
-  logEvent(window.analytics, "ver_comercio", {
-    tipo: "info",
-    comercio: comercioActivo.slug || comercioActivo.nombre,
-    rubro: comercioActivo.rubro
-  });
+    logEvent(window.analytics, "ver_comercio", {
+      tipo: "info",
+      comercio: comercioActivo.slug || comercioActivo.nombre,
+      rubro: comercioActivo.rubro
+    });
   }
+
   let enlaceConsulta = "";
   if (comercioActivo.urlReserva) {
     enlaceConsulta = comercioActivo.urlReserva;
@@ -682,60 +684,57 @@ if (!comercioActivo) return;
     enlaceConsulta = `https://wa.me/${comercioActivo.whatsapp}?text=${msg}`;
   }
 
-app.innerHTML = `
-<div class="vista-comercio vista-pedido rubro-${comercioActivo.rubro}">
-  <button class="btn-volver">←</button>
-  <img src="${comercioActivo.imagen}" class="comercio-portada">
-  <h2>${comercioActivo.nombre}</h2>
-  <p>${comercioActivo.descripcion}</p>
+  app.innerHTML = `
+    <div class="vista-comercio vista-pedido rubro-${comercioActivo.rubro}">
+      <button class="btn-volver">←</button>
+      <img src="${comercioActivo.imagen}" class="comercio-portada">
+      <h2>${comercioActivo.nombre}</h2>
+      <p>${comercioActivo.descripcion}</p>
 
-  ${renderLinksComercio(comercioActivo)}
+      ${renderLinksComercio(comercioActivo)}
 
-  ${enlaceConsulta
-    ? `<button onclick="
-        registrarClickContacto('consulta');
-        window.open('${enlaceConsulta}','_blank');
-      ">
-        Contactar
-      </button>`
-    : ""
-  }
+      ${enlaceConsulta ? `
+        <button onclick="
+          registrarClickContacto('consulta');
+          window.open('${enlaceConsulta}','_blank');
+        ">
+          Contactar
+        </button>
+      ` : ""}
 
-  ${
-    comercioActivo.galerias
-      ? Object.entries(comercioActivo.galerias).map(([categoria, fotos]) => `
-          <h3>${categoria}</h3>
-          <div class="galeria-comercio">
-            ${fotos.map((img, index) => `
-              <img 
-                src="${img}" 
-                class="galeria-img" 
-                data-fotos='${JSON.stringify(fotos)}'
-                data-index="${index}"
-              >
-            `).join("")}
-          </div>
-        `).join("")
-      : ""
-  }
-</div>
-`;
-      
-      app.insertAdjacentHTML("beforeend", galeriaHTML);
-    });
+      ${
+        comercioActivo.galerias
+          ? Object.entries(comercioActivo.galerias).map(([categoria, fotos]) => `
+              <h3>${categoria}</h3>
+              <div class="galeria-comercio">
+                ${fotos.map((img, index) => `
+                  <img 
+                    src="${img}" 
+                    class="galeria-img" 
+                    data-fotos='${JSON.stringify(fotos)}'
+                    data-index="${index}"
+                  >
+                `).join("")}
+              </div>
+            `).join("")
+          : ""
+      }
+    </div>
+  `;
 
-  
-    document.querySelectorAll(".galeria-img").forEach(img => {
-  img.onclick = () => {
-    abrirLightboxDesdeIndice(
-      JSON.parse(img.dataset.fotos),
-      parseInt(img.dataset.index)
-    );
-  };
-});
-  }
+  // Lightbox
+  document.querySelectorAll(".galeria-img").forEach(img => {
+    img.onclick = () => {
+      abrirLightboxDesdeIndice(
+        JSON.parse(img.dataset.fotos),
+        parseInt(img.dataset.index)
+      );
+    };
+  });
+
   document.querySelector(".btn-volver").onclick = () => history.back();
-aplicarThemeComercio(comercioActivo);
+
+  aplicarThemeComercio(comercioActivo);
 }
 
 function renderReserva() {
