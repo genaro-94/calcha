@@ -676,54 +676,101 @@
     "destacado": false,
 "theme": {
   "colors": {
-    "primary": "#0F0F0F",
-    "secondary": "#5A3A2E",
-    "accent": "#E06C9F",
+    "primary": "#7A1F2B",
+    "secondary": "#2B1E1A",
+    "accent": "#D4A373",
 
-    "background": "#0F0F0F",
-    "text": "#F5F5F5",
+    "background": "#EFE6DC",
+    "text": "#1E1E1E",
 
     "title": {
-      "bg": "#5A3A2E",
-      "text": "#F5F5F5"
+      "bg": "#2B1E1A",
+      "text": "#D4A373"
     },
 
     "button-back": {
-      "bg": "#5A3A2E",
-      "text": "#F5F5F5"
+      "bg": "#2B1E1A",
+      "text": "#D4A373"
     },
 
     "button-continue": {
-      "bg": "#F2A65A",
-      "text": "#0F0F0F"
+      "bg": "#7A1F2B",
+      "text": "#FFFFFF"
+    },
+
+    "delivery-active": {
+      "bg": "#D4A373",
+      "border": "#7A1F2B",
+      "text": "#1E1E1E"
+    },
+
+    "cart": {
+      "total": "#7A1F2B"
+    },
+
+    "resumen": {
+      "item-name": "#1E1E1E",
+      "item-price": "#7A1F2B"
+    },
+
+    "confirm": {
+      "title": "#1E1E1E",
+      "total": "#7A1F2B",
+      "bg": "#EFE6DC",
+
+      "card": {
+        "bg": "#FFFFFF",
+        "shadow": "0 6px 16px rgba(0,0,0,0.12)"
+      },
+
+      "item": {
+        "text": "#1E1E1E",
+        "price": "#7A1F2B"
+      },
+
+      "button": {
+        "bg": "#7A1F2B",
+        "text": "#FFFFFF"
+      }
     },
 
     "gallery": {
-      "title": "#F5F5F5",
-      "border": "#7A2E2E"
+      "title": "#1E1E1E",
+      "border": "#D4A373"
+    },
+
+    "menu": {
+      "bg": "#D4A373"
     },
 
     "tab": {
-      "bg": "#1A1A1A",
-      "text": "#CFCFCF",
+      "bg": "#EFE6DC",
+      "text": "#1E1E1E",
       "active": {
-        "bg": "#E06C9F",
-        "text": "#0F0F0F"
+        "bg": "#7A1F2B",
+        "text": "#FFFFFF"
       }
     },
 
     "item": {
-      "bg": "#1A1A1A",
-      "text": "#F5F5F5",
-      "price": "#F2A65A",
-      "shadow": "0 4px 14px rgba(0,0,0,0.5)",
+      "bg": "#FFFFFF",
+      "text": "#1E1E1E",
+      "price": "#7A1F2B",
+      "shadow": "0 4px 14px rgba(0,0,0,0.12)",
 
       "button": {
-        "bg": "#E06C9F",
-        "text": "#0F0F0F"
+        "bg": "#7A1F2B",
+        "text": "#FFFFFF"
+      },
+
+      "qty-btn": {
+        "bg": "#7A1F2B",
+        "text": "#FFFFFF",
+        "bg-active": "#5E1821"
       }
     }
   },
+
   "font": "Poppins"
 }
   }
