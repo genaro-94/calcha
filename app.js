@@ -39,7 +39,7 @@ window.addEventListener("popstate", (e) => {
   if (vista === "reserva") renderReserva();
 
   navegandoPorHistorial = false;
-}
+});
 // =========================
 // INIT APP
 // =========================
