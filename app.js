@@ -462,7 +462,9 @@ function volverHome() {
   tipoEntrega = null;
   direccionEntrega = "";
 
-  
+  history.replaceState({ vista: "home" }, "", "#home");
+  renderApp();
+});
 
   renderHome();
 
