@@ -486,16 +486,11 @@ function activarUbicaciones() {
 // BOTÓN HOME
 // =========================
 function volverHome(forzar = false) {
-  // SI YA ESTOY EN HOME → SOLO SCROLL ARRIBA
   if (vistaActual === "home" && !forzar) {
-    app.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+    app.scrollTo({ top: 0, behavior: "smooth" });
     return;
   }
 
-  // SI NO ESTOY EN HOME → RESET + RENDER
   vistaActual = "home";
   rubroActivo = "todos";
   ubicacionActiva = null;
@@ -504,13 +499,22 @@ function volverHome(forzar = false) {
   direccionEntrega = "";
 
   renderHome();
-
-  // cuando vuelve al home, también arrancar arriba
-  app.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+  app.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".btn-home")) return;
+
+  vengoDeHome = true;
+
+  // 👉 si ya estoy en home, NO forzar (solo scroll)
+  if (vistaActual === "home") {
+    volverHome(false);
+  } else {
+    // 👉 si estoy en otra vista, forzar reset + render
+    volverHome(true);
+  }
+});
 
 // =========================
 // INFO
