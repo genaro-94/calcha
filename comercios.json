@@ -390,8 +390,8 @@
     "button-continue-bg": "#43291F",
     "button-continue-text": "#FFFFFF",
 
-    "delivery-active-bg": "#43291F",
-    "delivery-active-border": "#FFFFFF",
+    "delivery-active-bg": "#168AAD",
+    "delivery-active-border": "#43291F",
     "delivery-active-text": "#FFFFFF",
 
     "cart-total": "#FFFFFF",
