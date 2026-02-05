@@ -282,20 +282,11 @@ card.onclick = () => {
     c.tipoOperacion === "info" ? "infoComercio" :
     "pedido";
 
-  if (vengoDeHome) {
-  history.replaceState(
-    { vista: vistaActual, comercioId: c.id },
-    "",
-    "#" + vistaActual
-  );
-  vengoDeHome = false;
-} else {
-  history.pushState(
-    { vista: vistaActual, comercioId: c.id },
-    "",
-    "#" + vistaActual
-  );
-    }
+history.pushState(
+  { vista: vistaActual, comercioId: c.id },
+  "",
+  "#" + vistaActual
+);
 
   renderApp();
 };
@@ -339,20 +330,11 @@ card.onclick = () => {
     c.tipoOperacion === "reserva" ? "reserva" :
     c.tipoOperacion === "info" ? "infoComercio" :
     "pedido";
-if (vengoDeHome) {
-  history.replaceState(
-    { vista: vistaActual, comercioId: c.id },
-    "",
-    "#" + vistaActual
-  );
-  vengoDeHome = false;
-} else {
-  history.pushState(
-    { vista: vistaActual, comercioId: c.id },
-    "",
-    "#" + vistaActual
-  );
-}
+history.pushState(
+  { vista: vistaActual, comercioId: c.id },
+  "",
+  "#" + vistaActual
+);
   renderApp();
 };
     lista.appendChild(card);
