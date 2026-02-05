@@ -455,13 +455,6 @@ function activarUbicaciones() {
 // BOTÓN HOME
 // =========================
 function volverHome() {
-  // ✅ Si YA estoy en home → solo subir
-  if (vistaActual === "home") {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    return;
-  }
-
-  // 🔁 Si NO estoy en home → reset + render
   vistaActual = "home";
   rubroActivo = "todos";
   ubicacionActiva = null;
@@ -469,20 +462,19 @@ function volverHome() {
   tipoEntrega = null;
   direccionEntrega = "";
 
-  history.replaceState({ vista: "home" }, "", "#home");
-  renderHome();
-vengoDeHome = false;
-  // scroll inmediato después del render
-  requestAnimationFrame(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  });
-}
+  history.replaceState(
+    { vista: "home" },
+    "",
+    "#home"
+  );
 
+  renderHome();
+
+  app.scrollTo({ top: 0, behavior: "smooth" });
+}
 document.addEventListener("click", (e) => {
   if (!e.target.closest(".btn-home")) return;
-
-  vengoDeHome = true;
-  volverHome(true);
+  volverHome();
 });
 
 // =========================
