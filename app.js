@@ -496,7 +496,7 @@ function activarUbicaciones() {
 // BOTÓN HOME
 // =========================
 function volverHome() {
-  // Si ya estamos en Home con los mismos filtros, solo scroll top
+  // Si ya estamos en Home → solo scroll
   if (vistaActual === "home") {
     app.scrollTo({ top: 0, behavior: "smooth" });
     return;
@@ -504,16 +504,19 @@ function volverHome() {
 
   vistaActual = "home";
   comercioActivo = null;
-  // Mantener filtros si vienen de comercio
-  rubroActivo = history.state?.rubro ?? rubroActivo ?? "todos";
-  ubicacionActiva = history.state?.ubicacion ?? ubicacionActiva ?? null;
 
-  // Push/replaceState a Home
-  history.pushState({
-    vista: "home",
-    rubro: rubroActivo,
-    ubicacion: ubicacionActiva
-  }, "", "#home");
+  // El Home vuelve a ser raíz
+  homeEsRoot = true;
+
+  history.replaceState(
+    {
+      vista: "home",
+      rubro: rubroActivo,
+      ubicacion: ubicacionActiva
+    },
+    "",
+    "#home"
+  );
 
   renderHome();
   app.scrollTo({ top: 0, behavior: "smooth" });
