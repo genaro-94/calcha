@@ -643,5 +643,86 @@
 
   "font": "Poppins"
 }
+},
+  "id": 8,
+    "nombre": "Don Arnaldo",
+    "ubicacion": "cafayate",
+    "rubro": "gastronomia",
+    "descripcion": "Sandwichería local con los mejores sándwiches y menú del día.",
+    "imagen": "images/donarnaldo.jpg",
+    "tipoOperacion": "pedido",
+    "permiteDelivery": true,
+    "menu": [
+{ "categoria": "Sándwiches", "nombre": "Hamburguesa clásica (queso, huevo)", "precio": 7000 },
+{ "categoria": "Sándwiches", "nombre": "Hamburguesa completa (queso,jamon, huevo, c/papas)", "precio": 8500 },      
+{ "categoria": "Sándwiches", "nombre": "Lomito clasico (queso, huevo)", "precio": 7000 },
+{ "categoria": "Sándwiches", "nombre": "Lomito completo (queso, jamon, huevo, c/papas)", "precio": 8500 },      
+{ "categoria": "Guarniciones", "nombre": "Papas fritas", "precio": 1500 },
+{ "categoria": "Guarniciones", "nombre": "ensalda simple (tomate, lechuga, zanahoria)", "precio": 1000 },
+{ "categoria": "pizzas", "nombre": "pizza comun (salsa, queso, tomate)", "precio": 6500 },
+{ "categoria": "pizzas", "nombre": "pizza especial (salsa, queso, tomate, jamon, huevo)", "precio": 8000 },      
+{ "categoria": "Bebidas", "nombre": "Gaseosa 500ml", "precio": 2500 },
+{ "categoria": "Bebidas", "nombre": "Gaseosa 1lt", "precio": 4500 },
+{ "categoria": "Bebidas", "nombre": "Gaseosa 1,5lt", "precio": 5500 },
+{ "categoria": "Bebidas", "nombre": "Gaseosa 3lt", "precio": 6500 }
+
+    ],
+    "galerias": {
+      "platos": ["images/fritas.png", "images/lomo.jpg", "images/mila.jpeg"]
+    },
+    "whatsapp": "3874000001",
+    "estado": "activo",
+    "destacado": false,
+"theme": {
+  "colors": {
+    "primary": "#0F0F0F",
+    "secondary": "#5A3A2E",
+    "accent": "#E06C9F",
+
+    "background": "#0F0F0F",
+    "text": "#F5F5F5",
+
+    "title": {
+      "bg": "#5A3A2E",
+      "text": "#F5F5F5"
+    },
+
+    "button-back": {
+      "bg": "#5A3A2E",
+      "text": "#F5F5F5"
+    },
+
+    "button-continue": {
+      "bg": "#F2A65A",
+      "text": "#0F0F0F"
+    },
+
+    "gallery": {
+      "title": "#F5F5F5",
+      "border": "#7A2E2E"
+    },
+
+    "tab": {
+      "bg": "#1A1A1A",
+      "text": "#CFCFCF",
+      "active": {
+        "bg": "#E06C9F",
+        "text": "#0F0F0F"
+      }
+    },
+
+    "item": {
+      "bg": "#1A1A1A",
+      "text": "#F5F5F5",
+      "price": "#F2A65A",
+      "shadow": "0 4px 14px rgba(0,0,0,0.5)",
+
+      "button": {
+        "bg": "#E06C9F",
+        "text": "#0F0F0F"
+      }
+    }
+  },
+  "font": "Poppins"
 }
 ]
