@@ -486,8 +486,12 @@ function activarUbicaciones() {
 // BOTÓN HOME
 // =========================
 function volverHome(forzar = false) {
+  // si ya estoy en home → solo subir
   if (vistaActual === "home" && !forzar) {
-    app.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
     return;
   }
 
@@ -499,15 +503,15 @@ function volverHome(forzar = false) {
   direccionEntrega = "";
 
   renderHome();
-  app.scrollTo({ top: 0, behavior: "smooth" });
+
+  // esperar a que el DOM del home esté renderizado
+  requestAnimationFrame(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
 }
-
-document.addEventListener("click", (e) => {
-  if (!e.target.closest(".btn-home")) return;
-
-  vengoDeHome = true;
-  volverHome(true);
-});
 
 // =========================
 // INFO
