@@ -485,16 +485,6 @@ function activarUbicaciones() {
 // =========================
 // BOTÓN HOME
 // =========================
-function scrollToTopAlways() {
-  // bajamos 1px y volvemos arriba
-  window.scrollTo(0, 1);
-
-  requestAnimationFrame(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-}
-
-
 function volverHome(forzar = false) {
   if (vistaActual === "home" && !forzar) {
     app.scrollTo({ top: 0, behavior: "smooth" });
@@ -509,27 +499,15 @@ function volverHome(forzar = false) {
   direccionEntrega = "";
 
   renderHome();
-
-  // ⚠️ importante: esperar al render
-  requestAnimationFrame(() => {
-       scrollToTopAlways();
-  });
+  app.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 document.addEventListener("click", (e) => {
   if (!e.target.closest(".btn-home")) return;
 
   vengoDeHome = true;
-
-  if (vistaActual === "home") {
-    // 👉 ya estoy en home → solo subir
-    volverHome(false);
-  } else {
-    // 👉 vengo de otra vista → reset completo
-    volverHome(true);
-  }
+  volverHome(true);
 });
-
 
 // =========================
 // INFO
