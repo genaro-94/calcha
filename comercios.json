@@ -132,7 +132,8 @@
     "background": "#E6CCB2",
     "text": "#0A0908",
     
-    "tittle-bg": "#BB9457",
+    "tittleg": "#BB9457",
+    "tittleText": "#000000",
  
     "button-back-bg": "#9C6644",
     "button-back-text": "#FFFFFF",
