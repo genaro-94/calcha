@@ -85,23 +85,28 @@ setInterval(() => {
 // =========================
 function manejarBackButton() {
   window.addEventListener("popstate", e => {
+
+    // Lightbox primero
     if (lightboxDiv && lightboxDiv.style.display === "flex") {
       cerrarLightbox(false);
       return;
     }
 
+    // Si no hay estado o es Home → dejamos que Android / navegador cierre
     if (!e.state || e.state.vista === "home") {
       vistaActual = "home";
-      rubroActivo = e.state?.rubro ?? "todos";
-      ubicacionActiva = e.state?.ubicacion ?? null;
       comercioActivo = null;
-    } else {
-      const s = e.state;
-      vistaActual = s.vista;
-      rubroActivo = s.homeRubro ?? rubroActivo;
-      ubicacionActiva = s.homeUbicacion ?? ubicacionActiva;
-      comercioActivo = s.comercioId ? comercios.find(c => c.id === s.comercioId) : null;
+      rubroActivo = e.state?.rubro ?? rubroActivo;
+      ubicacionActiva = e.state?.ubicacion ?? ubicacionActiva;
+      renderHome();
+      return;
     }
+
+    // Estados de comercio
+    vistaActual = e.state.vista;
+    comercioActivo = e.state.comercioId
+      ? comercios.find(c => c.id === e.state.comercioId)
+      : null;
 
     renderApp();
   });
