@@ -131,31 +131,23 @@
 
     "background": "#E6CCB2",
     "text": "#0A0908",
-
     
-
+    "tittle-bg": "#BB9457",
+ 
     "button-back-bg": "#9C6644",
     "button-back-text": "#FFFFFF",
 
     "button-continue-bg": "#BB9457",
     "button-continue-text": "#0A0908",
 
-    
-
     "delivery-active-bg": "#E6CCB2",
     "delivery-active-border": "#9C6644",
     "delivery-active-text": "#0A0908",
 
-    
-
     "cart-total": "#9C6644",
-
-
 
     "resumen-item-name": "#0A0908",
     "resumen-item-price": "#9C6644",
-
-
 
     "confirm-title": "#0A0908",
     "confirm-total": "#9C6644",
