@@ -469,7 +469,7 @@ function volverHome() {
   tipoEntrega = null;
   direccionEntrega = "";
 
-  history.pushState({ vista: "home" }, "", "#home");
+  history.replaceState({ vista: "home" }, "", "#home");
   renderHome();
 vengoDeHome = false;
   // scroll inmediato después del render
