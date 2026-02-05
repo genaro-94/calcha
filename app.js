@@ -107,6 +107,7 @@ function manejarBackButton() {
 
   renderApp();  // 🔥 ahora Home también pasa por renderApp
 });
+}
 // =========================
 // DATA
 // =========================
