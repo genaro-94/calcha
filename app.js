@@ -6,7 +6,7 @@
 // =========================
 // ESTADO GLOBAL
 // =========================
-
+let homeEsRoot = true;
 let vistaActual = "home";
 let ubicacionActiva = null;
 let rubroActivo = "todos";
@@ -284,12 +284,32 @@ card.onclick = () => {
                 c.tipoOperacion === "info" ? "infoComercio" :
                 "pedido";
 
-  history.pushState({
-    vista: vistaActual,
-    comercioId: c.id,
-    homeRubro: rubroActivo,
-    homeUbicacion: ubicacionActiva
-  }, "", "#" + vistaActual);
+  if (homeEsRoot) {
+  // primer comercio desde Home → reemplaza
+  history.replaceState(
+    {
+      vista: vistaActual,
+      comercioId: c.id,
+      rubro: rubroActivo,
+      ubicacion: ubicacionActiva
+    },
+    "",
+    "#" + vistaActual
+  );
+  homeEsRoot = false;
+} else {
+  // navegación normal
+  history.pushState(
+    {
+      vista: vistaActual,
+      comercioId: c.id,
+      rubro: rubroActivo,
+      ubicacion: ubicacionActiva
+    },
+    "",
+    "#" + vistaActual
+  );
+  }
 
   renderApp();
 };
@@ -329,12 +349,32 @@ card.onclick = () => {
                 c.tipoOperacion === "info" ? "infoComercio" :
                 "pedido";
 
-  history.pushState({
-    vista: vistaActual,
-    comercioId: c.id,
-    homeRubro: rubroActivo,
-    homeUbicacion: ubicacionActiva
-  }, "", "#" + vistaActual);
+if (homeEsRoot) {
+  // primer comercio desde Home → reemplaza
+  history.replaceState(
+    {
+      vista: vistaActual,
+      comercioId: c.id,
+      rubro: rubroActivo,
+      ubicacion: ubicacionActiva
+    },
+    "",
+    "#" + vistaActual
+  );
+  homeEsRoot = false;
+} else {
+  // navegación normal
+  history.pushState(
+    {
+      vista: vistaActual,
+      comercioId: c.id,
+      rubro: rubroActivo,
+      ubicacion: ubicacionActiva
+    },
+    "",
+    "#" + vistaActual
+  );
+}
 
   renderApp();
 };
