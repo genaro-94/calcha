@@ -86,37 +86,27 @@ setInterval(() => {
 function manejarBackButton() {
   window.addEventListener("popstate", e => {
 
-    // 🖼️ Lightbox tiene prioridad absoluta
-    if (lightboxDiv && lightboxDiv.style.display === "flex") {
-      cerrarLightbox(false);
-      return;
-    }
+  if (lightboxDiv && lightboxDiv.style.display === "flex") {
+    cerrarLightbox(false);
+    return;
+  }
 
-    // 👉 SI NO HAY STATE → HOME DURO
-    if (!e.state || e.state.vista === "home") {
-      vistaActual = "home";
-      comercioActivo = null;
-      rubroActivo = "todos";
-      ubicacionActiva = null;
-
-      renderHome();   // 🔥 CLAVE
-      return;
-    }
-
-    // 👉 resto de vistas
+  // si no hay state o es home
+  if (!e.state || e.state.vista === "home") {
+    vistaActual = "home";
+    comercioActivo = null;
+    rubroActivo = "todos";
+    ubicacionActiva = null;
+  } else {
     const s = e.state;
-
     vistaActual = s.vista;
+    rubroActivo = s.rubro ?? rubroActivo;
+    ubicacionActiva = s.ubicacion ?? ubicacionActiva;
+    comercioActivo = s.comercioId ? comercios.find(c => c.id === s.comercioId) : null;
+  }
 
-    if (s.comercioId) {
-      comercioActivo = comercios.find(c => c.id === s.comercioId) || null;
-    } else {
-      comercioActivo = null;
-    }
-
-    renderApp();
-  });
-}
+  renderApp();  // 🔥 ahora Home también pasa por renderApp
+});
 // =========================
 // DATA
 // =========================
