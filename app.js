@@ -487,7 +487,7 @@ function volverHome() {
   tipoEntrega = null;
   direccionEntrega = "";
 
-  history.pushState({ vista: "home" }, "", "#home");
+  history.replaceState({ vista: "home" }, "", "#home");
   renderHome();
 vengoDeHome = false;
   // scroll inmediato después del render
@@ -731,7 +731,13 @@ function renderInfoComercio() {
     };
   });
 
-  document.querySelector(".btn-volver").onclick = () => history.back();
+  document.querySelector(".btn-volver").onclick = () => {
+  if (history.state && history.state.vista !== "home") {
+    history.back();
+  } else {
+    volverHome(true);
+  }
+};
 
   aplicarThemeComercio(comercioActivo);
 }
@@ -796,7 +802,14 @@ if (window.analytics) {
   };
 });
 
-  document.querySelector(".btn-volver").onclick = () => history.back();
+document.querySelector(".btn-volver").onclick = () => {
+  if (history.state && history.state.vista !== "home") {
+    history.back();
+  } else {
+    volverHome(true);
+  }
+};
+  
 aplicarThemeComercio(comercioActivo);
 }
 
@@ -926,7 +939,13 @@ document.querySelectorAll(".menu-tab").forEach(btn => {
     renderPedido();
   };
 });
-  document.querySelector(".btn-volver").onclick = () => history.back();
+  document.querySelector(".btn-volver").onclick = () => {
+  if (history.state && history.state.vista !== "home") {
+    history.back();
+  } else {
+    volverHome(true);
+  }
+};
 
   document.querySelectorAll("[data-a]").forEach(b => {
     b.onclick = () => {
