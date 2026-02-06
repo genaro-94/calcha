@@ -27,6 +27,20 @@ const tiposOperacion = ["pedido", "reserva", "info", "mixto"];
 
 import { logEvent } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
 
+// =========================
+// DETECCIÓN PWA / NAVEGADOR
+// =========================
+const ES_PWA =
+  window.matchMedia("(display-mode: standalone)").matches ||
+  window.navigator.standalone === true;
+
+let deferredInstallPrompt = null;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+});
+
 window.addEventListener("popstate", (e) => {
   if (!e.state || !e.state.vista) {
     volverHome();
@@ -71,6 +85,14 @@ window.addEventListener("popstate", (e) => {
 // =========================
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  // 🚫 BLOQUEO EN NAVEGADOR
+  if (!ES_PWA) {
+    renderBloqueoInstalacion();
+    return; // 🔥 NO se inicializa la app
+  }
+
+  // ✅ PWA NORMAL
   app = document.getElementById("app");
 
   cargarComercios();
@@ -89,6 +111,36 @@ document.addEventListener("click", (e) => {
     }
   }
 });
+
+
+
+function renderBloqueoInstalacion() {
+  document.body.innerHTML = `
+    <div class="bloqueo-pwa">
+      <img src="images/Logo.png" alt="Calcha" class="bloqueo-logo">
+      <h2>Instalá Calcha</h2>
+      <p>
+        Para usar Calcha necesitás instalar la aplicación.
+        Es rápida, liviana y funciona sin navegador.
+      </p>
+      <button id="btn-instalar">📲 Instalar Calcha</button>
+      <small>Disponible gratis</small>
+    </div>
+  `;
+
+  const btn = document.getElementById("btn-instalar");
+
+  btn.onclick = async () => {
+    if (!deferredInstallPrompt) {
+      alert("La instalación todavía no está disponible. Probá de nuevo en unos segundos.");
+      return;
+    }
+
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+  };
+}
 // =========================
 // ROUTER CENTRAL
 // =========================
