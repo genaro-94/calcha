@@ -516,7 +516,7 @@ margin-bottom: 18px;
 /* =========================
    MENÚ / PEDIDO
 ========================= */
-.menu-categoria {
+.menu-categorias {
   display: flex;
   gap: 12px;
   overflow-x: auto;
@@ -526,7 +526,7 @@ margin-bottom: 18px;
   -webkit-overflow-scrolling: touch;
 }
 
-.menu-categoria::-webkit-scrollbar {
+.menu-categorias::-webkit-scrollbar {
   display: none;
 }
 .menu-categoria {
