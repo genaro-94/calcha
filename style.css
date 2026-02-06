@@ -62,9 +62,9 @@ h3 {
 }
 .header-logo {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  margin: 2px 0 2px;
+  gap: 6px;
 }
 
 .header-logo img {
