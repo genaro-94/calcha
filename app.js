@@ -247,6 +247,24 @@ function renderHome() {
     <div id="lista-comercios"
     class="lista-comercios"></div>
   `;
+  document.getElementById("btn-info").onclick = () => {
+    vistaActual = "info";
+
+    history.pushState(
+      {
+        vista: "info",
+        rubro: rubroActivo,
+        ubicacion: ubicacionActiva
+      },
+      "",
+      "#info"
+    );
+
+    renderInfo();
+  };
+
+  document.getElementById("btn-sumar").onclick = sumarMiComercio;
+
 const mensajeRubro = document.getElementById("mensaje-rubro");
 
 if (mensajeRubro) {
@@ -276,24 +294,7 @@ if (window.analytics) {
 // =========================
 
 
-  document.getElementById("btn-info").onclick = () => {
-    vistaActual = "info";
-
-    history.pushState(
-      {
-        vista: "info",
-        rubro: rubroActivo,
-        ubicacion: ubicacionActiva
-      },
-      "",
-      "#info"
-    );
-
-    renderInfo();
-  };
-
-  document.getElementById("btn-sumar").onclick = sumarMiComercio;
-
+  
 // =========================
 // LISTA COMERCIOS
 // =========================
