@@ -844,6 +844,14 @@ body {
 
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+   
+   webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
 }
 
 /* ocultar scrollbar */
