@@ -59,7 +59,7 @@ function intentarBloqueoNavegador() {
       </button>
 
       <p class="nota">
-        Es gratis, liviana y funciona mejor.
+        Es gratis, liviana y facil de usar.
       </p>
     </div>
   `;
