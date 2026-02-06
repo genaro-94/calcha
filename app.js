@@ -196,7 +196,10 @@ function renderHome() {
   <img src="images/calcha1.png" alt="Calcha Market" />
 </div>
     <button id="btn-menu">ℹ️</button>
-
+    
+    <button id="btn-info">ℹ️ ¿Qué es Calcha?</button>
+    <button id="btn-sumar">➕ Sumar comercio</button>
+  
     <div id="selector-ubicacion"></div>
 
     <div class="buscador">
