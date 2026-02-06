@@ -6,7 +6,7 @@
 // =========================
 // ESTADO GLOBAL
 // =========================
-
+let homeHistoryIndex = history.length;
 let vistaActual = "home";
 let ubicacionActiva = null;
 let rubroActivo = "todos";
@@ -485,17 +485,22 @@ function volverHome() {
   vistaActual = "home";
   comercioActivo = null;
 
-  history.replaceState(
-    {
-      vista: "home",
-      rubro: rubroActivo,
-      ubicacion: ubicacionActiva
-    },
-    "",
-    "#home"
-  );
-
-  renderHome();
+  // Volvemos TODO el historial al home inicial
+  const pasosAtras = history.length - homeHistoryIndex;
+  if (pasosAtras > 0) {
+    history.go(-pasosAtras);
+  } else {
+    history.replaceState(
+      {
+        vista: "home",
+        rubro: rubroActivo,
+        ubicacion: ubicacionActiva
+      },
+      "",
+      "#home"
+    );
+    renderHome();
+  }
 
   app.scrollTo({ top: 0, behavior: "smooth" });
 }
