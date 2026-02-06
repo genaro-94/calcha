@@ -32,7 +32,7 @@ body {
   background: linear-gradient(
     180deg,
     #c85a2a 0%,   /* naranja rojizo (tipo C del logo) */
-    #e2a76f 45%,  /* terracota clara */
+    #FFB20F 45%,  /* terracota clara */
     #f6efe7 100%  /* claro abajo */
   );
   font-family: "Inter", sans-serif;
