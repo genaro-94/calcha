@@ -563,7 +563,10 @@ margin-bottom: 18px;
   box-sizing: border-box;
   overflow: hidden;
 }
-
+.menu-item h4,
+.menu-item p {
+  word-break: break-word;
+}
 .btn-agregar-item {
   background: var(--item-button-bg);
   color: var(--item-button-text);
