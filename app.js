@@ -280,16 +280,27 @@ if (window.analytics) {
 // =========================
 
 function renderMenu() {
+function renderMenu() {
+
+  // ✅ GUARDAMOS ESTADO DEL MENÚ
+  history.pushState(
+    {
+      vista: "menu",
+      rubro: rubroActivo,
+      ubicacion: ubicacionActiva
+    },
+    "",
+    "#menu"
+  );
+
   app.innerHTML = `
-    <button class="btn-volver">←</button>
     <button id="btn-info">ℹ️ ¿Qué es Calcha?</button>
     <button id="btn-sumar">➕ Sumar comercio</button>
   `;
 
-  document.querySelector(".btn-volver").onclick = volverHome;
-
   document.getElementById("btn-info").onclick = () => {
     vistaActual = "info";
+
     history.pushState(
       {
         vista: "info",
@@ -299,6 +310,7 @@ function renderMenu() {
       "",
       "#info"
     );
+
     renderInfo();
   };
 
