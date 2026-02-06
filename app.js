@@ -26,8 +26,9 @@ const WHATSAPP_ADMIN = "5493875181644";
 const tiposOperacion = ["pedido", "reserva", "info", "mixto"];
 
 import { logEvent } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
+
 window.addEventListener("popstate", (e) => {
-  if (!e.state) {
+  if (!e.state || !e.state.vista) {
     volverHome();
     return;
   }
@@ -43,6 +44,18 @@ window.addEventListener("popstate", (e) => {
 
     case "info":
       renderInfo();
+      break;
+
+    case "pedido":
+      renderPedido();
+      break;
+
+    case "reserva":
+      renderReserva();
+      break;
+
+    case "confirmar":
+      renderConfirmar();
       break;
 
     default:
@@ -542,119 +555,126 @@ document.addEventListener("click", e => {
 // =========================
 
 function renderInfo() {
-app.innerHTML = `
-<button class="btn-volver">←</button>
-  <h2>ℹ️ ¿Qué es Calcha?</h2>
+  app.innerHTML = `
+    <button class="btn-volver">←</button>
 
-  <p>
-    Calcha es una plataforma que conecta personas con comercios y servicios
-    locales. No realiza pagos ni interviene en acuerdos entre las partes.
-  </p>
+    <h2>ℹ️ ¿Qué es Calcha?</h2>
 
-  <p>
-    Los pedidos, reservas o contactos se coordinan directamente entre usuarios
-    y comercios o prestadores de servicios.
-  </p>
-
-  <button id="btn-terminos" class="btn-secundario">
-    📄 Términos y Condiciones
-  </button>
-
-  <div id="terminos-container" class="terminos oculto">
-
-    <h3>Términos y Condiciones de Uso – Calcha</h3>
-    <p><strong>Última actualización:</strong> ___ / ___ / 2026</p>
-
-    <h4>1. ¿Qué es Calcha?</h4>
     <p>
-      Calcha es una plataforma digital de difusión y contacto que conecta
-      a usuarios con comercios, prestadores de servicios y repartidores
-      independientes dentro de una misma zona geográfica.
+      Calcha es una plataforma que conecta personas con comercios y servicios
+      locales. No realiza pagos ni interviene en acuerdos entre las partes.
     </p>
 
     <p>
-      Calcha no vende productos, no gestiona pagos, no cobra comisiones
-      ni interviene en transacciones, acuerdos, reservas, envíos
-      o comunicaciones entre las partes.
+      Los pedidos, reservas o contactos se coordinan directamente entre usuarios
+      y comercios o prestadores de servicios.
     </p>
 
-    <h4>2. Rol de Calcha (Limitación de Responsabilidad)</h4>
-    <p>
-      Calcha actúa únicamente como un medio de exhibición de información
-      proporcionada por terceros.
-    </p>
+    <button id="btn-terminos" class="btn-secundario">
+      📄 Términos y Condiciones
+    </button>
 
-    <ul>
-      <li>No es responsable por la calidad, precio o legalidad de los productos o servicios.</li>
-      <li>No garantiza disponibilidad ni cumplimiento de lo publicado.</li>
-      <li>No se responsabiliza por conflictos entre usuarios y comercios.</li>
-    </ul>
+    <div id="terminos-container" class="terminos oculto">
 
-    <p>
-      Toda operación se realiza bajo exclusiva responsabilidad
-      de usuarios y comercios.
-    </p>
+      <h3>Términos y Condiciones de Uso – Calcha</h3>
+      <p><strong>Última actualización:</strong> ___ / ___ / 2026</p>
 
-    <h4>3. Comercios y Moto Delivery</h4>
-    <p>
-      Los comercios y repartidores visibles en Calcha son independientes
-      y no mantienen relación laboral ni comercial con la plataforma.
-    </p>
+      <h4>1. ¿Qué es Calcha?</h4>
+      <p>
+        Calcha es una plataforma digital de difusión y contacto que conecta
+        a usuarios con comercios, prestadores de servicios y repartidores
+        independientes dentro de una misma zona geográfica.
+      </p>
 
-    <p>
-      Los repartidores coordinan directamente con los usuarios.
-      Calcha no verifica antecedentes, habilitaciones ni seguros.
-    </p>
+      <p>
+        Calcha no vende productos, no gestiona pagos, no cobra comisiones
+        ni interviene en transacciones, acuerdos, reservas, envíos
+        o comunicaciones entre las partes.
+      </p>
 
-    <h4>4. Ubicación y Visibilidad</h4>
-    <p>
-      Calcha puede mostrar perfiles según rubro o ubicación,
-      sin garantizar cobertura total ni prioridad.
-    </p>
+      <h4>2. Rol de Calcha (Limitación de Responsabilidad)</h4>
+      <p>
+        Calcha actúa únicamente como un medio de exhibición de información
+        proporcionada por terceros.
+      </p>
 
-    <h4>5. Uso Adecuado</h4>
-    <p>
-      El usuario se compromete a utilizar Calcha de buena fe
-      y no para actividades ilícitas o engañosas.
-    </p>
+      <ul>
+        <li>No es responsable por la calidad, precio o legalidad de los productos o servicios.</li>
+        <li>No garantiza disponibilidad ni cumplimiento de lo publicado.</li>
+        <li>No se responsabiliza por conflictos entre usuarios y comercios.</li>
+      </ul>
 
-    <h4>6. Propiedad del Contenido</h4>
-    <p>
-      Los contenidos publicados son responsabilidad de quien los carga.
-    </p>
+      <p>
+        Toda operación se realiza bajo exclusiva responsabilidad
+        de usuarios y comercios.
+      </p>
 
-    <h4>7. Modificaciones</h4>
-    <p>
-      Calcha puede modificar estos términos en cualquier momento.
-    </p>
+      <h4>3. Comercios y Moto Delivery</h4>
+      <p>
+        Los comercios y repartidores visibles en Calcha son independientes
+        y no mantienen relación laboral ni comercial con la plataforma.
+      </p>
 
-    <h4>8. Legislación Aplicable</h4>
-    <p>
-      Estos términos se rigen por las leyes de la República Argentina.
-    </p>
+      <p>
+        Los repartidores coordinan directamente con los usuarios.
+        Calcha no verifica antecedentes, habilitaciones ni seguros.
+      </p>
 
-    <h4>9. Contacto</h4>
-    <p>
-      Para consultas: <strong>contacto@calcha.app</strong>
-    </p>
+      <h4>4. Ubicación y Visibilidad</h4>
+      <p>
+        Calcha puede mostrar perfiles según rubro o ubicación,
+        sin garantizar cobertura total ni prioridad.
+      </p>
 
-    <p>
-      Al utilizar Calcha, el usuario declara haber leído
-      y aceptado estos Términos y Condiciones.
-    </p>
+      <h4>5. Uso Adecuado</h4>
+      <p>
+        El usuario se compromete a utilizar Calcha de buena fe
+        y no para actividades ilícitas o engañosas.
+      </p>
 
-  </div>
-`;
+      <h4>6. Propiedad del Contenido</h4>
+      <p>
+        Los contenidos publicados son responsabilidad de quien los carga.
+      </p>
+
+      <h4>7. Modificaciones</h4>
+      <p>
+        Calcha puede modificar estos términos en cualquier momento.
+      </p>
+
+      <h4>8. Legislación Aplicable</h4>
+      <p>
+        Estos términos se rigen por las leyes de la República Argentina.
+      </p>
+
+      <h4>9. Contacto</h4>
+      <p>
+        Para consultas: <strong>contacto@calcha.app</strong>
+      </p>
+
+      <p>
+        Al utilizar Calcha, el usuario declara haber leído
+        y aceptado estos Términos y Condiciones.
+      </p>
+
+    </div>
+  `;
+
+  // 🔙 botón volver (SOLO historial)
+  document.querySelector(".btn-volver").onclick = () => {
+    history.back();
+  };
+
+  // 📄 términos
   const btnTerminos = document.getElementById("btn-terminos");
-const terminos = document.getElementById("terminos-container");
+  const terminos = document.getElementById("terminos-container");
 
-btnTerminos.addEventListener("click", () => {
-  terminos.classList.toggle("oculto");
-
-  btnTerminos.innerText = terminos.classList.contains("oculto")
-    ? "📄 Términos y Condiciones"
-    : "❌ Ocultar Términos y Condiciones";
-});
+  btnTerminos.onclick = () => {
+    terminos.classList.toggle("oculto");
+    btnTerminos.innerText = terminos.classList.contains("oculto")
+      ? "📄 Términos y Condiciones"
+      : "❌ Ocultar Términos y Condiciones";
+  };
 }
 document.querySelector(".btn-volver").onclick = () => {
   history.back();
