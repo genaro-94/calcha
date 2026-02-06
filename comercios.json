@@ -854,58 +854,105 @@
   "estado": "activo",
   "destacado": false,
 
-  "theme": {
-    "colors": {
-      "primary": "#C0392B",
-      "secondary": "#2B2B2B",
-      "accent": "#F1C40F",
+"theme": {
+  "colors": {
+    "primary": "#D62828",
+    "secondary": "#000000",
+    "accent": "#FFB703",
 
-      "background": "#EFE5D0",
-      "text": "#2B2B2B",
+    "background": "#F4A261",
+    "text": "#000000",
 
-      "title": {
-        "bg": "#F1C40F",
-        "text": "#C0392B"
-      },
+    "title": {
+      "bg": "#FFB703",
+      "text": "#000000"
+    },
 
-      "button-back": {
-        "bg": "#2B2B2B",
-        "text": "#F1C40F"
-      },
+    "button-back": {
+      "bg": "#000000",
+      "text": "#FFB703"
+    },
 
-      "button-continue": {
-        "bg": "#C0392B",
-        "text": "#FFFFFF"
-      },
+    "button-continue": {
+      "bg": "#D62828",
+      "text": "#FFFFFF"
+    },
 
-      "cart": {
-        "total": "#C0392B"
-      },
+    "delivery-active": {
+      "bg": "#FFB703",
+      "border": "#D62828",
+      "text": "#000000"
+    },
 
-      "menu": {
-        "bg": "#F1C40F"
-      },
+    "cart": {
+      "total": "#D62828"
+    },
 
-      "tab": {
-        "bg": "#EFE5D0",
-        "text": "#2B2B2B",
-        "active": {
-          "bg": "#C0392B",
-          "text": "#FFFFFF"
-        }
+    "resumen": {
+      "item-name": "#000000",
+      "item-price": "#D62828"
+    },
+
+    "confirm": {
+      "title": "#000000",
+      "total": "#D62828",
+      "bg": "#F4A261",
+
+      "card": {
+        "bg": "#FFFFFF",
+        "shadow": "0 6px 16px rgba(0,0,0,0.12)"
       },
 
       "item": {
-        "bg": "#FFFFFF",
-        "text": "#2B2B2B",
-        "price": "#C0392B",
-        "shadow": "0 4px 14px rgba(0,0,0,0.1)",
+        "text": "#000000",
+        "price": "#D62828"
+      },
 
-        "button": {
-          "bg": "#C0392B",
-          "text": "#FFFFFF"
-        }
+      "button": {
+        "bg": "#D62828",
+        "text": "#FFFFFF"
       }
+    },
+
+    "gallery": {
+      "title": "#000000",
+      "border": "#FFB703"
+    },
+
+    "menu": {
+      "bg": "#FFB703"
+    },
+
+    "tab": {
+      "bg": "#F4A261",
+      "text": "#000000",
+      "active": {
+        "bg": "#D62828",
+        "text": "#FFFFFF"
+      }
+    },
+
+    "item": {
+      "bg": "#FFFFFF",
+      "text": "#000000",
+      "price": "#D62828",
+      "shadow": "0 4px 14px rgba(0,0,0,0.15)",
+
+      "button": {
+        "bg": "#D62828",
+        "text": "#FFFFFF"
+      },
+
+      "qty-btn": {
+        "bg": "#FFB703",
+        "text": "#000000",
+        "bg-active": "#D62828"
+      }
+    }
+  },
+
+  "font": "Poppins"
+}
     },
     "font": "Poppins"
   }
