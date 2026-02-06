@@ -534,6 +534,7 @@ function volverHome() {
       "#home"
     );
     renderHome();
+renderApp();
   }
 
   app.scrollTo({ top: 0, behavior: "smooth" });
