@@ -281,7 +281,7 @@ if (window.analytics) {
 
 function renderMenu() {
   app.innerHTML = `
-
+    <button class="btn-volver">←</button>
     <button id="btn-info">ℹ️ ¿Qué es Calcha?</button>
     <button id="btn-sumar">➕ Sumar comercio</button>
   `;
