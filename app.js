@@ -280,7 +280,6 @@ if (window.analytics) {
 // =========================
 
 function renderMenu() {
-function renderMenu() {
 
   // ✅ GUARDAMOS ESTADO DEL MENÚ
   history.pushState(
