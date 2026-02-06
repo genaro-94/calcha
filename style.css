@@ -1036,3 +1036,70 @@ background: var(--menu-bg, transparent);
   font-weight: 700;
   font-size: 1rem;
 }
+
+/* =========================
+   BLOQUEO PWA
+========================= */
+
+.bloqueo-pwa {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #2b1a10, #4a2a14);
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  padding: 32px 20px;
+  box-sizing: border-box;
+}
+
+.logo-bloqueo {
+  width: 110px;
+  max-width: 60%;
+  margin-bottom: 22px;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.35));
+}
+
+.bloqueo-pwa h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.bloqueo-pwa p {
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  margin-bottom: 24px;
+  max-width: 320px;
+}
+
+.btn-instalar {
+  background: linear-gradient(135deg, #f9a03f, #f77f00);
+  color: #2b1a10;
+
+  border: none;
+  border-radius: 16px;
+  padding: 14px 22px;
+
+  font-size: 1.05rem;
+  font-weight: 700;
+
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-instalar:active {
+  transform: scale(0.96);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+
+.nota {
+  margin-top: 18px;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
