@@ -192,6 +192,8 @@ function renderHome() {
   <div class="home-header">
       <img src="images/Logo.png" alt="Calcha" class="logo-calcha">
     <div class="header-logo">
+        <button id="btn-info">ℹ️ ¿Qué es Calcha?</button>
+    <button id="btn-sumar">➕ Sumar comercio</button>
   <img src="images/calcha1.png" alt="Calcha Market" />
 </div>
   
@@ -291,8 +293,7 @@ if (window.analytics) {
   };
 
   document.getElementById("btn-sumar").onclick = sumarMiComercio;
-}
-}
+
 // =========================
 // LISTA COMERCIOS
 // =========================
