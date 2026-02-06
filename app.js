@@ -262,15 +262,7 @@ if (mensajeRubro) {
     history.replaceState({ vista: "menu" }, "", "#menu");
     renderMenu();
   };
-  history.pushState(
-  {
-    vista: "menu"
-  },
-  "",
-  "#menu"
-);
-
-renderMenu();
+  
 if (window.analytics) {
   logEvent(window.analytics, "ver_home");
 }
@@ -295,21 +287,19 @@ function renderMenu() {
     <button id="btn-sumar">➕ Sumar comercio</button>
   `;
 
-  document.querySelector(".btn-volver").onclick = () => {
-  history.back();
-};
+  document.querySelector(".btn-volver").onclick = volverHome;
 
   document.getElementById("btn-info").onclick = () => {
     vistaActual = "info";
     history.pushState(
-  {
-    vista: "menu",
-    rubro: rubroActivo,
-    ubicacion: ubicacionActiva
-  },
-  "",
-  "#menu"
-);
+      {
+        vista: "info",
+        rubro: rubroActivo,
+        ubicacion: ubicacionActiva
+      },
+      "",
+      "#info"
+    );
     renderInfo();
   };
 
