@@ -1,4 +1,4 @@
-const CACHE_NAME = "calcha-pwa-v3";
+const CACHE_NAME = "calcha-pwa-v4";
 
 const FILES_TO_CACHE = [
   "/",
@@ -6,9 +6,9 @@ const FILES_TO_CACHE = [
   "/style.css",
   "/app.js",
   "/manifest.json",
-  "/comercios.json",
   "/Icon-192.png",
   "/Icon-512.png"
+  // ⚠️ SACAMOS comercios.json del precache
 ];
 
 self.addEventListener("install", e => {
@@ -30,6 +30,17 @@ self.addEventListener("activate", e => {
 });
 
 self.addEventListener("fetch", e => {
+  const url = e.request.url;
+
+  // 🔥 JSON siempre desde red
+  if (url.endsWith(".json")) {
+    e.respondWith(
+      fetch(e.request).catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // Resto: cache first
   e.respondWith(
     caches.match(e.request).then(r => r || fetch(e.request))
   );
