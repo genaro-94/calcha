@@ -37,8 +37,9 @@
 
 <script>
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/calcha-mkt/sw.js");
-}
+  navigator.serviceWorker.register("/calcha-mkt/sw.js", {
+  scope: "/calcha-mkt/"
+});
 </script>
 
   
