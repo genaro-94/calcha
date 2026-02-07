@@ -1,20 +1,20 @@
 {
   "name": "Calcha",
   "short_name": "Calcha",
-  "start_url": "/calcha/",
-  "scope": "/calcha/",
-  "id": "/calcha/",
+  "description": "Marketplace local de Cafayate",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#f5ecdf",
   "theme_color": "#c1440e",
   "icons": [
     {
-      "src": "/calcha/Icon-192.png",
+      "src": "/Icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/calcha/Icon-512.png",
+      "src": "/Icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
