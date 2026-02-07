@@ -1,17 +1,17 @@
 
 
-const CACHE_NAME = "calcha-mkt-v1-clean";
+const CACHE_NAME = "calcha-pwa-v4";
 
 const FILES_TO_CACHE = [
-  "/calcha-mkt/",
-  "/calcha-mkt/index.html",
-  "/calcha-mkt/style.css",
-  "/calcha-mkt/app.js",
-  "/calcha-mkt/manifest.json",
-  "/calcha-mkt/Icon-192.png",
-  "/calcha-mkt/Icon-512.png"
+  "/",
+  "/index.html",
+  "/style.css",
+  "/app.js",
+  "/manifest.json",
+  "/comercios.json",
+  "/Icon-192.png",
+  "/Icon-512.png"
 ];
-
 
 self.addEventListener("install", e => {
   e.waitUntil(
@@ -32,15 +32,7 @@ self.addEventListener("activate", e => {
 });
 
 self.addEventListener("fetch", e => {
-
-  // 🔥 JSON SIEMPRE DESDE LA RED
-  if (e.request.url.endsWith(".json")) {
-    e.respondWith(fetch(e.request));
-    return;
-  }
-
-  // resto de los archivos: cache first
   e.respondWith(
-    caches.match(e.request).then(res => res || fetch(e.request))
+    caches.match(e.request).then(r => r || fetch(e.request))
   );
 });
