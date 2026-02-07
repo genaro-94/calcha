@@ -28,61 +28,6 @@ const tiposOperacion = ["pedido", "reserva", "info", "mixto"];
 import { logEvent } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
 
 
-// =========================
-// PWA / BLOQUEO NAVEGADOR
-// =========================
-let deferredPrompt = null;
-
-window.addEventListener("beforeinstallprompt", (e) => {
-e.preventDefault();
-deferredPrompt = e;
-});
-
-function esPWAInstalada() {
-return (
-window.matchMedia("(display-mode: standalone)").matches ||
-window.navigator.standalone === true ||
-document.referrer.startsWith("android-app://")
-);
-}
-
-function intentarBloqueoNavegador() {
-if (esPWAInstalada()) return false;
-
-document.body.innerHTML = `
-<div class="bloqueo-pwa">
-<img src="images/Logo.png" class="logo-bloqueo">
-<h2>Calcha funciona como app</h2>
-<p>Para usar Calcha necesitás instalar la aplicación.</p>
-
-<button id="btn-instalar" class="btn-instalar">  
-    📲 Instalar app  
-  </button>  
-
-  <p class="nota">  
-    Es gratis, liviana y facil de usar.  
-  </p>  
-</div>
-
-`;
-
-const btn = document.getElementById("btn-instalar");
-
-btn.onclick = async () => {
-if (!deferredPrompt) {
-alert("Usá el menú del navegador y tocá “Agregar a pantalla de inicio”");
-return;
-}
-
-deferredPrompt.prompt();  
-await deferredPrompt.userChoice;  
-deferredPrompt = null;
-
-};
-
-return true;
-}
-
 
 window.addEventListener("popstate", (e) => {
   if (!e.state || !e.state.vista) {
@@ -128,8 +73,6 @@ window.addEventListener("popstate", (e) => {
 // =========================
 
 document.addEventListener("DOMContentLoaded", () => {
-
-if (intentarBloqueoNavegador()) return;
 
   app = document.getElementById("app");
 
