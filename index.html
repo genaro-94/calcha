@@ -35,14 +35,6 @@
 </head>
 <body>
 
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js");
-  });
-}
-</script>
-  
   <!-- Botón Home normal, dentro de la SPA -->
   <button id="btnHome" class="btn-home">🏠</button>
 <script type="module">
@@ -70,6 +62,15 @@ if ("serviceWorker" in navigator) {
 </script>
   <!-- Contenedor principal de la SPA -->
   <div id="app"></div>
+
+  <script>
+    // Registrar service worker
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js");
+      });
+    }
+  </script>
 
   
   <script type="module" src="app.js"></script>
