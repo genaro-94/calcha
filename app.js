@@ -48,34 +48,29 @@ function esPWAInstalada() {
 function intentarBloqueoNavegador() {
   if (esPWAInstalada()) return false;
 
-  document.body.innerHTML = `
-    <div class="bloqueo-pwa">
-      <img src="images/Logo.png" class="logo-bloqueo">
-      <h2>Calcha funciona como app</h2>
-      <p>Para usar Calcha necesitás instalar la aplicación.</p>
-
-      <button id="btn-instalar" class="btn-instalar">
-        📲 Instalar app
-      </button>
-
-      <p class="nota">
-        Es gratis, liviana y facil de usar.
-      </p>
-    </div>
+  // 🔥 cortar TODO
+  document.documentElement.innerHTML = `
+    <head>
+      <meta charset="utf-8">
+      <title>Instalar Calcha</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+      <div class="bloqueo-pwa">
+        <h2>Calcha funciona como app</h2>
+        <p>Instalá la aplicación para continuar</p>
+        <button id="btn-instalar">📲 Instalar app</button>
+      </div>
+    </body>
   `;
 
-  const btn = document.getElementById("btn-instalar");
-
-  btn.onclick = async () => {
-    if (!deferredPrompt) {
-      alert("Usá el menú del navegador y tocá “Agregar a pantalla de inicio”");
-      return;
-    }
-
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-  };
+  // 🔥 limpiar estado global
+  comercios = [];
+  comercioActivo = null;
+  carritos = {};
+  categoriaActiva = null;
+  tipoEntrega = null;
+  direccionEntrega = "";
 
   return true;
 }
@@ -126,10 +121,15 @@ window.addEventListener("popstate", (e) => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  if (intentarBloqueoNavegador()) return;
-  
-  app = document.getElementById("app");
+  if (esPWAInstalada() && !sessionStorage.getItem("calcha-loaded")) {
+    sessionStorage.setItem("calcha-loaded", "1");
+    location.reload();
+    return;
+  }
 
+  if (intentarBloqueoNavegador()) return;
+
+  app = document.getElementById("app");
   cargarComercios();
   manejarBackButton();
 
