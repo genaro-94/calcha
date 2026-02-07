@@ -1,17 +1,17 @@
 
 
-const CACHE_NAME = "calcha-mkt-clean-1";
+const CACHE_NAME = "calcha-mkt-v1-clean";
 
 const FILES_TO_CACHE = [
-  "/",
-  "/index.html",
-  "/style.css",
-  "/app.js",
-  "/manifest.json",
-  "/comercios.json",
-  "/Icon-192.png",
-  "/Icon-512.png"
+  "/calcha-mkt/",
+  "/calcha-mkt/index.html",
+  "/calcha-mkt/style.css",
+  "/calcha-mkt/app.js",
+  "/calcha-mkt/manifest.json",
+  "/calcha-mkt/Icon-192.png",
+  "/calcha-mkt/Icon-512.png"
 ];
+
 
 self.addEventListener("install", e => {
   e.waitUntil(
