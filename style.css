@@ -31,13 +31,11 @@ body {
   font-family: "Inter", system-ui, sans-serif;
   background: linear-gradient(
     180deg,
-    #c85a2a 0%,   /* naranja rojizo (tipo C del logo) */
-    #FFB20F 45%,  /* terracota clara */
+    #c85a2a 0%,   /* naranja rojizo */
+    #F4A261 45%,  /* terracota clara nueva */
     #f6efe7 100%  /* claro abajo */
   );
-  font-family: "Inter", sans-serif;
 }
-
 
 
 #app {
